@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Что нового в МедТехСервисе</title>
-<meta name="description" content="Все изменения CRM МедТехСервис за 16–17 ноября 2026 по разделам меню: что появилось, что исправлено, где нажать.">
+<meta name="description" content="Все изменения CRM МедТехСервис по разделам меню: что появилось, что исправлено, где нажать, что ждём от заказчика.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>
 html, body { margin: 0; }
@@ -64,6 +64,7 @@ a { color: var(--accent); }
 .tag--ask { color: var(--ask); background: var(--ask-soft); }
 .tag--new { color: var(--new); background: var(--new-soft); }
 .tag--fix { color: var(--fix); background: var(--fix-soft); }
+.tag--wait { color: var(--accent-dark); background: var(--accent-soft); }
 section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
 .part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
 .part h2 { margin: 0; font-size: 21px; }
@@ -148,6 +149,7 @@ figcaption { color: var(--muted); font-size: 13px; }
       <h3>Целиком</h3>
       <a href="#scenario">Сквозной сценарий</a>
       <a href="#reliability">Надёжность</a>
+      <a href="#waiting">Ждём от заказчика <i>11</i></a>
     </nav>
   </aside>
 
@@ -393,7 +395,26 @@ figcaption { color: var(--muted); font-size: 13px; }
         </ul>
       </section>
 
-      <p class="foot">Состояние на 17.11.2026. Ждут заказчика: форма договора, выгрузки из 1С, сервер, решения по графику выездов и журналу входов. Ждут бухгалтерию: формат счёта и обмен с 1С.</p>
+      <section class="part" id="waiting">
+        <header><h2>Что ждём от заказчика</h2><span class="where">12 пунктов ТЗ из 49 и 2 правки встречи ждут ответа</span></header>
+        <p class="note">С нашей стороны по ТЗ всё сделано. Всё ниже двигается, как только придёт ответ: в правом столбце — что он разблокирует.</p>
+        <ul class="items">
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Форма договора.</b><small>Договор по форме заказчика, задачи из договора по его составу, резерв запчастей под договор, путь запчастей «по договору»: инженер как курьер, списание при выдаче (ТЗ, блоки 7 и 9, раздел 3.4; встреча, правка 8б).</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Выгрузки из 1С: приборы, история обслуживания, номенклатура.</b><small>Боевой перенос данных (ТЗ, раздел 5). Импорт готов: пробный прогон, ошибки по строкам, повтор без дублей.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Характеристики сервера или хранилище S3.</b><small>Установка системы у заказчика и копии бэкапов вне сервера (ТЗ, раздел 6.2). Ночной бэкап на стенде уже работает.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Почта, бот Telegram и ключ нейросети компании.</b><small>Уведомления клиентам и сотрудникам со своих адресов, разбор писем нейросетью (ТЗ, блок 4). Сейчас всё работает на тестовых адресах, письма разбираются по правилам.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>2–3 инженера и кладовщик с почтой.</b><small>Пробная работа сотрудников в системе (встреча, 62:22).</small></div></li>
+          <li><span class="tag tag--wait">Решение</span><div><b>Кому видеть журнал входов с IP-адресами.</b><small>Права координатора (ТЗ, раздел 2). Сейчас журнал видит координатор.</small></div></li>
+          <li><span class="tag tag--wait">Решение</span><div><b>Какой нужен вид графика выездов и доски «по датам».</b><small>Переделка календаря, если нужна (встреча, 58:05 и 61:17). Сейчас — календарь инженеров и доски по этапам.</small></div></li>
+          <li><span class="tag tag--wait">Решение</span><div><b>Сколько хранить фото и видео с выездов и как сжимать.</b><small>Предложение готово, ждёт выбора (ТЗ, раздел 6.2).</small></div></li>
+          <li><span class="tag tag--wait">Проверка</span><div><b>Открыть стенд в своём Chrome.</b><small>Правка 10 со встречи: исправлено и выложено, подтвердить может только заказчик.</small></div></li>
+          <li><span class="tag tag--wait">Бухгалтерия</span><div><b>Ответы на «Обмен с 1С».</b><small>Формат выгрузки счёта для 1С, обмен с 1С в обе стороны, вид складских документов, гарантийные работы в счёте, арендное оборудование (ТЗ, блоки 8 и 11). Черновик с вопросами готов, отправляет Тимур.</small></div></li>
+          <li><span class="tag tag--wait">Приёмка</span><div><b>Приёмка этапа.</b><small>После неё — передача исходного кода и документации (ТЗ, раздел 7). Код уже в репозитории и описан для разработчика.</small></div></li>
+        </ul>
+        <p class="where">Не входят в работу: доступ заказчикам к своим работам (по ТЗ — за пределами этапов) и гарантия автоматически по категории прибора (отменено на встрече 16.11).</p>
+      </section>
+
+      <p class="foot">Состояние на 17.11.2026.</p>
     </div>
   </main>
 </div>
