@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Что нового в МедТехСервисе</title>
+<meta name="description" content="Все изменения CRM МедТехСервис за 16–17 ноября 2026 по разделам меню: что появилось, что исправлено, где нажать.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Раскладка: тёмное меню разделов слева, как в самой CRM; справа по разделу — что появилось, где нажать, кадр. */
+:root {
+  --bg: #f3f6f8; --surface: #ffffff; --ink: #17232c; --ink-soft: #3d5360; --muted: #5a6d78;
+  --border: #dde5ea; --border-soft: #eef2f4;
+  --accent: #0e6e99; --accent-dark: #0c5c81; --accent-soft: #e8f3f8;
+  --side: #132029; --side-soft: #1c333f; --side-text: #d7e2e8; --side-muted: #8aa0ac;
+  --new: #157a45; --new-soft: #e8f6ee; --fix: #9a5b08; --fix-soft: #fff4df; --ask: #7c3aed; --ask-soft: #f1ebfe;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --shadow: 0 1px 2px rgb(23 35 44 / 6%), 0 6px 20px rgb(23 35 44 / 6%);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.5; }
+a { color: var(--accent); }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 18px 12px 24px; background: var(--side); color: var(--side-text); }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 16px; }
+.brand b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: var(--surface); font-size: 13px; }
+.brand span { display: grid; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.brand small { color: var(--side-muted); font-weight: 400; font-size: 12px; }
+.side h3 { margin: 16px 8px 6px; color: var(--side-muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.side a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 7px; color: var(--side-text); text-decoration: none; font-size: 14px; }
+.side a:hover, .side a:focus-visible { background: var(--side-soft); outline: none; }
+.side a i { color: var(--side-muted); font-style: normal; font-size: 12px; font-variant-numeric: tabular-nums; }
+.main { min-width: 0; padding-block: 28px 64px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+.hero { display: grid; gap: 14px; padding: 24px 26px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.hero h1 { margin: 0; font-size: 28px; line-height: 1.2; text-wrap: balance; }
+.hero p { margin: 0; max-width: 70ch; color: var(--ink-soft); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
+.btn--main { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.stat { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+.stat strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.tag { display: inline-block; flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.tag--ask { color: var(--ask); background: var(--ask-soft); }
+.tag--new { color: var(--new); background: var(--new-soft); }
+.tag--fix { color: var(--fix); background: var(--fix-soft); }
+section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.part h2 { margin: 0; font-size: 21px; }
+.where { color: var(--muted); font-size: 13px; }
+.where a { font-weight: 600; }
+ul.items { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+ul.items li { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--border-soft); }
+ul.items li:first-child { border-top: 0; }
+ul.items li > div { min-width: 0; }
+ul.items b { font-weight: 650; }
+ul.items small { display: block; color: var(--muted); font-size: 13px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+figure { margin: 0; display: grid; gap: 6px; }
+.shot { display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); cursor: zoom-in; }
+.shot:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+figure img { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; transition: transform .2s ease; }
+.shot:hover img { transform: scale(1.015); }
+figcaption { color: var(--muted); font-size: 13px; }
+.note { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--ink-soft); font-size: 14px; }
+.scenario { display: grid; gap: 6px; margin: 0; padding-left: 22px; }
+.foot { color: var(--muted); font-size: 13px; text-align: center; }
+
+/* Просмотр скриншота на весь экран: внутри страницы, без перехода по ссылке */
+.viewer { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: rgb(8 14 18 / 92%); color: #eef3f6;
+  padding: max(10px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.viewer[hidden] { display: none; }
+.viewer__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 10px; font-size: 14px; }
+.viewer__count { color: #a9bac4; font-variant-numeric: tabular-nums; }
+.viewer__stage { position: relative; display: grid; place-items: center; min-height: 0; overflow: auto; }
+.viewer__stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgb(0 0 0 / 45%); cursor: zoom-in; }
+.viewer--full .viewer__stage { place-items: start center; }
+.viewer--full .viewer__stage img { max-width: none; max-height: none; cursor: zoom-out; }
+.viewer__caption { padding: 10px 4px 2px; color: #d6e1e7; font-size: 14px; text-align: center; }
+.viewer__btn { display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; background: rgb(255 255 255 / 10%); font-size: 15px; cursor: pointer; }
+.viewer__btn:hover, .viewer__btn:focus-visible { background: rgb(255 255 255 / 22%); outline: none; }
+.viewer__nav { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; padding: 0 0 4px; font-size: 30px; transform: translateY(-50%); }
+.viewer__nav--prev { left: 6px; }
+.viewer__nav--next { right: 6px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+  .side nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .side h3 { display: none; }
+  .side a { flex: 0 0 auto; background: var(--side-soft); }
+  .side a i { display: none; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ul.items li { grid-template-columns: minmax(0, 1fr); }
+  section.part, .hero { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { figure img { transition: none; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" aria-label="Разделы">
+    <div class="brand"><b>МТ</b><span>МедТехСервис<small>что нового 16–17.11</small></span></div>
+    <nav>
+      <a href="#top">Коротко</a>
+      <h3>Работа</h3>
+      <a href="#tasks">Задачи <i>13</i></a>
+      <a href="#equipment">Приборы <i>4</i></a>
+      <a href="#plan">План ТО <i>2</i></a>
+      <a href="#engineers">Инженеры <i>3</i></a>
+      <a href="#warehouse">Склад <i>3</i></a>
+      <a href="#reservations">Резервы <i>3</i></a>
+      <h3>Контроль</h3>
+      <a href="#customers">Клиенты <i>1</i></a>
+      <a href="#invoices">Счета <i>3</i></a>
+      <a href="#quotes">КП <i>1</i></a>
+      <a href="#price">Прайс <i>1</i></a>
+      <a href="#reports">Отчёты <i>4</i></a>
+      <a href="#notifications">Уведомления <i>4</i></a>
+      <a href="#journals">Журналы <i>2</i></a>
+      <h3>Настройки</h3>
+      <a href="#references">Справочники <i>2</i></a>
+      <a href="#import">Импорт <i>1</i></a>
+      <a href="#staff">Сотрудники и роли <i>3</i></a>
+      <h3>Другие роли</h3>
+      <a href="#engineer">Инженер с телефона <i>3</i></a>
+      <a href="#initiator">Менеджер-инициатор <i>1</i></a>
+      <h3>Целиком</h3>
+      <a href="#scenario">Сквозной сценарий</a>
+      <a href="#reliability">Надёжность</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+      <section class="hero" id="top">
+        <h1>Что нового в МедТехСервисе за 16–17 ноября</h1>
+        <p>Всё ниже выложено на стенд и проверено на нём. Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана. Живую работу — письма, уведомления, файлы — на стенде.</p>
+        <div class="links">
+          <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=sysadmin" target="_blank" rel="noopener">Открыть демо</a>
+          <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>35 из 49</strong><span>пунктов ТЗ сделано и проверено</span></div>
+          <div class="stat"><strong>12</strong><span>ждут заказчика или бухгалтерию</span></div>
+          <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
+          <div class="stat"><strong>11 из 13</strong><span>правок со встречи 16.11</span></div>
+        </div>
+        <div class="legend"><span><span class="tag tag--ask">По показу 17.11</span> сделано по вашим замечаниям сегодня</span><span><span class="tag tag--new">Новое</span> новый экран или возможность</span><span><span class="tag tag--fix">Исправлено</span> было неудобно или с ошибкой</span></div>
+      </section>
+
+      <section class="part" id="tasks">
+        <header><h2>Задачи</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=supervisor" target="_blank" rel="noopener">демо, Руководитель</a> → «Задачи»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Отбор не выкидывает с доски в список.</b><small>«Новые», «Просрочены», «На проверке» и переход из отчёта оставляют доску. Видны все этапы, не вошедшие в отбор — бледные с подписью «Не входит в отбор».</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Стрелки «‹ ›» и постоянная полоса прокрутки на доске.</b><small>Когда колонки не помещаются (например, с «Закрытыми и отменёнными»), по краям появляются стрелки, а полоса прокрутки внизу видна всегда. Так на всех досках.</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Перенос из «Новой» в «Назначену» — с выбором места и инженера.</b><small>При переносе видно, между какими карточками встанет задача. Отпустили — прямо на доске окно «Назначить инженера»; после выбора карточка встаёт туда, куда её опустили. Закрыли окно — задача остаётся в «Новой».</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>«Свойства» задачи — вкладка, а не правая колонка.</b><small>Первая вкладка рядом с «Работа и акт», «Запчасти», «Письмо клиента», «История». Инженер сразу попадает в «Работу и акт».</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Плашка «Требуют внимания».</b><small>Новые, просроченные, на проверке — числа над доской, нажатие оставляет только эти задачи.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Несколько видов работ в одной задаче.</b><small>Задача → «Изменить» → «+ Добавить вид работ». В счёте строка на каждый вид.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Задача-продолжение «в счёт первичной заявки».</b><small>Галочка в результате работ: после приёмки появляется связанная задача.</small></div></li>
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Гарантию отмечает координатор при создании.</b><small>Значок «Гарантия» на карточках и фильтр в задачах.</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Ответ клиенту оформлен как письмо.</b><small>Вкладка «Письмо клиента»: сверху «Кому» и «Тема» — как увидит клиент, заготовки «Заявка принята», «Инженер назначен», «Время выезда», «Нужны уточнения», «Работы выполнены» с номером заявки и инженером, внизу «Отправить».</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Доски тянутся до низа окна.</b><small>На высоком экране под доской больше нет пустоты — так на задачах, приборах, счетах, плане ТО, складе и резервах.</small></div></li>
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Письмо клиента в карточке задачи.</b><small>Вкладка «Письмо клиента»: письмо, вложения, «Ответ клиенту» уходит в той же переписке, ответ клиента возвращается сюда.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Фото из письма попадают в задачу.</b><small>Задачи → «Письма» → «Создать задачу»: вложения письма сразу в карточке.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Сроки и S/N при создании.</b><small>Срок не раньше вызова и не перевёрнут, повторный S/N сверяется со всем реестром.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/tasks-attention-new.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска задач с отбором «Новые»: все этапы видны, лишние бледные" loading="lazy" src="shots/tasks-attention-new.jpg"></button><figcaption>«Новые»: доска остаётся, остальные этапы бледные</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/tasks-from-report.jpg" aria-label="Открыть скриншот крупно"><img alt="Переход из отчёта «Этап: Назначена» открывает доску" loading="lazy" src="shots/tasks-from-report.jpg"></button><figcaption>Из отчёта — тоже доска, над ней «Из отчёта: Этап: Назначена»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/task-props.jpg" aria-label="Открыть скриншот крупно"><img alt="Карточка задачи со вкладкой «Свойства»" loading="lazy" src="shots/task-props.jpg"></button><figcaption>Карточка: «Свойства» первой вкладкой</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/task-mail.jpg" aria-label="Открыть скриншот крупно"><img alt="Вкладка «Письмо клиента» в карточке задачи" loading="lazy" src="shots/task-mail.jpg"></button><figcaption>«Письмо клиента»: переписка и ответ</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/tasks-mail.jpg" aria-label="Открыть скриншот крупно"><img alt="Входящие письма с распознанным S/N" loading="lazy" src="shots/tasks-mail.jpg"></button><figcaption>«Письма»: что распознано, S/N, «Создать задачу»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/tasks-attention-overdue.jpg" aria-label="Открыть скриншот крупно"><img alt="Отбор «Просрочены» на доске" loading="lazy" src="shots/tasks-attention-overdue.jpg"></button><figcaption>«Просрочены»: просроченные по своим этапам</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="equipment">
+        <header><h2>Приборы</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=sysadmin" target="_blank" rel="noopener">демо, Системный администратор</a> → «Приборы»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Доска по статусам.</b><small>«В эксплуатации», «Требует ремонта», «В ремонте», «Консервация», «Списан». Поиск и фильтры действуют на все колонки, есть «Список».</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Затраты в карточке прибора.</b><small>Этот год, прошлый, всё время: итог, работы, запчасти, по скольким счетам. Инженер сумм не видит.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Категории гарантии в паспорте больше нет.</b><small>Решение встречи 16.11: гарантию ставит координатор в задаче.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 16.11</span><div><b>Счётчик нельзя уменьшить, даты не из будущего.</b><small>На телефоне строки реестра разворачиваются в карточки.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/equipment-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска приборов по статусам" loading="lazy" src="shots/equipment-board.jpg"></button><figcaption>Доска приборов по статусам</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/equipment-spend.jpg" aria-label="Открыть скриншот крупно"><img alt="Паспорт прибора с историей и затратами" loading="lazy" src="shots/equipment-spend.jpg"></button><figcaption>Паспорт: история и «Затраты» справа внизу</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="plan">
+        <header><h2>План ТО</h2><span class="where">Где: «План ТО»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>«По месяцам» — доска из двенадцати месяцев.</b><small>Открывается на текущем месяце, он выделен. В колонке — периоды ТО, которые начинаются в этом месяце: прибор, даты, инженер, статус. Карточка открывает план прибора.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 16.11</span><div><b>Годовая шкала.</b><small>Месяц на шкале совпадает с полоской на любой ширине экрана. Виды «По приборам», «По инженерам», «По организациям» остались.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/maintenance-months.jpg" aria-label="Открыть скриншот крупно"><img alt="План ТО по месяцам" loading="lazy" src="shots/maintenance-months.jpg"></button><figcaption>«По месяцам»: открывается на ноябре</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/maintenance-equipment.jpg" aria-label="Открыть скриншот крупно"><img alt="План ТО по приборам на годовой шкале" loading="lazy" src="shots/maintenance-equipment.jpg"></button><figcaption>«По приборам»: годовая шкала</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="engineers">
+        <header><h2>Инженеры</h2><span class="where">Где: «Инженеры» → «Календарь»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Календарь загрузки инженеров.</b><small>Кто чем занят по дням, кто свободен, у кого просрочки.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Неделя и месяц, фильтры «Инженер» и «Этап».</b><small>Правка со встречи (56:04, 59:29). Инженер видит только свои выезды.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Просроченная задача занимает инженера и сегодня.</b><small>Срочная задача без инженера тоже видна в календаре.</small></div></li>
+        </ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/engineers-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь загрузки инженеров" loading="lazy" src="shots/engineers-calendar.jpg"></button><figcaption>Календарь загрузки</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="warehouse">
+        <header><h2>Склад</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=warehouse" target="_blank" rel="noopener">демо, Кладовщик</a> → «Склад»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Склад целиком по ТЗ.</b><small>«Доска» и «Список», остаток по Г, Н и Б, у позиции «История» движений, списание и корректировка, поиск по артикулу любого поставщика, «Приход файлом».</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Документы склада формируются сами.</b><small>«Склад» → «Документы»: ПМ- при выдаче инженеру, ВЗ- при возврате, СП- при закрытии с «установлено». Правка со встречи.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Штучная запчасть.</b><small>Галочка «Считается штуками» в карточке позиции: 1,5 шт. система не примет.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/warehouse-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска склада" loading="lazy" src="shots/warehouse-board.jpg"></button><figcaption>Доска склада</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/warehouse-documents.jpg" aria-label="Открыть скриншот крупно"><img alt="Документы склада" loading="lazy" src="shots/warehouse-documents.jpg"></button><figcaption>«Документы»: ПМ-, ВЗ-, СП-</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="reservations">
+        <header><h2>Резервы</h2><span class="where">Где: Кладовщик → «Резервы»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Доска резервов.</b><small>«Ждёт сборки → Собрана → У инженера → Установлена / Возвращена». Карточку перетаскивают в соседнюю колонку.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Возврат части запчасти.</b><small>«Вернули на склад» → «Сколько вернули»: остаток остаётся за инженером.</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Список постранично.</b><small>Внизу «Показывать по» 25, 50 или 100 и страницы.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/reservations-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска резервов" loading="lazy" src="shots/reservations-board.jpg"></button><figcaption>Доска резервов</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/reservations-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Список резервов" loading="lazy" src="shots/reservations-list.jpg"></button><figcaption>Список резервов</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="customers">
+        <header><h2>Клиенты</h2><span class="where">Где: «Клиенты»</span></header>
+        <ul class="items"><li><span class="tag tag--fix">Исправлено 16.11</span><div><b>ИНН и КПП плательщика проверяются.</b><small>Неверный номер система не примет и скажет почему.</small></div></li></ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Клиенты" loading="lazy" src="shots/customers.jpg"></button><figcaption>Площадки и люди</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="invoices">
+        <header><h2>Счета</h2><span class="where">Где: Системный администратор или Руководитель → «Счета»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Доска по статусам.</b><small>«Черновик → Выставлен → Передан в 1С → Отменён», рядом «Список».</small></div></li>
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Счёт собирается сам.</b><small>«Выставить счёт» → закрытые задачи: работы по прайсу на день работ, запчасти по цене прихода. «Обновить по прайсу», скидка или надбавка, «Выставить», «Передан в 1С», «Выгрузить в Excel», история статусов.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Скидка не больше суммы и снимается.</b><small>Строки без цены счёт показывает прямо, молча с нулём не уходит.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/invoices-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска счетов по статусам" loading="lazy" src="shots/invoices-board.jpg"></button><figcaption>Доска счетов</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/invoice-card.jpg" aria-label="Открыть скриншот крупно"><img alt="Карточка счёта" loading="lazy" src="shots/invoice-card.jpg"></button><figcaption>Карточка счёта</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="quotes">
+        <header><h2>КП</h2><span class="where">Где: «КП» → «Новое КП»</span></header>
+        <ul class="items"><li><span class="tag tag--new">Новое 17.11</span><div><b>Коммерческие предложения (ТЗ, блок 9).</b><small>«Запчасть со склада» — с остатком на складе, «Работа по прайсу», сумма считается сама. «Отправлено клиенту» → «Клиент принял» / «Клиент отказался» / «Срок истёк», «Скачать в Excel».</small></div></li></ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/quotes.jpg" aria-label="Открыть скриншот крупно"><img alt="Раздел КП" loading="lazy" src="shots/quotes.jpg"></button><figcaption>Список КП</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="price">
+        <header><h2>Прайс</h2><span class="where">Где: Руководитель → «Прайс»</span></header>
+        <ul class="items"><li><span class="tag tag--new">Новое 16.11</span><div><b>Цены с датами и история.</b><small>У цены есть дата начала, счёт берёт цену на день работ. «История цен» у вида работ, «Изменить выбранные» — поднять цены разом с нужной даты.</small></div></li></ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/price.jpg" aria-label="Открыть скриншот крупно"><img alt="Прайс" loading="lazy" src="shots/price.jpg"></button><figcaption>Прайс</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="reports">
+        <header><h2>Отчёты</h2><span class="where">Где: Руководитель → «Отчёты»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Отчёты в разрезах ТЗ.</b><small>Этапы, виды работ, гарантия, причины, приборы, площадки, инженеры, затраты; выгрузка в Excel.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Отчёт нажимается.</b><small>Любая цифра или полоса открывает именно эти задачи (встреча, 45:14 и 52:27).</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>«Откуда задачи»: из плана ТО или разовая заявка.</b><small>Правка со встречи (46:03).</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Гарантийные раскрываются до задач.</b><small>Разрез «Гарантия» (49:20).</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Отчёты" loading="lazy" src="shots/reports.jpg"></button><figcaption>Отчёт за период</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/reports-source.jpg" aria-label="Открыть скриншот крупно"><img alt="Разрез «Откуда задачи»" loading="lazy" src="shots/reports-source.jpg"></button><figcaption>«Откуда задачи» и другие разрезы</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="notifications">
+        <header><h2>Уведомления</h2><span class="where">Где: «Уведомления»; свои каналы — имя внизу слева → «Мой профиль»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Каналы по каждому сотруднику.</b><small>Галочки «событие × почта / Telegram» в «Моём профиле» и в карточке сотрудника.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Акт во вложении письма «Работы завершены».</b><small>Клиент получает фото подписанного акта. Проверено на стенде.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Telegram — текстом.</b><small>Даты и запчасти по-человечески.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 16.11</span><div><b>Каждый видит только своё.</b><small>Инженер и инициатор видят в журнале только письма, адресованные им.</small></div></li>
+        </ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Журнал уведомлений" loading="lazy" src="shots/notifications.jpg"></button><figcaption>Журнал отправки</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="journals">
+        <header><h2>Журналы</h2><span class="where">Где: Системный администратор → «Журналы»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>«Журнал изменений» и «Журнал входов».</b><small>Кто, что, было и стало — словами, а не кодами. Изнутри системы не подчистить.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Понятные названия новых полей.</b><small>Гарантия, дополнительные виды работ, строки счёта, прайс.</small></div></li>
+        </ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/journals.jpg" aria-label="Открыть скриншот крупно"><img alt="Журналы" loading="lazy" src="shots/journals.jpg"></button><figcaption>Журнал изменений</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="references">
+        <header><h2>Справочники</h2><span class="where">Где: «Справочники»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Видно, где используется справочник и что значат кнопки.</b><small>Над таблицей — «Где используется»: например, «Виды работ» выбирают в задаче, по ним цена из прайса и строка в счёте. Стрелки — порядок, карандаш — изменить, перечёркнутый глаз — скрыть.</small></div></li>
+          <li><span class="tag tag--ask">По показу 17.11</span><div><b>Без лишнего.</b><small>«Категории гарантии» убраны — после встречи они нигде не используются. Столбец «Параметры» виден, только если в нём есть разница.</small></div></li>
+        </ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/references.jpg" aria-label="Открыть скриншот крупно"><img alt="Справочники" loading="lazy" src="shots/references.jpg"></button><figcaption>«Где используется» над таблицей</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="import">
+        <header><h2>Импорт</h2><span class="where">Где: «Импорт»</span></header>
+        <ul class="items"><li><span class="tag tag--new">Новое 16.11</span><div><b>Перенос приборов и истории из 1С.</b><small>Файл выгрузки → пробный прогон без записи, ошибки по строкам, затем «Записать». Повтор без дублей.</small></div></li></ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/import.jpg" aria-label="Открыть скриншот крупно"><img alt="Импорт" loading="lazy" src="shots/import.jpg"></button><figcaption>Импорт из 1С</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="staff">
+        <header><h2>Сотрудники и роли</h2><span class="where">Где: Системный администратор → «Сотрудники»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--ask">По вашему замечанию 17.11</span><div><b>Окно роли без сетки из 32 галочек.</b><small>«Добавить роль» → «Тип роли»: права подставляются как у роли этого типа, ниже короткий список «Что может роль». Галочки — по кнопке «Настроить подробно».</small></div></li>
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Роль «Системный администратор».</b><small>Один вход, из которого видно всё. «Администратор» видит только настройки.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Отключение роли называет, кто потеряет вход.</b><small>Себе роль и вход отключить нельзя.</small></div></li>
+        </ul>
+        <div class="shots"><figure><button class="shot" type="button" data-full="shots/role-dialog.jpg" aria-label="Открыть скриншот крупно"><img alt="Окно новой роли" loading="lazy" src="shots/role-dialog.jpg"></button><figcaption>Новая роль: права по типу</figcaption></figure></div>
+      </section>
+
+      <section class="part" id="engineer">
+        <header><h2>Инженер с телефона</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=engineer" target="_blank" rel="noopener">демо, Инженер</a></span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Свой календарь выездов.</b><small>«Мои задачи» → «Календарь».</small></div></li>
+          <li><span class="tag tag--fix">Исправлено 17.11</span><div><b>Блок «Запчасти у вас».</b><small>«Получить на складе» — только пока есть что забирать. У отмеченной запчасти — «отмечена установленной».</small></div></li>
+          <li><span class="tag tag--new">Новое 16.11</span><div><b>Плохая связь не страшна.</b><small>Черновик результата не теряется при обрыве, недогруженные фото отправляются снова одной кнопкой.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/engineer-task.jpg" aria-label="Открыть скриншот крупно"><img alt="Задача у инженера" loading="lazy" src="shots/engineer-task.jpg"></button><figcaption>Задача у инженера</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/engineer-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь инженера" loading="lazy" src="shots/engineer-calendar.jpg"></button><figcaption>Свой календарь</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="initiator">
+        <header><h2>Менеджер-инициатор</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=initiator" target="_blank" rel="noopener">демо, Инициатор</a></span></header>
+        <ul class="items"><li><span class="tag tag--new">Новое 17.11</span><div><b>Свой простой экран (ТЗ, раздел 2).</b><small>«Мои заявки» — только свои, этап и результат. «Новая заявка» — прибор по S/N, что сделать, срочность. Цен и чужих задач не видно. Проверено на стенде под сотрудником-инициатором.</small></div></li></ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/initiator-requests.jpg" aria-label="Открыть скриншот крупно"><img alt="Мои заявки" loading="lazy" src="shots/initiator-requests.jpg"></button><figcaption>«Мои заявки»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/initiator-new.jpg" aria-label="Открыть скриншот крупно"><img alt="Новая заявка" loading="lazy" src="shots/initiator-new.jpg"></button><figcaption>«Новая заявка»</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="scenario">
+        <header><h2>Сквозной сценарий на стенде</h2><span class="where">Где: стенд, задача З-000006</span></header>
+        <p class="note">Вся цепочка ТЗ пройдена на стенде одним проходом 17.11 — под системным администратором, инженером и инициатором. Все следы остались, показывать можно, ничего не повторяя.</p>
+        <ol class="scenario">
+          <li>Письмо на заявочный адрес → задача из письма, прибор найден по S/N, клиенту ушёл автоответ.</li>
+          <li>Назначен инженер, под задачу собран и выдан резерв запчасти (перемещение ПМ-000002).</li>
+          <li>Инженер принял задачу, заполнил акт, загрузил фото акта и три фото, отметил запчасть установленной.</li>
+          <li>Проверка и закрытие → клиенту письмо «Работы завершены» с актом во вложении.</li>
+          <li>В истории прибора — замена запчасти и задача, счётчик обновился; списание СП-000001.</li>
+          <li>Из закрытой задачи собран счёт СЧ-000002.</li>
+        </ol>
+        <p class="where">Суммы в счёте на стенде нулевые: там не заданы цена на «Диагностику» и цена прихода запчасти. В демо суммы есть.</p>
+      </section>
+
+      <section class="part" id="reliability">
+        <header><h2>Надёжность</h2><span class="where">Не на экране — сказать словами</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Ночной бэкап базы и файлов.</b><small>Каждую ночь в 03:00 по Москве; восстановление из копии проверено.</small></div></li>
+          <li><span class="tag tag--new">Новое 17.11</span><div><b>Скорость на большой базе.</b><small>1500 приборов, 15 000 задач, 30 000 записей истории — все запросы быстрее 0,4 с.</small></div></li>
+          <li><span class="tag tag--new">Сделано</span><div><b>Права проверяет сервер.</b><small>Инженер не получает цен ни одним запросом, инициатор видит только свои заявки.</small></div></li>
+        </ul>
+      </section>
+
+      <p class="foot">Состояние на 17.11.2026. Ждут заказчика: форма договора, выгрузки из 1С, сервер, решения по графику выездов и журналу входов. Ждут бухгалтерию: формат счёта и обмен с 1С.</p>
+    </div>
+  </main>
+</div>
+
+<div class="viewer" hidden id="viewer" role="dialog" aria-modal="true" aria-label="Скриншот">
+  <div class="viewer__bar"><span class="viewer__count" id="viewer-count"></span><span style="display:flex;gap:8px"><button class="viewer__btn" id="viewer-zoom" type="button">В полный размер</button><button class="viewer__btn" id="viewer-close" type="button" aria-label="Закрыть">✕</button></span></div>
+  <div class="viewer__stage" id="viewer-stage">
+    <button class="viewer__btn viewer__nav viewer__nav--prev" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">‹</button>
+    <img alt="" id="viewer-img">
+    <button class="viewer__btn viewer__nav viewer__nav--next" id="viewer-next" type="button" aria-label="Следующий скриншот">›</button>
+  </div>
+  <div class="viewer__caption" id="viewer-caption"></div>
+</div>
+<script>
+(() => {
+  const shots = [...document.querySelectorAll(".shot")];
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-img");
+  const caption = document.getElementById("viewer-caption");
+  const count = document.getElementById("viewer-count");
+  const zoom = document.getElementById("viewer-zoom");
+  let index = 0;
+  let opener = null;
+  const show = (next) => {
+    index = (next + shots.length) % shots.length;
+    const shot = shots[index];
+    const thumb = shot.querySelector("img");
+    viewer.classList.remove("viewer--full");
+    zoom.textContent = "В полный размер";
+    img.src = shot.dataset.full;
+    img.alt = thumb ? thumb.alt : "";
+    const figcap = shot.closest("figure")?.querySelector("figcaption");
+    const section = shot.closest("section")?.querySelector("h2");
+    caption.textContent = [section?.textContent, figcap?.textContent].filter(Boolean).join(" · ");
+    count.textContent = (index + 1) + " из " + shots.length;
+  };
+  const open = (i, from) => { opener = from; show(i); viewer.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("viewer-close").focus(); };
+  const close = () => { viewer.hidden = true; document.body.style.overflow = ""; img.removeAttribute("src"); opener?.focus(); };
+  const toggleFull = () => { const full = viewer.classList.toggle("viewer--full"); zoom.textContent = full ? "Вписать в экран" : "В полный размер"; };
+  shots.forEach((shot, i) => shot.addEventListener("click", () => open(i, shot)));
+  document.getElementById("viewer-close").addEventListener("click", close);
+  document.getElementById("viewer-prev").addEventListener("click", (event) => { event.stopPropagation(); show(index - 1); });
+  document.getElementById("viewer-next").addEventListener("click", (event) => { event.stopPropagation(); show(index + 1); });
+  zoom.addEventListener("click", toggleFull);
+  img.addEventListener("click", (event) => { event.stopPropagation(); toggleFull(); });
+  document.getElementById("viewer-stage").addEventListener("click", (event) => { if (event.target.id === "viewer-stage") close(); });
+  document.addEventListener("keydown", (event) => {
+    if (viewer.hidden) return;
+    if (event.key === "Escape") close();
+    else if (event.key === "ArrowLeft") show(index - 1);
+    else if (event.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
+</body>
+</html>
