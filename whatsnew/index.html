@@ -65,6 +65,9 @@ a { color: var(--accent); }
 .tag--new { color: var(--new); background: var(--new-soft); }
 .tag--fix { color: var(--fix); background: var(--fix-soft); }
 .tag--wait { color: var(--accent-dark); background: var(--accent-soft); }
+.tag--meet { color: var(--surface); background: var(--accent); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
 section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
 .part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
 .part h2 { margin: 0; font-size: 21px; }
@@ -121,9 +124,10 @@ figcaption { color: var(--muted); font-size: 13px; }
 <body>
 <div class="layout">
   <aside class="side" aria-label="Разделы">
-    <div class="brand"><b>МТ</b><span>МедТехСервис<small>что нового 16–17.11</small></span></div>
+    <div class="brand"><b>МТ</b><span>МедТехСервис<small>что нового 16–18.11</small></span></div>
     <nav>
       <a href="#top">Коротко</a>
+      <a href="#meeting18">Встреча 18.11 <i>16</i></a>
       <h3>Работа</h3>
       <a href="#tasks">Задачи <i>13</i></a>
       <a href="#equipment">Приборы <i>4</i></a>
@@ -156,7 +160,7 @@ figcaption { color: var(--muted); font-size: 13px; }
   <main class="main">
     <div class="wrap">
       <section class="hero" id="top">
-        <h1>Что нового в МедТехСервисе за 16–17 ноября</h1>
+        <h1>Что нового в МедТехСервисе за 16–18 ноября</h1>
         <p>Всё ниже выложено на стенд и проверено на нём. Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана. Живую работу — письма, уведомления, файлы — на стенде.</p>
         <div class="links">
           <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=sysadmin" target="_blank" rel="noopener">Открыть демо</a>
@@ -166,9 +170,68 @@ figcaption { color: var(--muted); font-size: 13px; }
           <div class="stat"><strong>35 из 49</strong><span>пунктов ТЗ сделано и проверено</span></div>
           <div class="stat"><strong>12</strong><span>ждут заказчика или бухгалтерию</span></div>
           <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
-          <div class="stat"><strong>11 из 13</strong><span>правок со встречи 16.11</span></div>
+          <div class="stat"><strong>16 из 17</strong><span>правок со встречи 18.11, упрощение экранов продолжаем</span></div>
         </div>
-        <div class="legend"><span><span class="tag tag--ask">По показу 17.11</span> сделано по вашим замечаниям сегодня</span><span><span class="tag tag--new">Новое</span> новый экран или возможность</span><span><span class="tag tag--fix">Исправлено</span> было неудобно или с ошибкой</span></div>
+        <div class="legend"><span><span class="tag tag--meet">Встреча 18.11</span> сделано по замечаниям Сергея</span><span><span class="tag tag--ask">По показу 17.11</span> сделано по вашим замечаниям</span><span><span class="tag tag--new">Новое</span> новый экран или возможность</span><span><span class="tag tag--fix">Исправлено</span> было неудобно или с ошибкой</span></div>
+      </section>
+
+      <section class="part" id="meeting18">
+        <header><h2>Встреча 18.11: что сделано</h2><span class="where">Всё выложено на стенд и проверено там. Следующая встреча — с «Резервов».</span></header>
+        <h3 class="sub">Задачи <span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Задачи»</span></h3>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Вид работ — одним полем, можно выбрать несколько.</b><small>Новая задача и «Изменить»: все виды кнопками, нажатые выбраны. «Основного» и «ещё видов» больше нет, в счёте строка на каждый вид.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Фильтры с несколькими значениями.</b><small>«Фильтры» → «Статус», «Инженер», «Площадка», «Вид работ»: галочки, при длинном списке — поиск. Можно, например, двух инженеров и «Ремонт + Диагностику» сразу.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Поиск инженера, когда их больше 10.</b><small>Окно «Выбор инженера» в задаче и при переносе на доске в «Назначена»: поле «Найти по фамилии».</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Ответ клиенту с файлами.</b><small>Карточка задачи → «Письмо клиента» → «Приложить файлы задачи» или «Загрузить с компьютера». До 10 файлов и 20 МБ, у отправленного ответа файлы видны в переписке.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>ФИО инженера и прибор в задаче — ссылки.</b><small>«Свойства» → нажмите на инженера или прибор: откроется его страница, «Назад» браузера вернёт в задачу.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-worktypes.jpg" aria-label="Открыть скриншот крупно"><img alt="Новая задача: виды работ кнопками" loading="lazy" src="shots/m18-worktypes.jpg"></button><figcaption>Вид работ: выбрано два</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-filters.jpg" aria-label="Открыть скриншот крупно"><img alt="Фильтры с галочками" loading="lazy" src="shots/m18-filters.jpg"></button><figcaption>Фильтры: два инженера и два вида работ</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-reply-files.jpg" aria-label="Открыть скриншот крупно"><img alt="Ответ клиенту с приложенным файлом" loading="lazy" src="shots/m18-reply-files.jpg"></button><figcaption>Ответ клиенту с файлом задачи</figcaption></figure>
+        </div>
+        <h3 class="sub">Письма <span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Задачи» → «Письма»</span></h3>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Вкладки «Потенциальные задачи», «С задачей», «Не заявки», «Все письма».</b><small>Главная — письма, похожие на заявки. Рассылки и реклама уходят во «Не заявки» (служба узнаёт их по ссылке «отписаться»), письма не про ремонт — туда же, когда подключат нейросеть. Кнопка «Это заявка» возвращает письмо.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Постранично — видно всегда.</b><small>Внизу «1–N из N» и «Показывать по 25/50/100»: писем в ящике будут тысячи.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-mail-potential.jpg" aria-label="Открыть скриншот крупно"><img alt="Письма: потенциальные задачи" loading="lazy" src="shots/m18-mail-potential.jpg"></button><figcaption>«Потенциальные задачи» со счётчиками вкладок</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-mail-junk.jpg" aria-label="Открыть скриншот крупно"><img alt="Письма: не заявки" loading="lazy" src="shots/m18-mail-junk.jpg"></button><figcaption>«Не заявки»: рассылка и акт сверки, «Это заявка»</figcaption></figure>
+        </div>
+        <h3 class="sub">Инженеры <span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Инженеры» → нажмите на ФИО</span></h3>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Страница инженера.</b><small>Задачи в работе, назначенные, на проверке и выполненные; его приборы; компетенции. Всё ссылками в задачи и приборы.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Свой склад инженера.</b><small>«Изменить карточку» → «Есть свой склад». На странице инженера появляется вкладка «Склад»: какие запчасти сейчас у него и для каких задач.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Календарь загрузки понятнее.</b><small>В каждом дне задачи её номер, дальше — «день 2 из 3» вместо пустых полосок, подпись под календарём. При десятках инженеров сетка листается внутри, шапка с днями на месте.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-engineer-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Страница инженера" loading="lazy" src="shots/m18-engineer-page.jpg"></button><figcaption>Страница инженера: задачи по этапам</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-engineer-stock.jpg" aria-label="Открыть скриншот крупно"><img alt="Склад инженера" loading="lazy" src="shots/m18-engineer-stock.jpg"></button><figcaption>Вкладка «Склад»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь загрузки" loading="lazy" src="shots/m18-calendar.jpg"></button><figcaption>Календарь: номер задачи и «день N из M»</figcaption></figure>
+        </div>
+        <h3 class="sub">Приборы и план ТО <span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Приборы» → карточка</span></h3>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Вкладка «План ТО» в карточке прибора.</b><small>Периоды ТО на год, инженер, задача по каждому периоду, «Изменить план». Карточка на доске плана ТО ведёт сразу сюда.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Вкладка «Запчасти» в карточке прибора.</b><small>Что выдавали и ставили по задачам этого прибора — ссылками на запчасть и задачу.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Откуда «Счётчик» и «Файлы».</b><small>Во вкладках объяснено: счётчик переписывает инженер с экрана прибора в результате работ, в историю попадает после принятия закрытия; файлы — документы самого прибора из паспорта.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>План ТО по инженерам и организациям — со ссылками.</b><small>Прибор и инженер нажимаются; в группе инженера его ФИО в каждой строке больше не повторяется.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Карточка прибора, вкладка «План ТО»" loading="lazy" src="shots/m18-equipment-plan.jpg"></button><figcaption>Прибор → «План ТО»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-parts.jpg" aria-label="Открыть скриншот крупно"><img alt="Карточка прибора, вкладка «Запчасти»" loading="lazy" src="shots/m18-equipment-parts.jpg"></button><figcaption>Прибор → «Запчасти»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Вкладка «Счётчик» с пояснением" loading="lazy" src="shots/m18-equipment-meter.jpg"></button><figcaption>«Счётчик»: откуда показания</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-plan-engineers.jpg" aria-label="Открыть скриншот крупно"><img alt="План ТО по инженерам" loading="lazy" src="shots/m18-plan-engineers.jpg"></button><figcaption>План ТО «По инженерам» без повторов</figcaption></figure>
+        </div>
+        <h3 class="sub">Склад <span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Склад»</span></h3>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Страница запчасти вместо окна.</b><small>Остатки и операции, история движений, у каких инженеров, на какие приборы ставили, артикулы поставщиков. Открывается по артикулу или названию из любого места.</small></div></li>
+          <li><span class="tag tag--meet">Встреча 18.11</span><div><b>Документ склада — страницей.</b><small>«Склад» → «Документы» → номер: шапка, строки, «Скачать в Excel», задача — ссылкой.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-part-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Страница запчасти" loading="lazy" src="shots/m18-part-page.jpg"></button><figcaption>Страница запчасти: на какие приборы ставили</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-document.jpg" aria-label="Открыть скриншот крупно"><img alt="Документ склада страницей" loading="lazy" src="shots/m18-document.jpg"></button><figcaption>Документ перемещения страницей</figcaption></figure>
+        </div>
       </section>
 
       <section class="part" id="tasks">
