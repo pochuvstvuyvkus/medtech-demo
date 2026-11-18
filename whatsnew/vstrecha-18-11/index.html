@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Что нового: встреча 18.11</title>
+<meta name="description" content="Все изменения CRM МедТехСервис по разделам меню: что появилось, что исправлено, где нажать, что ждём от заказчика.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Раскладка: тёмное меню разделов слева, как в самой CRM; справа по разделу — что появилось, где нажать, кадр. */
+:root {
+  --bg: #f3f6f8; --surface: #ffffff; --ink: #17232c; --ink-soft: #3d5360; --muted: #5a6d78;
+  --border: #dde5ea; --border-soft: #eef2f4;
+  --accent: #0e6e99; --accent-dark: #0c5c81; --accent-soft: #e8f3f8;
+  --side: #132029; --side-soft: #1c333f; --side-text: #d7e2e8; --side-muted: #8aa0ac;
+  --new: #157a45; --new-soft: #e8f6ee; --fix: #9a5b08; --fix-soft: #fff4df; --ask: #7c3aed; --ask-soft: #f1ebfe;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --shadow: 0 1px 2px rgb(23 35 44 / 6%), 0 6px 20px rgb(23 35 44 / 6%);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.5; }
+a { color: var(--accent); }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 18px 12px 24px; background: var(--side); color: var(--side-text); }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 16px; }
+.brand b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: var(--surface); font-size: 13px; }
+.brand span { display: grid; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.brand small { color: var(--side-muted); font-weight: 400; font-size: 12px; }
+.side h3 { margin: 16px 8px 6px; color: var(--side-muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.side a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 7px; color: var(--side-text); text-decoration: none; font-size: 14px; }
+.side a:hover, .side a:focus-visible { background: var(--side-soft); outline: none; }
+.side a i { color: var(--side-muted); font-style: normal; font-size: 12px; font-variant-numeric: tabular-nums; }
+.main { min-width: 0; padding-block: 28px 64px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+.hero { display: grid; gap: 14px; padding: 24px 26px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.hero h1 { margin: 0; font-size: 28px; line-height: 1.2; text-wrap: balance; }
+.hero p { margin: 0; max-width: 70ch; color: var(--ink-soft); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
+.btn--main { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.stat { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+.stat strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.tag { display: inline-block; flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.tag--ask { color: var(--ask); background: var(--ask-soft); }
+.tag--new { color: var(--new); background: var(--new-soft); }
+.tag--fix { color: var(--fix); background: var(--fix-soft); }
+.tag--wait { color: var(--accent-dark); background: var(--accent-soft); }
+.tag--meet { color: var(--surface); background: var(--accent); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.part h2 { margin: 0; font-size: 21px; }
+.where { color: var(--muted); font-size: 13px; }
+.where a { font-weight: 600; }
+ul.items { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+ul.items li { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--border-soft); }
+ul.items li:first-child { border-top: 0; }
+ul.items li > div { min-width: 0; }
+ul.items b { font-weight: 650; }
+ul.items small { display: block; color: var(--muted); font-size: 13px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+figure { margin: 0; display: grid; gap: 6px; }
+.shot { display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); cursor: zoom-in; }
+.shot:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+figure img { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; transition: transform .2s ease; }
+.shot:hover img { transform: scale(1.015); }
+figcaption { color: var(--muted); font-size: 13px; }
+.note { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--ink-soft); font-size: 14px; }
+.scenario { display: grid; gap: 6px; margin: 0; padding-left: 22px; }
+.foot { color: var(--muted); font-size: 13px; text-align: center; }
+
+/* Просмотр скриншота на весь экран: внутри страницы, без перехода по ссылке */
+.viewer { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: rgb(8 14 18 / 92%); color: #eef3f6;
+  padding: max(10px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.viewer[hidden] { display: none; }
+.viewer__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 10px; font-size: 14px; }
+.viewer__count { color: #a9bac4; font-variant-numeric: tabular-nums; }
+.viewer__stage { position: relative; display: grid; place-items: center; min-height: 0; overflow: auto; }
+.viewer__stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgb(0 0 0 / 45%); cursor: zoom-in; }
+.viewer--full .viewer__stage { place-items: start center; }
+.viewer--full .viewer__stage img { max-width: none; max-height: none; cursor: zoom-out; }
+.viewer__caption { padding: 10px 4px 2px; color: #d6e1e7; font-size: 14px; text-align: center; }
+.viewer__btn { display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; background: rgb(255 255 255 / 10%); font-size: 15px; cursor: pointer; }
+.viewer__btn:hover, .viewer__btn:focus-visible { background: rgb(255 255 255 / 22%); outline: none; }
+.viewer__nav { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; padding: 0 0 4px; font-size: 30px; transform: translateY(-50%); }
+.viewer__nav--prev { left: 6px; }
+.viewer__nav--next { right: 6px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+  .side nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .side h3 { display: none; }
+  .side a { flex: 0 0 auto; background: var(--side-soft); }
+  .side a i { display: none; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ul.items li { grid-template-columns: minmax(0, 1fr); }
+  section.part, .hero { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { figure img { transition: none; } }
+
+/* Сводная таблица правок встречи */
+.sum { width: 100%; border-collapse: collapse; font-size: 14px; }
+.sum th, .sum td { padding: 9px 10px; border-bottom: 1px solid var(--border-soft); text-align: left; vertical-align: top; }
+.sum th { color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.sum td.mark { width: 28px; font-size: 16px; }
+.sum td.min { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sum-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" aria-label="Разделы">
+    <div class="brand"><b>МТ</b><span>МедТехСервис<small>встреча 18.11</small></span></div>
+    <nav>
+      <a href="#top">Коротко</a>
+      <a href="#summary">Все правки <i>17</i></a>
+      <h3>По разделам</h3>
+      <a href="#tasks">Задачи <i>5</i></a>
+      <a href="#mail">Письма <i>3</i></a>
+      <a href="#equipment">Приборы <i>6</i></a>
+      <a href="#plan">План ТО <i>2</i></a>
+      <a href="#engineers">Инженеры <i>3</i></a>
+      <a href="#customers">Клиенты <i>1</i></a>
+      <a href="#warehouse">Склад <i>3</i></a>
+      <a href="#reservations">Резервы <i>1</i></a>
+      <a href="#invoices">Счета <i>1</i></a>
+      <h3>Дальше</h3>
+      <a href="#waiting">Ждём от заказчика <i>2</i></a>
+      <a href="#next">Следующая встреча</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+      <section class="hero" id="top">
+        <h1>Что нового в МедТехСервисе по встрече 18 ноября</h1>
+        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
+        <div class="links">
+          <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
+          <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>16 из 17</strong><span>правок сделано и проверено на стенде</span></div>
+          <div class="stat"><strong>1</strong><span>сделана с нашей стороны, ждёт ключ ИИ и почтовый ящик</span></div>
+          <div class="stat"><strong>34 мин</strong><span>встреча, остановились на резервах</span></div>
+          <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
+        </div>
+        <div class="legend"><span><span class="tag tag--meet">Встреча · 05:27</span> сделано, рядом минута записи, где Сергей это сказал</span><span><span class="tag tag--wait">Ждёт заказчика</span> наша часть готова</span></div>
+      </section>
+
+      <section class="part" id="summary">
+        <header><h2>Все 17 правок</h2><span class="where">✅ сделано · ⏳ ждёт заказчика</span></header>
+        <div class="sum-wrap"><table class="sum"><thead><tr><th></th><th>№</th><th>Что просил Сергей и что сделано</th><th>Минута</th></tr></thead><tbody>
+          <tr><td class="mark">✅</td><td>1</td><td>Поиск инженера по фамилии, когда их больше 10</td><td class="min">02:48</td></tr>
+          <tr><td class="mark">✅</td><td>2</td><td>Вид работ одним полем, можно несколько</td><td class="min">04:31</td></tr>
+          <tr><td class="mark">✅</td><td>3</td><td>Фильтры с несколькими значениями — в задачах, приборах, резервах</td><td class="min">05:27</td></tr>
+          <tr><td class="mark">✅</td><td>4</td><td>Письма постранично</td><td class="min">07:37</td></tr>
+          <tr><td class="mark">⏳</td><td>5</td><td>Письма по вкладкам ✅, рассылки отсеиваются ✅; письма не про ремонт — после ключа ИИ, основной ящик — после доступа</td><td class="min">07:06</td></tr>
+          <tr><td class="mark">✅</td><td>6</td><td>Файлы в ответе клиенту</td><td class="min">10:56</td></tr>
+          <tr><td class="mark">✅</td><td>7</td><td>Объяснено, что за «Файлы» прибора</td><td class="min">15:24</td></tr>
+          <tr><td class="mark">✅</td><td>8</td><td>Объяснено, откуда «Счётчик»</td><td class="min">16:40</td></tr>
+          <tr><td class="mark">✅</td><td>9</td><td>План прибора — вкладкой в карточке прибора</td><td class="min">18:23</td></tr>
+          <tr><td class="mark">✅</td><td>10</td><td>План ТО: переходы в прибор, без повтора ФИО</td><td class="min">19:16</td></tr>
+          <tr><td class="mark">✅</td><td>11</td><td>Календарь загрузки понятнее, проверен на 30 инженерах</td><td class="min">21:13</td></tr>
+          <tr><td class="mark">✅</td><td>12</td><td>Страница инженера</td><td class="min">23:06</td></tr>
+          <tr><td class="mark">✅</td><td>13</td><td>Ссылки между карточками, страница клиента, все задачи прибора</td><td class="min">25:10</td></tr>
+          <tr><td class="mark">✅</td><td>14</td><td>Страница запчасти, «Подходит к моделям», запчасти в приборе</td><td class="min">26:41</td></tr>
+          <tr><td class="mark">✅</td><td>15</td><td>Документ склада страницей</td><td class="min">29:03</td></tr>
+          <tr><td class="mark">✅</td><td>16</td><td>Свой склад инженера — в карточке и при создании</td><td class="min">29:14</td></tr>
+          <tr><td class="mark">✅</td><td>17</td><td>Экраны без повторов, таблицы без переносов</td><td class="min">19:51</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="part" id="tasks">
+        <header><h2>Задачи</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Задачи»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 02:48</span><div><b>Поиск инженера по фамилии, когда инженеров больше 10.</b><small>В окне «Выбор инженера» в карточке задачи, при переносе на доске в «Назначена», в форме новой задачи и при назначении выбранным задачам — поле «Найти по фамилии».</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 04:31</span><div><b>Вид работ — одно поле, можно выбрать несколько.</b><small>Новая задача и «Изменить»: все виды кнопками, нажатые выбраны. «Основного» и «ещё видов» больше нет, все равны. В счёте строка на каждый вид.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 05:27</span><div><b>Фильтры с несколькими значениями.</b><small>«Фильтры» → «Статус», «Инженер», «Площадка», «Вид работ»: галочки, при длинном списке — поиск.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 10:56</span><div><b>Ответ клиенту с файлами.</b><small>Карточка задачи → «Письмо клиента» → «Приложить файлы задачи» или «Загрузить с компьютера». До 10 файлов и 20 МБ, у отправленного ответа файлы видны в переписке. Проверено письмом на стенде.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 25:10</span><div><b>Всё ссылками.</b><small>На доске ФИО инженера, в списке — площадка, прибор и инженер, в «Свойствах» задачи — инженер, прибор и площадка: нажатие открывает их страницу, «Назад» браузера возвращает.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-worktypes.jpg" aria-label="Открыть скриншот крупно"><img alt="Вид работ: выбрано два" loading="lazy" src="shots/m18-worktypes.jpg"></button><figcaption>Вид работ: выбрано два</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-filters.jpg" aria-label="Открыть скриншот крупно"><img alt="Фильтры: два инженера и два вида работ" loading="lazy" src="shots/m18-filters.jpg"></button><figcaption>Фильтры: два инженера и два вида работ</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-reply-files.jpg" aria-label="Открыть скриншот крупно"><img alt="Ответ клиенту с файлом задачи" loading="lazy" src="shots/m18-reply-files.jpg"></button><figcaption>Ответ клиенту с файлом задачи</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-tasks-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Список задач: площадка, прибор и инженер — ссылки" loading="lazy" src="shots/m18-tasks-list.jpg"></button><figcaption>Список задач: площадка, прибор и инженер — ссылки</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="mail">
+        <header><h2>Письма</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Задачи» → «Письма»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 07:06</span><div><b>Вкладки «Потенциальные задачи», «С задачей», «Не заявки», «Все письма».</b><small>Главная — письма, похожие на заявки. Письма, по которым задача уже создана, — отдельно. Рассылки и реклама уходят во «Не заявки»: служба узнаёт их по ссылке «отписаться». «Это заявка» возвращает письмо.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 07:37</span><div><b>Постранично.</b><small>Внизу всегда «1–N из N» и «Показывать по 25/50/100»: писем в ящике будут тысячи.</small></div></li>
+          <li><span class="tag tag--wait">Ждёт заказчика · 07:21</span><div><b>Письма не про ремонт — нейросетью.</b><small>Код готов: нейросеть отвечает «заявка или нет», сомнение — в пользу заявки. Заработает с ключом ИИ. Основной ящик заказчика подключим, когда дадут доступ.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-mail-potential.jpg" aria-label="Открыть скриншот крупно"><img alt="«Потенциальные задачи» и счётчики вкладок" loading="lazy" src="shots/m18-mail-potential.jpg"></button><figcaption>«Потенциальные задачи» и счётчики вкладок</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-mail-junk.jpg" aria-label="Открыть скриншот крупно"><img alt="«Не заявки»: рассылка и акт сверки" loading="lazy" src="shots/m18-mail-junk.jpg"></button><figcaption>«Не заявки»: рассылка и акт сверки</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="equipment">
+        <header><h2>Приборы</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Приборы» → карточка</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 25:10</span><div><b>Вкладка «Все задачи».</b><small>Все заявки прибора — открытые, выполненные, отменённые — со ссылками на задачу и инженера.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 26:41</span><div><b>Вкладка «Запчасти».</b><small>«Подходят к модели» — что склад отметил для этой модели, даже если ещё не ставили. «Ставили на этот прибор» — что выдавали и ставили по его задачам.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 15:24</span><div><b>Откуда «Файлы».</b><small>Пояснение во вкладке: документы самого прибора — паспорт, фото шильдика, инструкции; их прикрепляют в паспорте («Изменить»). Фото с выездов и акты — в задачах.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 16:40</span><div><b>Откуда «Счётчик».</b><small>Пояснение во вкладке: инженер переписывает число с экрана прибора в результате работ, в историю оно попадает после принятия закрытия; меньше прошлого не примет. У каждого показания — ссылка на задачу.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 05:27</span><div><b>Фильтры с несколькими значениями.</b><small>Производитель, статус, площадка, плательщик — галочками. На доске колонки вне отбора бледные.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 19:51</span><div><b>Без повторов.</b><small>На карточке доски плательщик, совпадающий с площадкой, не показывается; в паспорте одинаковые «Организация» и «Плательщик» — одной строкой.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Прибор → «Все задачи»" loading="lazy" src="shots/m18-equipment-tasks.jpg"></button><figcaption>Прибор → «Все задачи»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-model-parts.jpg" aria-label="Открыть скриншот крупно"><img alt="Прибор → «Запчасти»: подходят к модели" loading="lazy" src="shots/m18-equipment-model-parts.jpg"></button><figcaption>Прибор → «Запчасти»: подходят к модели</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-files.jpg" aria-label="Открыть скриншот крупно"><img alt="«Файлы»: что это и откуда" loading="lazy" src="shots/m18-equipment-files.jpg"></button><figcaption>«Файлы»: что это и откуда</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="«Счётчик»: откуда показания" loading="lazy" src="shots/m18-equipment-meter.jpg"></button><figcaption>«Счётчик»: откуда показания</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Фильтр по двум статусам" loading="lazy" src="shots/m18-equipment-filter.jpg"></button><figcaption>Фильтр по двум статусам</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска приборов без повторов организации" loading="lazy" src="shots/m18-equipment-board.jpg"></button><figcaption>Доска приборов без повторов организации</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="plan">
+        <header><h2>План ТО</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «План ТО»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 18:23</span><div><b>План прибора — вкладкой в карточке прибора.</b><small>Прибор → «План ТО»: периоды на год, инженер, задача по каждому периоду, «Изменить план». Карточка на доске плана ТО ведёт сразу сюда.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 19:16</span><div><b>Переходы и без повторов.</b><small>«По приборам», «По инженерам», «По организациям»: прибор и инженер нажимаются. В группе инженера его ФИО в каждой строке больше не повторяется — вместо него клиент.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-equipment-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Прибор → «План ТО»" loading="lazy" src="shots/m18-equipment-plan.jpg"></button><figcaption>Прибор → «План ТО»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-plan-engineers.jpg" aria-label="Открыть скриншот крупно"><img alt="План ТО «По инженерам» без повторов" loading="lazy" src="shots/m18-plan-engineers.jpg"></button><figcaption>План ТО «По инженерам» без повторов</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="engineers">
+        <header><h2>Инженеры</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Инженеры» → ФИО</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 23:06</span><div><b>Страница инженера.</b><small>Задачи в работе, назначенные, на проверке и выполненные; его приборы; компетенции. Всё ссылками в задачи и приборы. ФИО инженера везде ведёт сюда.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 29:14</span><div><b>Свой склад инженера.</b><small>«Изменить карточку» → «Есть свой склад», а у нового инженера — сразу при создании в «Сотрудниках». На странице инженера вкладка «Склад»: какие запчасти сейчас у него и для каких задач.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 21:13</span><div><b>Календарь загрузки понятнее.</b><small>В каждом дне задачи её номер, дальше — «день 2 из 3» вместо пустых полосок; подпись под календарём. При десятках инженеров сетка листается внутри, шапка с днями на месте.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-engineer-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Страница инженера" loading="lazy" src="shots/m18-engineer-page.jpg"></button><figcaption>Страница инженера</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-engineer-stock.jpg" aria-label="Открыть скриншот крупно"><img alt="Вкладка «Склад» инженера" loading="lazy" src="shots/m18-engineer-stock.jpg"></button><figcaption>Вкладка «Склад» инженера</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-staff-engineer-stock.jpg" aria-label="Открыть скриншот крупно"><img alt="Новый инженер: «Есть свой склад»" loading="lazy" src="shots/m18-staff-engineer-stock.jpg"></button><figcaption>Новый инженер: «Есть свой склад»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь: номер задачи и «день N из M»" loading="lazy" src="shots/m18-calendar.jpg"></button><figcaption>Календарь: номер задачи и «день N из M»</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="customers">
+        <header><h2>Клиенты</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Клиенты» → «Заявки и приборы»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 26:02</span><div><b>Страница клиента.</b><small>Заявки открытые и выполненные, приборы на площадке, люди с телефонами и реквизитами. Открывается по площадке в задаче, в списке задач, в паспорте прибора и из «Клиентов».</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-site-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Страница клиента: заявки, приборы, люди" loading="lazy" src="shots/m18-site-page.jpg"></button><figcaption>Страница клиента: заявки, приборы, люди</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="warehouse">
+        <header><h2>Склад</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">демо, Координатор</a> → «Склад» → артикул</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 26:41</span><div><b>Страница запчасти вместо окна.</b><small>Остатки и операции, история движений, у каких инженеров, «Приборы и модели», артикулы поставщиков.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 27:33</span><div><b>«Подходит к моделям».</b><small>Склад сам отмечает, к каким моделям приборов подходит запчасть; ниже — на какие приборы её реально ставили.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 29:03</span><div><b>Документ склада — страницей.</b><small>«Склад» → «Документы» → номер: шапка, строки, «Скачать в Excel», задача — ссылкой.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-part-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Страница запчасти" loading="lazy" src="shots/m18-part-page.jpg"></button><figcaption>Страница запчасти</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-part-models.jpg" aria-label="Открыть скриншот крупно"><img alt="«Подходит к моделям»" loading="lazy" src="shots/m18-part-models.jpg"></button><figcaption>«Подходит к моделям»</figcaption></figure>
+          <figure><button class="shot" type="button" data-full="shots/m18-document.jpg" aria-label="Открыть скриншот крупно"><img alt="Документ перемещения страницей" loading="lazy" src="shots/m18-document.jpg"></button><figcaption>Документ перемещения страницей</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="reservations">
+        <header><h2>Резервы</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=warehouse" target="_blank" rel="noopener">демо, Кладовщик</a> → «Резервы»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 05:27</span><div><b>Фильтры с несколькими значениями.</b><small>Состояние, инженер, задача, запчасть — галочками. На доске больше нет чисел сверху: те же числа стоят в колонках.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-reservations-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Резервы: два инженера в фильтре" loading="lazy" src="shots/m18-reservations-filter.jpg"></button><figcaption>Резервы: два инженера в фильтре</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="invoices">
+        <header><h2>Счета</h2><span class="where">Где: <a href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=sysadmin" target="_blank" rel="noopener">демо, Системный администратор</a> → «Счета»</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 19:51</span><div><b>Доска без повторов.</b><small>Карточки с числами над доской убраны: те же числа стоят в заголовках колонок.</small></div></li>
+        </ul>
+        <div class="shots">
+          <figure><button class="shot" type="button" data-full="shots/m18-invoices-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Доска счетов без лишних чисел" loading="lazy" src="shots/m18-invoices-board.jpg"></button><figcaption>Доска счетов без лишних чисел</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="part" id="waiting">
+        <header><h2>Что ждём от заказчика</h2><span class="where">по этой встрече — 2 пункта</span></header>
+        <ul class="items">
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Ключ нейросети.</b><small>Тогда письма не про ремонт (счета, акты сверки, реклама без «отписаться») сами уйдут во «Не заявки».</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Доступ к основному почтовому ящику.</b><small>Сейчас разбирается тестовый ящик; с основным появятся настоящие заявки в «Потенциальных задачах».</small></div></li>
+        </ul>
+      </section>
+
+      <section class="part" id="next">
+        <header><h2>Следующая встреча</h2><span class="where">с того места, где остановились</span></header>
+        <p class="note">Начать с «Резервов» и пройти оставшиеся разделы меню: клиенты, счета, КП, прайс, отчёты, уведомления, журналы, справочники, импорт, сотрудники.</p>
+      </section>
+
+      <p class="foot">Состояние на 18.11.2026.</p>
+    </div>
+  </main>
+</div>
+
+<div class="viewer" hidden id="viewer" role="dialog" aria-modal="true" aria-label="Скриншот">
+  <div class="viewer__bar"><span class="viewer__count" id="viewer-count"></span><span style="display:flex;gap:8px"><button class="viewer__btn" id="viewer-zoom" type="button">В полный размер</button><button class="viewer__btn" id="viewer-close" type="button" aria-label="Закрыть">✕</button></span></div>
+  <div class="viewer__stage" id="viewer-stage">
+    <button class="viewer__btn viewer__nav viewer__nav--prev" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">‹</button>
+    <img alt="" id="viewer-img">
+    <button class="viewer__btn viewer__nav viewer__nav--next" id="viewer-next" type="button" aria-label="Следующий скриншот">›</button>
+  </div>
+  <div class="viewer__caption" id="viewer-caption"></div>
+</div>
+<script>
+(() => {
+  const shots = [...document.querySelectorAll(".shot")];
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-img");
+  const caption = document.getElementById("viewer-caption");
+  const count = document.getElementById("viewer-count");
+  const zoom = document.getElementById("viewer-zoom");
+  let index = 0;
+  let opener = null;
+  const show = (next) => {
+    index = (next + shots.length) % shots.length;
+    const shot = shots[index];
+    const thumb = shot.querySelector("img");
+    viewer.classList.remove("viewer--full");
+    zoom.textContent = "В полный размер";
+    img.src = shot.dataset.full;
+    img.alt = thumb ? thumb.alt : "";
+    const figcap = shot.closest("figure")?.querySelector("figcaption");
+    const section = shot.closest("section")?.querySelector("h2");
+    caption.textContent = [section?.textContent, figcap?.textContent].filter(Boolean).join(" · ");
+    count.textContent = (index + 1) + " из " + shots.length;
+  };
+  const open = (i, from) => { opener = from; show(i); viewer.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("viewer-close").focus(); };
+  const close = () => { viewer.hidden = true; document.body.style.overflow = ""; img.removeAttribute("src"); opener?.focus(); };
+  const toggleFull = () => { const full = viewer.classList.toggle("viewer--full"); zoom.textContent = full ? "Вписать в экран" : "В полный размер"; };
+  shots.forEach((shot, i) => shot.addEventListener("click", () => open(i, shot)));
+  document.getElementById("viewer-close").addEventListener("click", close);
+  document.getElementById("viewer-prev").addEventListener("click", (event) => { event.stopPropagation(); show(index - 1); });
+  document.getElementById("viewer-next").addEventListener("click", (event) => { event.stopPropagation(); show(index + 1); });
+  zoom.addEventListener("click", toggleFull);
+  img.addEventListener("click", (event) => { event.stopPropagation(); toggleFull(); });
+  document.getElementById("viewer-stage").addEventListener("click", (event) => { if (event.target.id === "viewer-stage") close(); });
+  document.addEventListener("keydown", (event) => {
+    if (viewer.hidden) return;
+    if (event.key === "Escape") close();
+    else if (event.key === "ArrowLeft") show(index - 1);
+    else if (event.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
+</body>
+</html>
