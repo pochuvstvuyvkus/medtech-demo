@@ -129,6 +129,30 @@ figcaption { color: var(--muted); font-size: 13px; }
 .sum-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
 .part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
 .part h3.sub .where { font-size: 13px; font-weight: 500; }
+.asks { display: grid; gap: 18px; }
+.ask { display: grid; gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); scroll-margin-top: 16px; }
+.ask__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ask__n { display: inline-grid; place-items: center; min-width: 30px; height: 30px; border-radius: 999px; background: var(--accent); color: var(--surface); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ask__head h3 { flex: 1 1 260px; min-width: 0; margin: 0; font-size: 17px; text-wrap: balance; }
+.ask__state { color: var(--new); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ask blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--fix); border-radius: 0 10px 10px 0; background: var(--fix-soft); color: var(--ink); font-size: 14.5px; line-height: 1.5; }
+.ask blockquote small { display: block; margin-bottom: 2px; color: var(--fix); font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ask__done { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+.ask__done b { color: var(--ink); }
+.ask__list { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+.ask__list b { color: var(--ink); }
+.ba { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; }
+.ba--one { grid-template-columns: minmax(0, 720px); }
+.ba figure { display: grid; gap: 6px; min-width: 0; margin: 0; }
+.ba figcaption { color: var(--muted); font-size: 13px; }
+.ba figcaption span { margin-right: 4px; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ba__before figcaption span { color: var(--fix); }
+.ba__after figcaption span { color: var(--new); }
+.ba__before .shot { border-color: color-mix(in srgb, var(--fix) 45%, var(--border)); }
+.ba__after .shot { border-color: color-mix(in srgb, var(--new) 45%, var(--border)); }
+/* В «было / стало» картинка целиком: обрезка по бокам прятала то, о чём замечание (кнопки справа). */
+.ba figure img { aspect-ratio: auto; max-height: 520px; object-fit: contain; object-position: top center; background: var(--surface); }
+@media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -138,7 +162,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <nav>
       <a href="#top">Коротко</a>
       <a href="#summary">Все правки <i>17</i></a>
-      <a href="#round2">После просмотра демо <i>15</i></a>
+      <a href="#round2">Замечания к демо <i>19</i></a>
       <h3>По разделам</h3>
       <a href="#tasks">Задачи <i>5</i></a>
       <a href="#mail">Письма <i>3</i></a>
@@ -159,7 +183,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <div class="wrap">
       <section class="hero" id="top">
         <h1>Что нового в МедТехСервисе по встрече 18 ноября</h1>
-        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 15 замечаний: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
+        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 19 замечаний: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
         <div class="links">
           <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
           <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
@@ -167,7 +191,7 @@ figcaption { color: var(--muted); font-size: 13px; }
         <div class="stats">
           <div class="stat"><strong>16 из 17</strong><span>правок сделано и проверено на стенде</span></div>
           <div class="stat"><strong>1</strong><span>сделана с нашей стороны, ждёт ключ ИИ и почтовый ящик</span></div>
-          <div class="stat"><strong>15 из 15</strong><span>замечаний после просмотра демо сделано</span></div>
+          <div class="stat"><strong>19 из 19</strong><span>замечаний после просмотра демо сделано</span></div>
           <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
         </div>
         <div class="legend"><span><span class="tag tag--meet">Встреча · 05:27</span> сделано, рядом минута записи, где Сергей это сказал</span><span><span class="tag tag--fix">Демо</span> сделано после просмотра демо</span><span><span class="tag tag--wait">Ждёт заказчика</span> наша часть готова</span></div>
@@ -197,41 +221,128 @@ figcaption { color: var(--muted); font-size: 13px; }
       </section>
 
       <section class="part" id="round2">
-        <header><h2>После просмотра демо</h2><span class="where">15 замечаний, все сделаны, выложены на стенд и проверены на нём</span></header>
-        <div class="sum-wrap"><table class="sum"><thead><tr><th></th><th>№</th><th>Замечание</th><th>Что сделано</th></tr></thead><tbody>
-          <tr><td class="mark">✅</td><td>1</td><td>Как проверить поиск инженера, если в демо их трое</td><td>В демо 13 инженеров. Окно «Выбор инженера» показывает пять, дальше прокрутка; поиск по фамилии появляется от 11 инженеров</td></tr>
-          <tr><td class="mark">✅</td><td>2</td><td>«Отменить задачу» внизу слева, «Изменить» вверху справа</td><td>Обе — заметные кнопки справа: «Изменить» сверху, красная «Отменить задачу» снизу</td></tr>
-          <tr><td class="mark">✅</td><td>3</td><td>Вид работ списком, как в фильтрах</td><td>Выпадающий список с галочками, как в фильтрах; список раскрывается внутри окна. Подписи «можно выбрать несколько» нет</td></tr>
-          <tr><td class="mark">✅</td><td>4</td><td>Файлы к ответу — просто скрепкой</td><td>Скрепка внизу ответа: файлы задачи или «С компьютера…». Подписи «Клиент получит письмо…» нет</td></tr>
-          <tr><td class="mark">✅</td><td>5</td><td>Пояснения не нужны нигде</td><td>Убраны: подписи под вкладками писем, подсказки под полями, подзаголовки окон и разделов, тексты в пустых списках, пояснения в плашке этапа задачи. Остались только предупреждения и причины, почему кнопка недоступна</td></tr>
-          <tr><td class="mark">✅</td><td>6</td><td>Дату письма оформить иначе, кнопки развести</td><td>«Сегодня», «Вчера» или «11 ноября», под ней время. Между «Создать задачу» и «Не требует работы» отступ</td></tr>
-          <tr><td class="mark">✅</td><td>7</td><td>На вкладке «Запчасти» прибора число появляется только после нажатия</td><td>Числа на всех вкладках прибора видны сразу</td></tr>
-          <tr><td class="mark">✅</td><td>8</td><td>«Назад» со страницы запчасти уводит в список приборов</td><td>Возвращает в тот же прибор, на ту же вкладку</td></tr>
-          <tr><td class="mark">✅</td><td>9</td><td>Откуда «Счётчик» — расписать</td><td>Расписано ниже. В таблице показаний столбец «Откуда»: «Акт задачи» (ссылка), «Перенос из 1С» или «Внесено вручную»</td></tr>
-          <tr><td class="mark">✅</td><td>10</td><td>Фильтры приборов: убрать подпись «можно выбрать несколько»</td><td>Убрана во всех списках с галочками</td></tr>
-          <tr><td class="mark">✅</td><td>11</td><td>У инженера задачи — канбан-доской, без карточек с цифрами</td><td>Доска: «Назначена», «В работе», «На проверке», «Выполнена». Карточки с цифрами убраны, «Приборы», «Компетенции», «Склад» на месте</td></tr>
-          <tr><td class="mark">✅</td><td>12</td><td>Календарь выглядит плохо, внизу подписи, сверху лишние цифры</td><td>Переделан: задача — одна сплошная полоса через свои дни, неназначенные — строкой сверху, у фамилии только «Просрочка» и «Перегруз». Карточки с цифрами и подпись внизу убраны</td></tr>
-          <tr><td class="mark">✅</td><td>13</td><td>В календаре нельзя выбрать несколько инженеров или этапов</td><td>«Инженер» и «Этап» — списки с галочками, у инженеров поиск по фамилии</td></tr>
-          <tr><td class="mark">✅</td><td>14</td><td>Выбор нескольких везде, где это логично</td><td>Добавлено: «Уведомления» (канал, событие, статус), «Журналы» (кто изменил, объект), «КП» (статус), статус писем. Один выбор оставлен там, где по смыслу одно значение: сортировка, «Активные / Ниже минимума» на складе, «удачный / неудачный» вход</td></tr>
-          <tr><td class="mark">✅</td><td>15</td><td>Клиенты — тоже канбан-доской</td><td>Заявки на странице клиента — доска по этапам, как у инженера</td></tr>
-        </tbody></table></div>
-        <h3 class="sub">Откуда «Счётчик»</h3>
-        <ul class="items">
-          <li><span class="tag tag--new">Счётчик</span><div><b>Что это.</b><small>Счётчик самого прибора: сколько анализов (тестов) он сделал за всё время. Число видно на экране прибора или в его сервисном меню.</small></div></li>
-          <li><span class="tag tag--new">Счётчик</span><div><b>Кто записывает.</b><small>Инженер на выезде: в задаче «Результат работ» → «Показание счётчика» переписывает число с экрана. Поле необязательное; меньше прошлого показания система не примет.</small></div></li>
-          <li><span class="tag tag--new">Счётчик</span><div><b>Когда попадает в прибор.</b><small>Когда координатор принимает закрытие задачи — показание встаёт во вкладку «Счётчик» и в паспорт прибора. В таблице видно, кто записал, на сколько выросло с прошлого раза и откуда показание.</small></div></li>
-          <li><span class="tag tag--new">Счётчик</span><div><b>Старые показания.</b><small>Пришли переносом из 1С — у них в «Откуда» написано «Перенос из 1С», автор «Система».</small></div></li>
-        </ul>
-        <div class="shots">
-          <figure><button class="shot" type="button" data-full="shots/m18-engineer-picker.jpg" aria-label="Открыть скриншот крупно"><img alt="Выбор инженера: пять строк, дальше прокрутка, поиск сверху" loading="lazy" src="shots/m18-engineer-picker.jpg"></button><figcaption>Выбор инженера: пять строк, дальше прокрутка, поиск сверху</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-engineer-search.jpg" aria-label="Открыть скриншот крупно"><img alt="Поиск по фамилии: «сок»" loading="lazy" src="shots/m18-engineer-search.jpg"></button><figcaption>Поиск по фамилии: «сок»</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-task-buttons.jpg" aria-label="Открыть скриншот крупно"><img alt="«Изменить» сверху, «Отменить задачу» снизу" loading="lazy" src="shots/m18-task-buttons.jpg"></button><figcaption>«Изменить» сверху, «Отменить задачу» снизу</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-reply-attached.jpg" aria-label="Открыть скриншот крупно"><img alt="Ответ клиенту: скрепка и приложенный файл" loading="lazy" src="shots/m18-reply-attached.jpg"></button><figcaption>Ответ клиенту: скрепка и приложенный файл</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-equipment-tabs.jpg" aria-label="Открыть скриншот крупно"><img alt="Числа на вкладках прибора — сразу" loading="lazy" src="shots/m18-equipment-tabs.jpg"></button><figcaption>Числа на вкладках прибора — сразу</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-equipment-back.jpg" aria-label="Открыть скриншот крупно"><img alt="«Назад» со страницы запчасти — в тот же прибор" loading="lazy" src="shots/m18-equipment-back.jpg"></button><figcaption>«Назад» со страницы запчасти — в тот же прибор</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-calendar-month.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь на месяц: задача — одна полоса" loading="lazy" src="shots/m18-calendar-month.jpg"></button><figcaption>Календарь на месяц: задача — одна полоса</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-calendar-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Календарь: два инженера в фильтре" loading="lazy" src="shots/m18-calendar-filter.jpg"></button><figcaption>Календарь: два инженера в фильтре</figcaption></figure>
-          <figure><button class="shot" type="button" data-full="shots/m18-notifications-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Уведомления: два статуса" loading="lazy" src="shots/m18-notifications-filter.jpg"></button><figcaption>Уведомления: два статуса</figcaption></figure>
+        <header><h2>Замечания после просмотра демо</h2><span class="where">19 замечаний: слева — как было (скриншоты из замечаний), справа — как стало</span></header>
+        <div class="asks">
+          <article class="ask" id="ask-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>Поиск инженера</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Как это проверить, если инженеров всего 3 в демо? Добавь ещё 10 инженеров… Модальное окно расширяется до 5, дальше после 5 появляется скролл, и свыше 10 появляется поиск.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В демо 13 инженеров. В окне «Выбор инженера» видно пять, дальше прокрутка, сверху поиск по фамилии.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-picker.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: 13 инженеров, пять строк, поиск" loading="lazy" src="ba/after-picker.jpg"></button><figcaption><span>Стало</span> 13 инженеров, пять строк, поиск</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Кнопки «Изменить» и «Отменить»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Отменить задачу — кнопка внизу слева, а изменить вверху справа. Такого не должно быть. Должны быть более акцентные кнопки. Изменить справа сверху, отменить справа снизу.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Изменить» — кнопкой справа сверху, «Отменить задачу» — красной кнопкой справа снизу.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-buttons.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Отменить задачу» ссылкой слева внизу" loading="lazy" src="ba/before-buttons.jpg"></button><figcaption><span>Было</span> «Отменить задачу» ссылкой слева внизу</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-buttons.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: обе кнопки справа" loading="lazy" src="ba/after-buttons.jpg"></button><figcaption><span>Стало</span> обе кнопки справа</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>Вид работ — списком с галочками</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Вид работ в виде списка, как это было до этого сделано, просто в этом списке можно несколько выбрать, то есть галочкой… То же самое, что в фильтрах. Только пояснение «можно выбрать несколько» надо убрать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Выпадающий список с галочками, как в фильтрах; раскрывается внутри окна. Подписи «можно выбрать несколько» нет нигде.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-worktypes.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: кнопки видов работ" loading="lazy" src="ba/before-worktypes.jpg"></button><figcaption><span>Было</span> кнопки видов работ</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-worktypes.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: список с галочками" loading="lazy" src="ba/after-worktypes.jpg"></button><figcaption><span>Стало</span> список с галочками</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Файлы к ответу — скрепкой</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Приложить файлы задачи — переделай. Просто скрепочку сделай и всё. Кнопочка скрепки, туда и файлы прикладываются. «Клиент получит письмо ответом на свою заявку» — зачем эти описания? Убрать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Внизу ответа скрепка: файлы задачи или «С компьютера…», число на скрепке — сколько приложено. Подписи под ответом нет.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-reply.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: две ссылки и подпись" loading="lazy" src="ba/before-reply.jpg"></button><figcaption><span>Было</span> две ссылки и подпись</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-reply-menu.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: скрепка" loading="lazy" src="ba/after-reply-menu.jpg"></button><figcaption><span>Стало</span> скрепка</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Письма: пояснение, дата, кнопки</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>««Письма, похожие на заявки» — зачем, для кого эти пояснения? Получена дата — надо как-то по-другому оформить. Создать задачу сверху, не требует работы снизу — расстояние должно быть между ними.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Пояснение под вкладками убрано. Дата — «Сегодня», «Вчера» или «11 ноября», под ней время. Между кнопками отступ.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-mail.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: пояснение, дата «11.11.2026, 13:12»" loading="lazy" src="ba/before-mail.jpg"></button><figcaption><span>Было</span> пояснение, дата «11.11.2026, 13:12»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-mail.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «11 ноября» и время, кнопки разведены" loading="lazy" src="ba/after-mail.jpg"></button><figcaption><span>Стало</span> «11 ноября» и время, кнопки разведены</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Число на вкладке «Запчасти»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Написано «Запчасти», и там ничего нет. Дальше я нажимаю «Запчасти», и там появляется один.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Числа на всех вкладках прибора видны сразу, без нажатия.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-tabs.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Запчасти» без числа" loading="lazy" src="ba/before-tabs.jpg"></button><figcaption><span>Было</span> «Запчасти» без числа</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-tabs.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Запчасти 3» сразу" loading="lazy" src="ba/after-tabs.jpg"></button><figcaption><span>Стало</span> «Запчасти 3» сразу</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>«Назад» со страницы запчасти</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Нажимаю «Назад» — меня закидывают не в этот же прибор, который я выбирал, а вообще в раздел «Приборы», что некорректно.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Назад» возвращает в тот же прибор, на ту же вкладку «Запчасти».</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-equipment-back.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: после «Назад» — тот же прибор, вкладка «Запчасти»" loading="lazy" src="shots/m18-equipment-back.jpg"></button><figcaption><span>Стало</span> после «Назад» — тот же прибор, вкладка «Запчасти»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Откуда «Счётчик»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Откуда файлы — понятно. А вот откуда счётчик — не понял. Распиши этот момент.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Расписано ниже. В таблице показаний новый столбец «Откуда»: «Акт задачи» (ссылка), «Перенос из 1С» или «Внесено вручную».</p>
+            <ul class="ask__list">
+              <li><b>Что это:</b> счётчик самого прибора — сколько анализов он сделал за всё время. Число видно на экране прибора.</li>
+              <li><b>Кто записывает:</b> инженер на выезде — в задаче «Результат работ» → «Показание счётчика». Поле необязательное; меньше прошлого система не примет.</li>
+              <li><b>Когда попадает в прибор:</b> когда координатор принимает закрытие задачи — показание встаёт во вкладку «Счётчик» и в паспорт.</li>
+              <li><b>Старые показания:</b> пришли переносом из 1С, автор у них «Система».</li>
+            </ul>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: пояснение над таблицей" loading="lazy" src="ba/before-meter.jpg"></button><figcaption><span>Было</span> пояснение над таблицей</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-equipment-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: столбец «Откуда»" loading="lazy" src="shots/m18-equipment-meter.jpg"></button><figcaption><span>Стало</span> столбец «Откуда»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>Подпись «можно выбрать несколько»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Во вкладке «Приборы» … фильтры — «можно выбрать несколько», опять подпись, убрать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Подпись убрана во всех списках с галочками; внизу списка только «Выбрано: N» и «Готово».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Можно выбрать несколько»" loading="lazy" src="ba/before-filter.jpg"></button><figcaption><span>Было</span> «Можно выбрать несколько»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: без подписи" loading="lazy" src="ba/after-filter.jpg"></button><figcaption><span>Стало</span> без подписи</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>Задачи инженера — канбан-доской</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Почему у него не канбан-доска? Пускай задачи будут в виде канбан-доски: в работе, назначено, на проверке, выполнено. «Открытые задачи», «В работе» — зачем это писать? Убери.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Задачи инженера — доска «Назначена», «В работе», «На проверке», «Выполнена». Карточки с цифрами сверху убраны. «Приборы», «Компетенции», «Склад» на месте.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-engineer.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: цифры сверху и таблицы" loading="lazy" src="ba/before-engineer.jpg"></button><figcaption><span>Было</span> цифры сверху и таблицы</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-engineer-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: доска по этапам" loading="lazy" src="shots/m18-engineer-page.jpg"></button><figcaption><span>Стало</span> доска по этапам</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-11">
+            <header class="ask__head"><span class="ask__n">11</span><h3>Календарь переделан</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Календарь выглядит… плохо. И опять внизу подписи. Убрать пояснения… «Инженеров в сетке», «задач в периоде» — всё это убрать. Переделывать надо календарь.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Задача — одна сплошная полоса через свои дни, с номером и названием. Неназначенные — строкой «Не назначены» сверху. У фамилии только «Просрочка» и «Перегруз». Цифр сверху и подписи внизу нет.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: цифры, «день 15 из 16», подпись внизу" loading="lazy" src="ba/before-calendar.jpg"></button><figcaption><span>Было</span> цифры, «день 15 из 16», подпись внизу</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-calendar.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: полосы, «Не назначены» сверху" loading="lazy" src="shots/m18-calendar.jpg"></button><figcaption><span>Стало</span> полосы, «Не назначены» сверху</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-12">
+            <header class="ask__head"><span class="ask__n">12</span><h3>Несколько инженеров и этапов в календаре</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Нет возможности выбрать несколько инженеров или этапов.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Инженер» и «Этап» — списки с галочками, у инженеров поиск по фамилии.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-calendar-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: два инженера в фильтре" loading="lazy" src="shots/m18-calendar-filter.jpg"></button><figcaption><span>Стало</span> два инженера в фильтре</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-13">
+            <header class="ask__head"><span class="ask__n">13</span><h3>Выбор нескольких — везде, где логично</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Везде, где у нас раскрывающиеся списки и логично сделать выбор из нескольких, — мы его делаем.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Добавлено: «Уведомления» (канал, событие, статус), «Журналы» (кто изменил, объект), «КП» (статус), статус писем, календарь. Уже было: задачи, приборы, резервы. Один выбор оставлен, где по смыслу одно значение: сортировка, «Активные / Ниже минимума» на складе, удачный или неудачный вход.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-notifications-filter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: уведомления: два статуса" loading="lazy" src="shots/m18-notifications-filter.jpg"></button><figcaption><span>Стало</span> уведомления: два статуса</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-14">
+            <header class="ask__head"><span class="ask__n">14</span><h3>Клиенты — канбан-доской</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Вкладка «Клиенты» — то же самое. Сделать в виде канбан-доски.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Заявки на странице клиента — доска по этапам, как у инженера. Цифры сверху убраны.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-client.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: цифры и таблицы" loading="lazy" src="ba/before-client.jpg"></button><figcaption><span>Было</span> цифры и таблицы</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="shots/m18-site-page.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: доска по этапам" loading="lazy" src="shots/m18-site-page.jpg"></button><figcaption><span>Стало</span> доска по этапам</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-15">
+            <header class="ask__head"><span class="ask__n">15</span><h3>Пояснения — нигде</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Убрать пояснения. Не нужны они нигде.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Убраны: подписи под вкладками писем, подсказки под полями, подзаголовки окон и разделов, тексты в пустых списках, пояснения в плашке этапа задачи («Инженер заполнит результат…»), подпись под календарём. Остались только предупреждения (например, «просрочена») и причины, почему кнопка недоступна.</p>
+            
+          </article>
+          <article class="ask" id="ask-16">
+            <header class="ask__head"><span class="ask__n">16</span><h3>Новая задача: ничего не выбрано заранее</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Когда я открываю новую задачу, сразу же появляется всплывающее окно с выбором прибора, и вид работ «Диагностика» уже стоит. Хотя я ничего не выбирал.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Список приборов раскрывается только по нажатию на поле или когда начинаешь вводить S/N. Вид работ — «Не выбран», без него задача не создастся. Заранее выбран только вид работ, распознанный из письма.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: список раскрыт сам, «Диагностика» стоит" loading="lazy" src="ba/before-newtask.jpg"></button><figcaption><span>Было</span> список раскрыт сам, «Диагностика» стоит</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: список закрыт, вид работ не выбран" loading="lazy" src="ba/after-newtask.jpg"></button><figcaption><span>Стало</span> список закрыт, вид работ не выбран</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-17">
+            <header class="ask__head"><span class="ask__n">17</span><h3>Календарь до низа экрана</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Здесь поле — его нужно до конца продлить, почему оно обрезано.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Сетка календаря доходит до низа экрана; шапка с днями при прокрутке стоит на месте.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-calfill.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: снизу пустая полоса" loading="lazy" src="ba/before-calfill.jpg"></button><figcaption><span>Было</span> снизу пустая полоса</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-calfill.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: до низа экрана" loading="lazy" src="ba/after-calfill.jpg"></button><figcaption><span>Стало</span> до низа экрана</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-18">
+            <header class="ask__head"><span class="ask__n">18</span><h3>Задача из календаря открывается сама</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Я здесь могу её передать кому-то в календаре — разве так должно работать, что я должен передавать внутри календаря?»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Нажатие на задачу в календаре открывает её карточку, как везде; инженера меняют там («Назначить» или «Сменить»). «Назад» возвращает в календарь. Окна «Кому передать» в календаре больше нет.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-task-from-cal.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: из календаря — сразу карточка задачи" loading="lazy" src="ba/after-task-from-cal.jpg"></button><figcaption><span>Стало</span> из календаря — сразу карточка задачи</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-19">
+            <header class="ask__head"><span class="ask__n">19</span><h3>Календарь на странице инженера</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Почему, когда я перехожу в карточку инженера, я не вижу его календарь?»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> На странице инженера вкладка «Календарь» — только его задачи, неделя, месяц или свой период.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-engcal.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Календарь» у инженера" loading="lazy" src="ba/after-engcal.jpg"></button><figcaption><span>Стало</span> вкладка «Календарь» у инженера</figcaption></figure></div>
+          </article>
         </div>
       </section>
 
@@ -271,7 +382,7 @@ figcaption { color: var(--muted); font-size: 13px; }
           <li><span class="tag tag--meet">Встреча · 25:10</span><div><b>Вкладка «Все задачи».</b><small>Все заявки прибора — открытые, выполненные, отменённые — со ссылками на задачу и инженера.</small></div></li>
           <li><span class="tag tag--meet">Встреча · 26:41</span><div><b>Вкладка «Запчасти».</b><small>«Подходят к модели» — что склад отметил для этой модели, даже если ещё не ставили. «Ставили на этот прибор» — что выдавали и ставили по его задачам. Число на вкладке видно сразу; «Назад» со страницы запчасти возвращает в этот прибор.</small></div></li>
           <li><span class="tag tag--meet">Встреча · 15:24</span><div><b>Откуда «Файлы».</b><small>Документы самого прибора — паспорт, фото шильдика, инструкции; их прикрепляют в паспорте («Изменить»). Фото с выездов и акты — в задачах.</small></div></li>
-          <li><span class="tag tag--meet">Встреча · 16:40</span><div><b>Откуда «Счётчик».</b><small>Инженер переписывает число с экрана прибора в результате работ, в прибор оно попадает после принятия закрытия; меньше прошлого не примет. У каждого показания столбец «Откуда»: «Акт задачи», «Перенос из 1С» или «Внесено вручную». Подробно — в разделе «После просмотра демо».</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 16:40</span><div><b>Откуда «Счётчик».</b><small>Инженер переписывает число с экрана прибора в результате работ, в прибор оно попадает после принятия закрытия; меньше прошлого не примет. У каждого показания столбец «Откуда»: «Акт задачи», «Перенос из 1С» или «Внесено вручную». Подробно — в разделе «Замечания к демо», пункт 8.</small></div></li>
           <li><span class="tag tag--meet">Встреча · 05:27</span><div><b>Фильтры с несколькими значениями.</b><small>Производитель, статус, площадка, плательщик — галочками, без лишних подписей. На доске колонки вне отбора бледные.</small></div></li>
           <li><span class="tag tag--meet">Встреча · 19:51</span><div><b>Без повторов.</b><small>На карточке доски плательщик, совпадающий с площадкой, не показывается; в паспорте одинаковые «Организация» и «Плательщик» — одной строкой.</small></div></li>
         </ul>
