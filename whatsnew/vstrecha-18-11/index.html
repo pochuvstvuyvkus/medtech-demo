@@ -162,7 +162,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <nav>
       <a href="#top">Коротко</a>
       <a href="#summary">Все правки <i>17</i></a>
-      <a href="#round2">Замечания к демо <i>19</i></a>
+      <a href="#round2">Замечания к демо <i>21</i></a>
       <h3>По разделам</h3>
       <a href="#tasks">Задачи <i>5</i></a>
       <a href="#mail">Письма <i>3</i></a>
@@ -183,7 +183,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <div class="wrap">
       <section class="hero" id="top">
         <h1>Что нового в МедТехСервисе по встрече 18 ноября</h1>
-        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 19 замечаний: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
+        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 21 замечание: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
         <div class="links">
           <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
           <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
@@ -191,7 +191,7 @@ figcaption { color: var(--muted); font-size: 13px; }
         <div class="stats">
           <div class="stat"><strong>16 из 17</strong><span>правок сделано и проверено на стенде</span></div>
           <div class="stat"><strong>1</strong><span>сделана с нашей стороны, ждёт ключ ИИ и почтовый ящик</span></div>
-          <div class="stat"><strong>19 из 19</strong><span>замечаний после просмотра демо сделано</span></div>
+          <div class="stat"><strong>21 из 21</strong><span>замечаний после просмотра демо сделано</span></div>
           <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
         </div>
         <div class="legend"><span><span class="tag tag--meet">Встреча · 05:27</span> сделано, рядом минута записи, где Сергей это сказал</span><span><span class="tag tag--fix">Демо</span> сделано после просмотра демо</span><span><span class="tag tag--wait">Ждёт заказчика</span> наша часть готова</span></div>
@@ -221,7 +221,7 @@ figcaption { color: var(--muted); font-size: 13px; }
       </section>
 
       <section class="part" id="round2">
-        <header><h2>Замечания после просмотра демо</h2><span class="where">19 замечаний: слева — как было (скриншоты из замечаний), справа — как стало</span></header>
+        <header><h2>Замечания после просмотра демо</h2><span class="where">21 замечание: слева — как было (скриншоты из замечаний), справа — как стало</span></header>
         <div class="asks">
           <article class="ask" id="ask-1">
             <header class="ask__head"><span class="ask__n">1</span><h3>Поиск инженера</h3><span class="ask__state">✅ сделано</span></header>
@@ -342,6 +342,18 @@ figcaption { color: var(--muted); font-size: 13px; }
             <blockquote><small>Замечание</small>«Почему, когда я перехожу в карточку инженера, я не вижу его календарь?»</blockquote>
             <p class="ask__done"><b>Что сделано.</b> На странице инженера вкладка «Календарь» — только его задачи, неделя, месяц или свой период.</p>
             <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-engcal.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Календарь» у инженера" loading="lazy" src="ba/after-engcal.jpg"></button><figcaption><span>Стало</span> вкладка «Календарь» у инженера</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-20">
+            <header class="ask__head"><span class="ask__n">20</span><h3>Инженеры постранично</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Инженеров должно тоже постранично показывать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Список инженеров и календарь — постранично, как письма: внизу «1–N из N», «Назад», «Далее» и «Показывать по 10 / 50 / 100 / 200»; выбор запоминается. В календаре строка «Не назначены» — сверху на каждой странице. Так же, как на складе.</p>
+            <div class="ba"><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-eng-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: список по 10, страница 1 из 2" loading="lazy" src="ba/after-eng-list.jpg"></button><figcaption><span>Стало</span> список: по 10, «Страница 1 из 2»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-eng-cal-pages.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: календарь по 10 инженеров" loading="lazy" src="ba/after-eng-cal-pages.jpg"></button><figcaption><span>Стало</span> календарь: по 10 инженеров</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ask-21">
+            <header class="ask__head"><span class="ask__n">21</span><h3>Списки не уходят за край экрана</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Замечание</small>«Здесь раскрывающийся список — он залезает… чтобы он полностью помещался. И вообще проверить, нет ли такого нигде ещё, что что-то не до конца раскрывается.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Список с галочками у правого края экрана открывается влево, внизу — вверх или с короткой прокруткой, «Готово» всегда видно; таблица в карточке больше не обрезает раскрытый список. Проверка прошла по всем разделам — каждый выпадающий список и выбор даты открыт на экранах 1440, 1280 и 1024 точки. Нашлось и исправлено ещё 4 таких места: «Вид работ» в фильтрах задач, «Запчасть» в резервах, «Статус» в уведомлениях, «Статус КП».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ba/before-stages.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Все этапы» уходит за край" loading="lazy" src="ba/before-stages.jpg"></button><figcaption><span>Было</span> «Все этапы» уходит за край</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ba/after-stages.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: открывается влево, виден целиком" loading="lazy" src="ba/after-stages.jpg"></button><figcaption><span>Стало</span> открывается влево, виден целиком</figcaption></figure></div>
           </article>
         </div>
       </section>
