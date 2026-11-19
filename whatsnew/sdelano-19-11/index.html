@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сделано 19.11.2026</title>
+<meta name="description" content="Всё, что сделано в CRM МедТехСервис 19.11.2026: вторая встреча, повторная сверка записи, UI/UX-разбор, база и выкладка, что дальше.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Раскладка: тёмное меню разделов слева, как в самой CRM; справа по разделу — что появилось, где нажать, кадр. */
+:root {
+  --bg: #f3f6f8; --surface: #ffffff; --ink: #17232c; --ink-soft: #3d5360; --muted: #5a6d78;
+  --border: #dde5ea; --border-soft: #eef2f4;
+  --accent: #0e6e99; --accent-dark: #0c5c81; --accent-soft: #e8f3f8;
+  --side: #132029; --side-soft: #1c333f; --side-text: #d7e2e8; --side-muted: #8aa0ac;
+  --new: #157a45; --new-soft: #e8f6ee; --fix: #9a5b08; --fix-soft: #fff4df; --ask: #7c3aed; --ask-soft: #f1ebfe;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --shadow: 0 1px 2px rgb(23 35 44 / 6%), 0 6px 20px rgb(23 35 44 / 6%);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.5; }
+a { color: var(--accent); }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 18px 12px 24px; background: var(--side); color: var(--side-text); }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 16px; }
+.brand b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: var(--surface); font-size: 13px; }
+.brand span { display: grid; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.brand small { color: var(--side-muted); font-weight: 400; font-size: 12px; }
+.side h3 { margin: 16px 8px 6px; color: var(--side-muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.side a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 7px; color: var(--side-text); text-decoration: none; font-size: 14px; }
+.side a:hover, .side a:focus-visible { background: var(--side-soft); outline: none; }
+.side a i { color: var(--side-muted); font-style: normal; font-size: 12px; font-variant-numeric: tabular-nums; }
+.main { min-width: 0; padding-block: 28px 64px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+.hero { display: grid; gap: 14px; padding: 24px 26px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.hero h1 { margin: 0; font-size: 28px; line-height: 1.2; text-wrap: balance; }
+.hero p { margin: 0; max-width: 70ch; color: var(--ink-soft); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
+.btn--main { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+.stat strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.tag { display: inline-block; flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.tag--ask { color: var(--ask); background: var(--ask-soft); }
+.tag--new { color: var(--new); background: var(--new-soft); }
+.tag--fix { color: var(--fix); background: var(--fix-soft); }
+.tag--wait { color: var(--accent-dark); background: var(--accent-soft); }
+.tag--meet { color: var(--surface); background: var(--accent); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.part h2 { margin: 0; font-size: 21px; }
+.where { color: var(--muted); font-size: 13px; }
+.where a { font-weight: 600; }
+ul.items { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+ul.items li { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--border-soft); }
+ul.items li:first-child { border-top: 0; }
+ul.items li > div { min-width: 0; }
+ul.items b { font-weight: 650; }
+ul.items small { display: block; color: var(--muted); font-size: 13px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+figure { margin: 0; display: grid; gap: 6px; }
+.shot { display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); cursor: zoom-in; }
+.shot:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+figure img { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; transition: transform .2s ease; }
+.shot:hover img { transform: scale(1.015); }
+figcaption { color: var(--muted); font-size: 13px; }
+.note { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--ink-soft); font-size: 14px; }
+.scenario { display: grid; gap: 6px; margin: 0; padding-left: 22px; }
+.foot { color: var(--muted); font-size: 13px; text-align: center; }
+
+/* Просмотр скриншота на весь экран: внутри страницы, без перехода по ссылке */
+.viewer { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: rgb(8 14 18 / 92%); color: #eef3f6;
+  padding: max(10px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.viewer[hidden] { display: none; }
+.viewer__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 10px; font-size: 14px; }
+.viewer__count { color: #a9bac4; font-variant-numeric: tabular-nums; }
+.viewer__stage { position: relative; display: grid; place-items: center; min-height: 0; overflow: auto; }
+.viewer__stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgb(0 0 0 / 45%); cursor: zoom-in; }
+.viewer--full .viewer__stage { place-items: start center; }
+.viewer--full .viewer__stage img { max-width: none; max-height: none; cursor: zoom-out; }
+.viewer__caption { padding: 10px 4px 2px; color: #d6e1e7; font-size: 14px; text-align: center; }
+.viewer__btn { display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; background: rgb(255 255 255 / 10%); font-size: 15px; cursor: pointer; }
+.viewer__btn:hover, .viewer__btn:focus-visible { background: rgb(255 255 255 / 22%); outline: none; }
+.viewer__nav { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; padding: 0 0 4px; font-size: 30px; transform: translateY(-50%); }
+.viewer__nav--prev { left: 6px; }
+.viewer__nav--next { right: 6px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+  .side nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .side h3 { display: none; }
+  .side a { flex: 0 0 auto; background: var(--side-soft); }
+  .side a i { display: none; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ul.items li { grid-template-columns: minmax(0, 1fr); }
+  section.part, .hero { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { figure img { transition: none; } }
+
+/* Сводная таблица правок встречи */
+.sum { width: 100%; border-collapse: collapse; font-size: 14px; }
+.sum th, .sum td { padding: 9px 10px; border-bottom: 1px solid var(--border-soft); text-align: left; vertical-align: top; }
+.sum th { color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.sum td.mark { width: 28px; font-size: 16px; }
+.sum td.min { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sum-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+.asks { display: grid; gap: 18px; }
+.ask { display: grid; gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); scroll-margin-top: 16px; }
+.ask__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ask__n { display: inline-grid; place-items: center; min-width: 30px; height: 30px; border-radius: 999px; background: var(--accent); color: var(--surface); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ask__head h3 { flex: 1 1 260px; min-width: 0; margin: 0; font-size: 17px; text-wrap: balance; }
+.ask__state { color: var(--new); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ask blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--fix); border-radius: 0 10px 10px 0; background: var(--fix-soft); color: var(--ink); font-size: 14.5px; line-height: 1.5; }
+.ask blockquote small { display: block; margin-bottom: 2px; color: var(--fix); font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ask__done { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+.ask__done b { color: var(--ink); }
+.ask__list { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+.ask__list b { color: var(--ink); }
+.ba { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; }
+.ba--one { grid-template-columns: minmax(0, 720px); }
+.ba figure { display: grid; gap: 6px; min-width: 0; margin: 0; }
+.ba figcaption { color: var(--muted); font-size: 13px; }
+.ba figcaption span { margin-right: 4px; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ba__before figcaption span { color: var(--fix); }
+.ba__after figcaption span { color: var(--new); }
+.ba__before .shot { border-color: color-mix(in srgb, var(--fix) 45%, var(--border)); }
+.ba__after .shot { border-color: color-mix(in srgb, var(--new) 45%, var(--border)); }
+/* В «было / стало» картинка целиком: обрезка по бокам прятала то, о чём замечание (кнопки справа). */
+.ba figure img { aspect-ratio: auto; max-height: 520px; object-fit: contain; object-position: top center; background: var(--surface); }
+@media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
+.ux-intro { margin: 0 0 16px; max-width: 72ch; color: var(--muted, inherit); line-height: 1.55; }
+
+/* Итог дня: две колонки галочек со ссылками на подробности */
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 8px 28px; align-items: start; }
+.group { display: grid; gap: 4px; min-width: 0; }
+.group h3 { margin: 10px 0 2px; font-size: 15px; }
+.group h3:first-child { margin-top: 0; }
+ul.checks { display: grid; margin: 0; padding: 0; list-style: none; }
+ul.checks li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 8px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--border-soft); font-size: 14.5px; }
+ul.checks li:first-child { border-top: 0; }
+ul.checks a { color: var(--ink); text-decoration: none; }
+ul.checks a:hover, ul.checks a:focus-visible { color: var(--accent); text-decoration: underline; }
+.sum td b { font-weight: 650; }
+@media (max-width: 900px) { .groups { grid-template-columns: minmax(0, 1fr); } }
+/* Таблица сверки на телефоне — строками-карточками: пять колонок в 390px не помещаются */
+@media (max-width: 760px) {
+  .sum--stack thead { display: none; }
+  .sum--stack tr { display: grid; grid-template-columns: 24px 26px minmax(0, 1fr); gap: 3px 8px; padding: 10px 12px; border-bottom: 1px solid var(--border-soft); }
+  .sum--stack tr:last-child { border-bottom: 0; }
+  .sum--stack td { display: block; padding: 0; border: 0; }
+  .sum--stack td.mark { grid-column: 1; grid-row: 1 / span 3; width: auto; }
+  .sum--stack td:nth-child(2) { grid-column: 2; grid-row: 1 / span 3; color: var(--muted); }
+  .sum--stack td:nth-child(n+3) { grid-column: 3; }
+  .sum--stack td.min { font-size: 12.5px; }
+  .sum--stack td.min::before { content: "Минута записи "; }
+  .sum--stack td:nth-child(5) { color: var(--ink-soft); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" aria-label="Разделы">
+    <div class="brand"><b>МТ</b><span>МедТехСервис<small>сделано 19.11</small></span></div>
+    <nav>
+      <a href="#top">Коротко</a>
+      <a href="#summary">Итог дня</a>
+      <a href="#meet2">Вторая встреча <i>14</i></a>
+      <a href="#recheck">Повторная сверка <i>9</i></a>
+      <a href="#uiux">UI/UX-разбор <i>11</i></a>
+      <a href="#release">База и выкладка</a>
+      <a href="#notes">Уточнения к встрече <i>3</i></a>
+      <a href="#next">Что дальше</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+      <section class="hero" id="top">
+        <h1>Что сделано в CRM МедТехСервис 19 ноября</h1>
+        <p>За день разобрали запись второй встречи с Сергеем 18.11 и сделали все 14 его замечаний. Потом прошли все 24 экрана системы на простоту и единообразие и сделали два круга улучшений. Ещё добавили удаление вида работ — для этого обновили базу (миграция 0075). Всё выложено на стенд и проверено на нём, демо пересобрано.</p>
+        <div class="links">
+          <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
+          <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
+          <a class="btn" href="https://pochuvstvuyvkus.github.io/medtech-demo/whatsnew/vstrecha-18-11/" target="_blank" rel="noopener">Сайт встречи 18.11</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>14 из 14</strong><span>замечаний второй встречи сделано</span></div>
+          <div class="stat"><strong>9</strong><span>пунктов дописано при повторной сверке записи</span></div>
+          <div class="stat"><strong>24</strong><span>экрана пройдено в UI/UX-разборе</span></div>
+          <div class="stat"><strong>11</strong><span>улучшений по разбору, в два круга</span></div>
+          <div class="stat"><strong>27</strong><span>изменений выложено на стенд</span></div>
+          <div class="stat"><strong>637</strong><span>автотестов проходят</span></div>
+        </div>
+        <div class="legend"><span>✅ сделано, выложено на стенд и проверено на нём</span><span>⏳ ждёт заказчика или показа</span></div>
+      </section>
+
+      <section class="part" id="summary">
+        <header><h2>Итог дня</h2><span class="where">с утра и до вечера; пункт открывает подробности со скриншотами</span></header>
+        <div class="groups">
+          <div class="group">
+            <h3>Вторая встреча 18.11</h3>
+            <ul class="checks">
+              <li><span>✅</span><a href="#meet2">Расшифрована запись (49 минут), выписано 14 замечаний</a></li>
+              <li><span>✅</span><a href="#recheck">Запись сверена ещё раз, дописано 9 пунктов</a></li>
+              <li><span>✅</span><a href="#m2-1">«Назад» возвращает на прежний экран</a></li>
+              <li><span>✅</span><a href="#m2-2">Счётчик: одной строкой, откуда показания</a></li>
+              <li><span>✅</span><a href="#m2-3">План ТО: «ТО № N» открывает свою задачу</a></li>
+              <li><span>✅</span><a href="#m2-4">Календарь: числа дней на одной линии</a></li>
+              <li><span>✅</span><a href="#m2-5">Календарь без жёлтых и красных подложек</a></li>
+              <li><span>✅</span><a href="#m2-6">Клиенты вкладками «Площадки» и «Без площадки»</a></li>
+              <li><span>✅</span><a href="#m2-7">Склад без карточек с цифрами, состояние словами</a></li>
+              <li><span>✅</span><a href="#m2-8">Документы склада и все списки — постранично</a></li>
+              <li><span>✅</span><a href="#m2-9">КП: поля под своими заголовками</a></li>
+              <li><span>✅</span><a href="#m2-10">Вид работ из прайса — страницей</a></li>
+              <li><span>✅</span><a href="#m2-11">Удаление вида работ для руководителя и администратора</a></li>
+              <li><span>✅</span><a href="#m2-12">Роль — страницей</a></li>
+              <li><span>✅</span><a href="#m2-13">«Мои заявки» у инициатора — доской или одним списком</a></li>
+              <li><span>✅</span><a href="#m2-14">Единые шрифты</a></li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>UI/UX-разбор</h3>
+            <ul class="checks">
+              <li><span>✅</span><a href="#uiux">Пройдены все 24 экрана, найдено 9 проблем</a></li>
+              <li><span>✅</span><a href="#ux-1">Одна шкала шрифта: 7 размеров вместо 17</a></li>
+              <li><span>✅</span><a href="#ux-2">Фильтры применяются сами, без «Показать» и «Найти»</a></li>
+              <li><span>✅</span><a href="#ux-3">Одна главная кнопка в шапке, «Изменить» справа сверху</a></li>
+              <li><span>✅</span><a href="#ux-4">Без заголовков, повторяющих страницу</a></li>
+              <li><span>✅</span><a href="#ux-5">Прайс без технических кодов</a></li>
+              <li><span>✅</span><a href="#ux-6">Справочники: «Изменить» и меню «…»</a></li>
+              <li><span>✅</span><a href="#ux-7">Карточка задачи в две колонки</a></li>
+              <li><span>✅</span><a href="#ux-8">Новая задача и паспорт прибора — страницей</a></li>
+              <li><span>✅</span><a href="#ux-9">Экраны инженера на телефоне</a></li>
+              <li><span>✅</span><a href="#ux-10">Один набор цветов этапов</a></li>
+              <li><span>✅</span><a href="#ux-11">Короткие тексты пустых списков</a></li>
+            </ul>
+            <h3>База и выкладка</h3>
+            <ul class="checks">
+              <li><span>✅</span><a href="#release">27 изменений на стенде, у каждого проходят все тесты</a></li>
+              <li><span>✅</span><a href="#release">База стенда обновлена (0075) и проверена по ролям</a></li>
+              <li><span>✅</span><a href="#release">Демо пересобрано, сайт встречи 18.11 дополнен</a></li>
+              <li><span>✅</span><a href="#release">Сверка с ТЗ обновлена</a></li>
+            </ul>
+            <h3>Дальше</h3>
+            <ul class="checks">
+              <li><span>⏳</span><a href="#next">Три мелочи разбора и кнопка «Добавить вид работ» в прайсе</a></li>
+              <li><span>⏳</span><a href="#next">Показ заказчику ближе к пятнице</a></li>
+              <li><span>⏳</span><a href="#next">Почта, договор, 1С и форма КП — от заказчика</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="part" id="meet2">
+        <header><h2>Вторая встреча 18.11</h2><span class="where">запись 15:20, 49 минут: 14 замечаний — слева кадр со встречи, справа как стало</span></header>
+        <div class="asks">
+          <article class="ask" id="m2-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>«Назад» — на прежний экран</h3><span class="ask__state">✅ сделано · 02:50, 05:51</span></header>
+            <blockquote><small>Замечание</small>«Все действия, которые возвращают назад, должны возвращать на предыдущий шаг… Я зашёл в инженера, нажал на прибор — обратно должно в инженера кидать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Прибор, задача, инженер и клиент, открытые ссылкой, по «Назад» возвращают туда, откуда их открыли: инженер → прибор → «Назад» → снова инженер на той же вкладке; календарь → задача → «Назад» → календарь. Из своего раздела «Назад» по-прежнему ведёт к списку.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-back.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: прибор, открытый со страницы инженера: кнопка «Назад»" loading="lazy" src="../vstrecha-18-11/m2/after-back.jpg"></button><figcaption><span>Стало</span> прибор, открытый со страницы инженера: кнопка «Назад»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Откуда показания счётчика</h3><span class="ask__state">✅ сделано · 08:10</span></header>
+            <blockquote><small>Замечание</small>Договорились поправить описание: что это за число и откуда оно берётся.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Во вкладке «Счётчик» одна строка: число с экрана прибора, инженер переписывает его в результате работ, сюда оно попадает, когда координатор примет закрытие задачи. У показания — ссылка «Задача».</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка над таблицей, ссылка «Задача»" loading="lazy" src="../vstrecha-18-11/m2/after-meter.jpg"></button><figcaption><span>Стало</span> одна строка над таблицей, ссылка «Задача»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>ТО в плане открывает задачу</h3><span class="ask__state">✅ сделано · 10:34</span></header>
+            <blockquote><small>Замечание</small>«Нужно ли ТО делать кликабельным? Если делаем, попадаем на карточку задачи: выполненной, если она выполнена, если нет — на обычную.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «ТО № N» и его состояние — ссылки на задачу этого ТО: в разделе «План ТО» и во вкладке «План ТО» карточки прибора.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «ТО № 1» просто текст" loading="lazy" src="../vstrecha-18-11/m2/before-plan.jpg"></button><figcaption><span>Было</span> «ТО № 1» просто текст</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «ТО № 1» и «Выполнено» открывают задачу" loading="lazy" src="../vstrecha-18-11/m2/after-plan.jpg"></button><figcaption><span>Стало</span> «ТО № 1» и «Выполнено» открывают задачу</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Числа дней на одной линии</h3><span class="ask__state">✅ сделано · 14:28</span></header>
+            <blockquote><small>Замечание</small>«Видите, 1 ноября чуть съехало… и 6 октября тоже.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Подпись месяца под числом сдвигала первый день вверх. Теперь все числа на одной линии, месяц подписан только у 1-го числа внутри периода — в строке дня недели.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-cal-head.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «1» выше остальных, под ним «ноя»" loading="lazy" src="../vstrecha-18-11/m2/before-cal-head.jpg"></button><figcaption><span>Было</span> «1» выше остальных, под ним «ноя»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-cal-head.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: все числа ровно" loading="lazy" src="../vstrecha-18-11/m2/after-cal-head.jpg"></button><figcaption><span>Стало</span> все числа ровно</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Календарь без лишних подложек</h3><span class="ask__state">✅ сделано · 16:38–20:35</span></header>
+            <blockquote><small>Замечание</small>«Что означает эта жёлтенькая подложка?.. Если это ничего не значит, просто уберём: это лишнее визуально, не перемудрить.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Цвет полосы — только этап задачи. Жёлтая заливка дней «перегруз», красная перекраска просроченной задачи и черта дня выезда убраны. Просроченную видно по красному номеру, перегруз — по значку у фамилии.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-cal.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: жёлтые дни, красная полоса, черты" loading="lazy" src="../vstrecha-18-11/m2/before-cal.jpg"></button><figcaption><span>Было</span> жёлтые дни, красная полоса, черты</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-cal-month.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: полоса цветом этапа, без заливок" loading="lazy" src="../vstrecha-18-11/m2/after-cal-month.jpg"></button><figcaption><span>Стало</span> полоса цветом этапа, без заливок</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Клиенты: «Без площадки» вкладкой</h3><span class="ask__state">✅ сделано · 21:36</span></header>
+            <blockquote><small>Замечание</small>«Если клиентов 50 или 200, мы до него просто никогда не доскролим… Может быть, вкладками сделать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Вкладки «Площадки» и «Без площадки». Название площадки открывает страницу клиента (на встрече по нему страница не открылась), стрелка слева раскрывает людей.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Без площадки» под всем списком" loading="lazy" src="../vstrecha-18-11/m2/before-customers.jpg"></button><figcaption><span>Было</span> «Без площадки» под всем списком</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладки, название — ссылка" loading="lazy" src="../vstrecha-18-11/m2/after-customers.jpg"></button><figcaption><span>Стало</span> вкладки, название — ссылка</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-customers-orphans.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Без площадки»" loading="lazy" src="../vstrecha-18-11/m2/after-customers-orphans.jpg"></button><figcaption><span>Стало</span> вкладка «Без площадки»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>Склад без лишнего</h3><span class="ask__state">✅ сделано · 22:56</span></header>
+            <blockquote><small>Замечание</small>«Вот эти моменты тоже почему-то не убрались.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Карточки «Активные», «Мало на складе», «У инженеров» и подписи под колонками убраны — те же числа стоят в колонках. Вместо «Г · Н · Б» — словами: «1 гарантийная, 2 новых».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: карточки с цифрами, подписи, «Г · Н · Б»" loading="lazy" src="../vstrecha-18-11/m2/before-warehouse.jpg"></button><figcaption><span>Было</span> карточки с цифрами, подписи, «Г · Н · Б»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только доска, состояние словами" loading="lazy" src="../vstrecha-18-11/m2/after-warehouse.jpg"></button><figcaption><span>Стало</span> только доска, состояние словами</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Документы склада постранично</h3><span class="ask__state">✅ сделано · 23:23</span></header>
+            <blockquote><small>Замечание</small>«Перемещения, возвраты постранично… ещё тут не доделал.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Внизу документов склада — «Показывать по…» и страницы, даже когда документов мало. Так же теперь во всех списках системы.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-docs.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: без страниц" loading="lazy" src="../vstrecha-18-11/m2/before-docs.jpg"></button><figcaption><span>Было</span> без страниц</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-docs.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Показывать по 50» и страницы" loading="lazy" src="../vstrecha-18-11/m2/after-docs.jpg"></button><figcaption><span>Стало</span> «Показывать по 50» и страницы</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>КП: поля под заголовками</h3><span class="ask__state">✅ сделано · 33:33</span></header>
+            <blockquote><small>Замечание</small>«Немножко съехало: количество, цена… корявенько отображается.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Поля «Количество» и «Цена» стоят ровно под своими заголовками.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-kp.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: поля левее заголовков" loading="lazy" src="../vstrecha-18-11/m2/before-kp.jpg"></button><figcaption><span>Было</span> поля левее заголовков</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-kp.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: поля под заголовками" loading="lazy" src="../vstrecha-18-11/m2/after-kp.jpg"></button><figcaption><span>Стало</span> поля под заголовками</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>Вид работ — страницей</h3><span class="ask__state">✅ сделано · 35:55</span></header>
+            <blockquote><small>Замечание</small>«По прайсу тоже поп-ап, где история цены… Сделать отдельной страницей: нажимаем на вид работ — там все задачи по этому виду работ и история цен.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Название вида работ в прайсе открывает его страницу: цена сейчас и «Изменить цену» справа сверху, вкладки «История цен» и «Задачи» — все задачи с этим видом работ постранично, со ссылками на прибор, клиента и инженера.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: история цен во всплывающем окне" loading="lazy" src="../vstrecha-18-11/m2/before-price.jpg"></button><figcaption><span>Было</span> история цен во всплывающем окне</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-price-history.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница вида работ" loading="lazy" src="../vstrecha-18-11/m2/after-price-history.jpg"></button><figcaption><span>Стало</span> страница вида работ</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-price-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Задачи»" loading="lazy" src="../vstrecha-18-11/m2/after-price-tasks.jpg"></button><figcaption><span>Стало</span> вкладка «Задачи»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-11">
+            <header class="ask__head"><span class="ask__n">11</span><h3>Удаление вида работ</h3><span class="ask__state">✅ сделано · 39:51</span></header>
+            <blockquote><small>Замечание</small>«А удалить работу нельзя, только скрыть? Давайте сделаем на всякий случай… для администратора и руководителя.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> У видов работ в справочниках кнопка «Удалить» — у руководителя и администратора. Удаляется только вид, который нигде не использован, вместе с его ценами. Если он уже есть в задачах, плане ТО, счетах или КП, система откажет: «уже использован (в задачах: 6), его можно только скрыть». Проверку держит база (миграция 0075).</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-ref.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: только «Скрыть»" loading="lazy" src="../vstrecha-18-11/m2/before-ref.jpg"></button><figcaption><span>Было</span> только «Скрыть»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-ref-delete-confirm.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Удалить» с подтверждением" loading="lazy" src="../vstrecha-18-11/m2/after-ref-delete-confirm.jpg"></button><figcaption><span>Стало</span> «Удалить» с подтверждением</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-12">
+            <header class="ask__head"><span class="ask__n">12</span><h3>Роль — страницей</h3><span class="ask__state">✅ сделано · 42:13</span></header>
+            <blockquote><small>Замечание</small>«Лучше сделать не поп-апом, а страницей… редактировать роль в попапе не очень удобно.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Роль открывается страницей: название и тип сверху, все права галочками по разделам сразу, «Сохранить роль» справа сверху. Название роли в списке — ссылка.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-role.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: окно с правами" loading="lazy" src="../vstrecha-18-11/m2/before-role.jpg"></button><figcaption><span>Было</span> окно с правами</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-role.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница роли" loading="lazy" src="../vstrecha-18-11/m2/after-role.jpg"></button><figcaption><span>Стало</span> страница роли</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-13">
+            <header class="ask__head"><span class="ask__n">13</span><h3>«Мои заявки» у инициатора</h3><span class="ask__state">✅ сделано · 43:24</span></header>
+            <blockquote><small>Замечание</small>«Представьте: будет 200 заявок, 10 в работе и 150 завершённых… там тоже как-то странно выглядит.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Доска по этапам, как у инженера и клиента, и один список постранично вместо двух таблиц с разными колонками.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-init.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: две таблицы с разными колонками" loading="lazy" src="../vstrecha-18-11/m2/before-init.jpg"></button><figcaption><span>Было</span> две таблицы с разными колонками</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-init-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: доска по этапам" loading="lazy" src="../vstrecha-18-11/m2/after-init-board.jpg"></button><figcaption><span>Стало</span> доска по этапам</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-init-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: один список постранично" loading="lazy" src="../vstrecha-18-11/m2/after-init-list.jpg"></button><figcaption><span>Стало</span> один список постранично</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-14">
+            <header class="ask__head"><span class="ask__n">14</span><h3>Единые шрифты</h3><span class="ask__state">✅ сделано · 37:56, 44:12</span></header>
+            <blockquote><small>Замечание</small>«Шрифты — там 10 видов шрифтов… Чтобы везде было единое, просто и понятно для людей, далёких от CRM.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Одна шкала шрифта: 7 размеров вместо 17 и 4 начертания вместо 8, заголовки страниц и карточек одного размера, подписи в отчётах не крупнее остального. Затем общий прогон всех 24 экранов по образцам Linear, Attio и Pipedrive. Фильтры применяются сами, без кнопок «Показать» и «Найти». На экране одна главная кнопка — в шапке справа, «Изменить» — справа сверху. Метки «Активна» и «Свободен» остались только у исключений. Над единственной таблицей нет повторного заголовка, в прайсе нет технических кодов.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/before-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: крупные подписи строк" loading="lazy" src="../vstrecha-18-11/m2/before-reports.jpg"></button><figcaption><span>Было</span> крупные подписи строк</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/m2/after-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна шкала шрифта" loading="lazy" src="../vstrecha-18-11/m2/after-reports.jpg"></button><figcaption><span>Стало</span> одна шкала шрифта</figcaption></figure></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="part" id="recheck">
+        <header><h2>Повторная сверка записи</h2><span class="where">запись прослушана ещё раз построчно: все 14 замечаний на месте, ниже то, что не было замечанием к экрану</span></header>
+        <div class="sum-wrap"><table class="sum sum--stack"><thead><tr><th></th><th>№</th><th>Что</th><th>Минута</th><th>Что дальше</th></tr></thead><tbody>
+          <tr><td class="mark">✅</td><td>15</td><td><b>ИНН</b>: как именно проверяется номер</td><td class="min">28:30</td><td>Уточнение ниже, в «Уточнениях к встрече»; менять в системе нечего</td></tr>
+          <tr><td class="mark">✅</td><td>16</td><td><b>Шаблон КП в Excel</b>: по какому образцу сделан</td><td class="min">33:03</td><td>Уточнение ниже; если у заказчика есть своя форма КП — сделаем выгрузку по ней</td></tr>
+          <tr><td class="mark">⏳</td><td>17</td><td><b>Вид работ добавляется только в справочниках</b>, в прайсе — нет</td><td class="min">38:52</td><td>По желанию: кнопка «Добавить вид работ» прямо в прайсе</td></tr>
+          <tr><td class="mark">✅</td><td>18</td><td><b>Инженер с телефона</b> — на встрече не показали</td><td class="min">42:39</td><td>Экраны инженера на телефоне переделаны (<a href="#ux-9">разбор, пункт 9</a>); показать на созвоне</td></tr>
+          <tr><td class="mark">✅</td><td>19</td><td><b>Роль инициатора</b> — что он делает</td><td class="min">42:51</td><td>Уточнение ниже</td></tr>
+          <tr><td class="mark">⏳</td><td>20</td><td><b>Отчёты</b>: как их переоформить</td><td class="min">36:40</td><td>Шрифты и выравнивание сделаны; раскладку блоков обсудить на показе</td></tr>
+          <tr><td class="mark">⏳</td><td>21</td><td><b>Передача счёта в 1С</b>: пока это отметка «Передан в 1С»</td><td class="min">29:51</td><td>Сама передача — после доступа к 1С и созвона с бухгалтерией</td></tr>
+          <tr><td class="mark">⏳</td><td>22</td><td><b>Перенос данных</b>: при загрузке проверять связи между таблицами</td><td class="min">26:23</td><td>Когда придут выгрузки заказчика; чего не хватит — запросим</td></tr>
+          <tr><td class="mark">⏳</td><td>23</td><td><b>Показ заказчику</b> ближе к пятнице</td><td class="min">45:00</td><td>Созвон вместе или видеообзор</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="part" id="uiux">
+        <header><h2>UI/UX-разбор</h2><span class="where">просьба Сергея со второй встречи: «всё единое, просто и понятно человеку, далёкому от CRM»</span></header>
+        <p class="ux-intro">Прошли все 24 экрана под координатором, руководителем, системным администратором и инженером на телефоне. Проверяли по эвристикам Нильсена (понятность, единообразие, минимализм) и по образцам сильных интерфейсов: Linear и Attio (таблицы и записи), Pipedrive (доска как главный экран), Stripe (одна главная кнопка на экране). Всё ниже выложено на стенд и проверено на нём. На потом остались мелочи: на телефоне выровнять список «Получить на складе» и спрятать фильтры «Моих приборов» в «Фильтры», раскладку отчётов обсудить на показе.</p>
+        <div class="asks">
+          <article class="ask" id="ux-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>Одна шкала шрифта</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>17 размеров шрифта и 8 начертаний; в отчётах подписи строк крупнее всего остального.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> 7 размеров (11, 12, 13, 14, 16, 20, 24) и 4 начертания. Заголовки страниц и карточек одного размера, подписи в отчётах не крупнее остального, карточки отчётов в одном ряду. Тест не даёт завести новый размер.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: крупные подписи строк" loading="lazy" src="../vstrecha-18-11/ux/before-reports.jpg"></button><figcaption><span>Было</span> крупные подписи строк</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна шкала" loading="lazy" src="../vstrecha-18-11/ux/after-reports.jpg"></button><figcaption><span>Стало</span> одна шкала</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Фильтры применяются сами</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Три разных фильтра: где-то панель «Фильтры» и «Найти», где-то подписи над полями и «Сбросить / Показать» отдельной строкой.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Как в Linear и Attio: выбрал значение — список обновился, поиск — после паузы в наборе. Кнопок «Показать» и «Найти» нет, «Сбросить» появляется, только когда что-то выбрано. Подписей над полями нет — значение говорит само: «Активные позиции», «Любое наличие», «Все каналы».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: подписи и «Показать» отдельной строкой" loading="lazy" src="../vstrecha-18-11/ux/before-warehouse.jpg"></button><figcaption><span>Было</span> подписи и «Показать» отдельной строкой</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка, применяется сразу" loading="lazy" src="../vstrecha-18-11/ux/after-warehouse.jpg"></button><figcaption><span>Стало</span> одна строка, применяется сразу</figcaption></figure><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: то же в уведомлениях" loading="lazy" src="../vstrecha-18-11/ux/before-notifications.jpg"></button><figcaption><span>Было</span> то же в уведомлениях</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка" loading="lazy" src="../vstrecha-18-11/ux/after-notifications.jpg"></button><figcaption><span>Стало</span> одна строка</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>Одна главная кнопка — в шапке</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Синие кнопки в строках спорили с главной кнопкой экрана; «Добавить площадку» стояла во второй строке; «Изменить» — в четырёх разных местах.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Главная кнопка экрана — в шапке справа, в строках — обычные кнопки. «Изменить» — справа сверху у инженера, вида работ, роли, КП и задачи. Метки «Активна» и «Свободен» остались только у исключений: «Неактивна», «Есть просрочки».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: кнопка во второй строке, «Активна» у всех" loading="lazy" src="../vstrecha-18-11/ux/before-customers.jpg"></button><figcaption><span>Было</span> кнопка во второй строке, «Активна» у всех</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: кнопка в шапке, без лишних меток" loading="lazy" src="../vstrecha-18-11/ux/after-customers.jpg"></button><figcaption><span>Стало</span> кнопка в шапке, без лишних меток</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Без повторных заголовков</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Над единственной таблицей — заголовок с повтором страницы и числом, которое и так внизу: «Все задачи 23 из 23», «Загрузка 14 человек», «Запас по позициям».</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Таблица сразу под заголовком страницы, число записей — внизу, у переключателя страниц. Так у задач, инженеров, склада, прайса, писем, журналов, ролей и сотрудников.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-tasks-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Все задачи 23 из 23»" loading="lazy" src="../vstrecha-18-11/ux/before-tasks-list.jpg"></button><figcaption><span>Было</span> «Все задачи 23 из 23»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-tasks-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: таблица сразу под заголовком" loading="lazy" src="../vstrecha-18-11/ux/after-tasks-list.jpg"></button><figcaption><span>Стало</span> таблица сразу под заголовком</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Прайс без технических кодов</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>В каждой строке код вида работ (diagnostics, application_methods), «Задать цену» синей кнопкой в каждой строке.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В строке только название, код — на странице вида работ. «Задать цену» и «Изменить цену» — одинаковые обычные кнопки.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: коды и синие кнопки" loading="lazy" src="../vstrecha-18-11/ux/before-price.jpg"></button><figcaption><span>Было</span> коды и синие кнопки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только названия" loading="lazy" src="../vstrecha-18-11/ux/after-price.jpg"></button><figcaption><span>Стало</span> только названия</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Справочники: «Изменить» и «…»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Пять значков в каждой строке: выше, ниже, изменить, скрыть, удалить.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В строке «Изменить» и меню «…» с остальными действиями. Меню работает с клавиатуры и не обрезается краем таблицы.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-references.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: пять значков в строке" loading="lazy" src="../vstrecha-18-11/ux/before-references.jpg"></button><figcaption><span>Было</span> пять значков в строке</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-references.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Изменить» и меню «…»" loading="lazy" src="../vstrecha-18-11/ux/after-references.jpg"></button><figcaption><span>Стало</span> «Изменить» и меню «…»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>Карточка задачи в две колонки</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Свойства в три колонки, третья почти пустая.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Две колонки: о задаче и о месте. Связанные задачи и план ТО — во второй колонке.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-taskcard.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: три колонки" loading="lazy" src="../vstrecha-18-11/ux/before-taskcard.jpg"></button><figcaption><span>Было</span> три колонки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-taskcard.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: две колонки" loading="lazy" src="../vstrecha-18-11/ux/after-taskcard.jpg"></button><figcaption><span>Стало</span> две колонки</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Новая задача и паспорт прибора — страницей</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Большие формы во всплывающем окне, как раньше роль.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Страницей на всё место справа от меню: «Назад» слева сверху, «Отмена» и главная кнопка справа сверху. Задача из письма открывается так же.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: окно поверх доски" loading="lazy" src="../vstrecha-18-11/ux/before-newtask.jpg"></button><figcaption><span>Было</span> окно поверх доски</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница" loading="lazy" src="../vstrecha-18-11/ux/after-newtask.jpg"></button><figcaption><span>Стало</span> страница</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>Экраны инженера на телефоне</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>«Акт для печати» во всю ширину над заголовком задачи, вкладки переносятся на вторую строку, уведомления широкой таблицей с обрезанными колонками.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Назад» и «Акт для печати» одной строкой, вкладки листаются вбок, уведомления карточками. Страница не прокручивается вбок.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-phone-task.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: кнопка над заголовком, вкладки в две строки" loading="lazy" src="../vstrecha-18-11/ux/before-phone-task.jpg"></button><figcaption><span>Было</span> кнопка над заголовком, вкладки в две строки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-phone-task.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка, вкладки вбок" loading="lazy" src="../vstrecha-18-11/ux/after-phone-task.jpg"></button><figcaption><span>Стало</span> одна строка, вкладки вбок</figcaption></figure><figure class="ba__before"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/before-phone-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: таблица обрезана" loading="lazy" src="../vstrecha-18-11/ux/before-phone-notifications.jpg"></button><figcaption><span>Было</span> таблица обрезана</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="../vstrecha-18-11/ux/after-phone-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: карточки" loading="lazy" src="../vstrecha-18-11/ux/after-phone-notifications.jpg"></button><figcaption><span>Стало</span> карточки</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>Один набор цветов этапов</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Один и тот же этап разного цвета: «Назначена» трёх разных жёлтых, «Выполнена» на доске инженера красная, в календаре серая.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Цвет каждого этапа задан один раз: доска задач, доски инженера и клиента, календарь и отчёты берут его оттуда. Тест не даёт им разойтись.</p>
+          </article>
+          <article class="ask" id="ux-11">
+            <header class="ask__head"><span class="ask__n">11</span><h3>Короткие пустые списки</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Советы в два предложения там, где пусто: «Истории пока нет. Закрытые задачи, перемещения и прошлые события появятся здесь».</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В колонках досок «Пусто», в разделах одна фраза: «Истории пока нет», «Файлов пока нет».</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="part" id="release">
+        <header><h2>База и выкладка</h2><span class="where">как проверяли, прежде чем считать сделанным</span></header>
+        <ul class="items">
+          <li><span class="tag tag--new">Стенд</span><div><b>27 изменений выложено на стенд.</b><small>Каждое — отдельным шагом, и у каждого проходят все автотесты (сейчас их 637). Экраны после выкладки проверены на самом стенде под системным администратором, экраны телефона — в демо на том же коде.</small></div></li>
+          <li><span class="tag tag--new">База</span><div><b>Миграция 0075 — удаление вида работ.</b><small>Перед обновлением базы стенда сверили, что файл тот же, что в репозитории, сделали резервную копию и пробный прогон с откатом. После обновления проверили на данных стенда: руководитель и администратор удаляют неиспользованный вид работ, остальные роли — нет, без входа в систему — отказ.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено</span><div><b>Тест прав базы снова проходит.</b><small>После прошлой миграции (0074, журнал входов) новая функция не попала в список разрешённых, и тест прав падал. Добавили.</small></div></li>
+          <li><span class="tag tag--fix">Исправлено</span><div><b>Старая ошибка в карточке прибора.</b><small>У формы паспорта и у карточки прибора совпадал внутренний ключ, и браузер предупреждал об ошибке. Ключи разделили.</small></div></li>
+          <li><span class="tag tag--new">Демо</span><div><b>Демо пересобрано</b> со всеми изменениями дня.<small>Сайт встречи 18.11 дополнен разделами «Вторая встреча» и «UI/UX-разбор», сверка с ТЗ обновлена.</small></div></li>
+        </ul>
+      </section>
+
+      <section class="part" id="notes">
+        <header><h2>Уточнения к встрече</h2><span class="where">три ответа со встречи — точнее</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 28:30</span><div><b>ИНН.</b><small>Система проверяет длину номера (10 цифр у организации, 12 у ИП) и контрольные цифры по формуле налоговой. С реестром номер не сверяется. ИНН клиента можно поменять в любой момент на другой правильный номер, проверка этому не мешает. Если понадобится сохранять номер, который формулу не проходит (например, иностранный), — решим отдельно.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 33:03</span><div><b>Шаблон КП в Excel.</b><small>Своего образца КП заказчик не присылал: в пакете ТЗ только бланк акта, форма заявки и образец истории прибора. Выгрузка сделана по ТЗ — позиции, сумма, статус. Если у заказчика есть своя форма КП, пришлите её, сделаем выгрузку по ней.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 42:51</span><div><b>Роль инициатора.</b><small>Это внешний менеджер, на старте их около пяти. Он создаёт заявки и видит этапы и результаты только своих задач, больше ничего. По ТЗ, раздел 2.</small></div></li>
+        </ul>
+      </section>
+
+      <section class="part" id="next">
+        <header><h2>Что дальше</h2><span class="where">с нашей стороны всё, что просили, сделано</span></header>
+        <h3 class="sub">Мелочи по разбору</h3>
+        <ul class="items">
+          <li><span class="tag tag--fix">Телефон</span><div><b>«Получить на складе» в задаче.</b><small>У длинных названий артикул и название ложатся то в одну строку, то в две — выровнять.</small></div></li>
+          <li><span class="tag tag--fix">Телефон</span><div><b>«Мои приборы».</b><small>Три фильтра стоят столбиком — спрятать их в «Фильтры», как в уведомлениях.</small></div></li>
+          <li><span class="tag tag--ask">По желанию</span><div><b>«Добавить вид работ» прямо в прайсе.</b><small>Сейчас вид работ добавляется в справочниках, цена задаётся в прайсе.</small></div></li>
+        </ul>
+        <h3 class="sub">На показе заказчику</h3>
+        <ul class="items">
+          <li><span class="tag tag--wait">Показ</span><div><b>Созвон вместе или видеообзор ближе к пятнице.</b><small>Показать инженера с телефона и обсудить раскладку отчётов.</small></div></li>
+        </ul>
+        <h3 class="sub">Ждём от заказчика</h3>
+        <ul class="items">
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Доступ к основному почтовому ящику.</b><small>Сейчас разбирается тестовый ящик.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Форма договора.</b></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Выгрузки из 1С.</b><small>На них проверим импорт и связи между таблицами.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Доступ к 1С.</b><small>Чтобы счета передавались туда, а не только отмечались «Передан в 1С».</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Своя форма КП</b>, если она есть.</div></li>
+        </ul>
+      </section>
+
+      <p class="foot">Состояние на 19.11.2026.</p>
+    </div>
+  </main>
+</div>
+
+<div class="viewer" hidden id="viewer" role="dialog" aria-modal="true" aria-label="Скриншот">
+  <div class="viewer__bar"><span class="viewer__count" id="viewer-count"></span><span style="display:flex;gap:8px"><button class="viewer__btn" id="viewer-zoom" type="button">В полный размер</button><button class="viewer__btn" id="viewer-close" type="button" aria-label="Закрыть">✕</button></span></div>
+  <div class="viewer__stage" id="viewer-stage">
+    <button class="viewer__btn viewer__nav viewer__nav--prev" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">‹</button>
+    <img alt="" id="viewer-img">
+    <button class="viewer__btn viewer__nav viewer__nav--next" id="viewer-next" type="button" aria-label="Следующий скриншот">›</button>
+  </div>
+  <div class="viewer__caption" id="viewer-caption"></div>
+</div>
+<script>
+(() => {
+  const shots = [...document.querySelectorAll(".shot")];
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-img");
+  const caption = document.getElementById("viewer-caption");
+  const count = document.getElementById("viewer-count");
+  const zoom = document.getElementById("viewer-zoom");
+  let index = 0;
+  let opener = null;
+  const show = (next) => {
+    index = (next + shots.length) % shots.length;
+    const shot = shots[index];
+    const thumb = shot.querySelector("img");
+    viewer.classList.remove("viewer--full");
+    zoom.textContent = "В полный размер";
+    img.src = shot.dataset.full;
+    img.alt = thumb ? thumb.alt : "";
+    const figcap = shot.closest("figure")?.querySelector("figcaption");
+    const section = shot.closest("section")?.querySelector("h2");
+    caption.textContent = [section?.textContent, figcap?.textContent].filter(Boolean).join(" · ");
+    count.textContent = (index + 1) + " из " + shots.length;
+  };
+  const open = (i, from) => { opener = from; show(i); viewer.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("viewer-close").focus(); };
+  const close = () => { viewer.hidden = true; document.body.style.overflow = ""; img.removeAttribute("src"); opener?.focus(); };
+  const toggleFull = () => { const full = viewer.classList.toggle("viewer--full"); zoom.textContent = full ? "Вписать в экран" : "В полный размер"; };
+  shots.forEach((shot, i) => shot.addEventListener("click", () => open(i, shot)));
+  document.getElementById("viewer-close").addEventListener("click", close);
+  document.getElementById("viewer-prev").addEventListener("click", (event) => { event.stopPropagation(); show(index - 1); });
+  document.getElementById("viewer-next").addEventListener("click", (event) => { event.stopPropagation(); show(index + 1); });
+  zoom.addEventListener("click", toggleFull);
+  img.addEventListener("click", (event) => { event.stopPropagation(); toggleFull(); });
+  document.getElementById("viewer-stage").addEventListener("click", (event) => { if (event.target.id === "viewer-stage") close(); });
+  document.addEventListener("keydown", (event) => {
+    if (viewer.hidden) return;
+    if (event.key === "Escape") close();
+    else if (event.key === "ArrowLeft") show(index - 1);
+    else if (event.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
+</body>
+</html>
