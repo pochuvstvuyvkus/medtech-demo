@@ -153,6 +153,7 @@ figcaption { color: var(--muted); font-size: 13px; }
 /* В «было / стало» картинка целиком: обрезка по бокам прятала то, о чём замечание (кнопки справа). */
 .ba figure img { aspect-ratio: auto; max-height: 520px; object-fit: contain; object-position: top center; background: var(--surface); }
 @media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
+.ux-intro { margin: 0 0 16px; max-width: 72ch; color: var(--muted, inherit); line-height: 1.55; }
 </style>
 </head>
 <body>
@@ -165,6 +166,7 @@ figcaption { color: var(--muted); font-size: 13px; }
       <a href="#round2">Замечания к демо <i>21</i></a>
       <a href="#rest">Остальные разделы <i>9</i></a>
       <a href="#meet2">Вторая встреча <i>14</i></a>
+      <a href="#uiux">UI/UX-разбор <i>11</i></a>
       <h3>По разделам</h3>
       <a href="#tasks">Задачи <i>5</i></a>
       <a href="#mail">Письма <i>3</i></a>
@@ -185,7 +187,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <div class="wrap">
       <section class="hero" id="top">
         <h1>Что нового в МедТехСервисе по встрече 18 ноября</h1>
-        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 21 замечание: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Вечером прошли демо с Сергеем второй раз: 14 замечаний — «Назад» на прежний экран, календарь без лишних подложек, клиенты вкладками, вид работ и роль страницами, удаление вида работ, единые шрифты; они в разделе «Вторая встреча». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
+        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 21 замечание: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Вечером прошли демо с Сергеем второй раз: 14 замечаний — «Назад» на прежний экран, календарь без лишних подложек, клиенты вкладками, вид работ и роль страницами, удаление вида работ, единые шрифты; они в разделе «Вторая встреча». По его просьбе прошли весь интерфейс по UI/UX — 11 улучшений в разделе «UI/UX-разбор». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
         <div class="links">
           <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
           <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
@@ -195,6 +197,7 @@ figcaption { color: var(--muted); font-size: 13px; }
           <div class="stat"><strong>1</strong><span>сделана с нашей стороны, ждёт почтовый ящик заказчика</span></div>
           <div class="stat"><strong>21 из 21</strong><span>замечаний после просмотра демо сделано</span></div>
           <div class="stat"><strong>14 из 14</strong><span>замечаний второй встречи сделано</span></div>
+          <div class="stat"><strong>11</strong><span>улучшений по UI/UX-разбору</span></div>
           <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
         </div>
         <div class="legend"><span><span class="tag tag--meet">Встреча · 05:27</span> сделано, рядом минута записи, где Сергей это сказал</span><span><span class="tag tag--fix">Демо</span> сделано после просмотра демо</span><span><span class="tag tag--wait">Ждёт заказчика</span> наша часть готова</span></div>
@@ -497,6 +500,77 @@ figcaption { color: var(--muted); font-size: 13px; }
             <blockquote><small>Замечание</small>«Шрифты — там 10 видов шрифтов… Чтобы везде было единое, просто и понятно для людей, далёких от CRM.»</blockquote>
             <p class="ask__done"><b>Что сделано.</b> Одна шкала шрифта: 7 размеров вместо 17 и 4 начертания вместо 8, заголовки страниц и карточек одного размера, подписи в отчётах не крупнее остального. Затем общий прогон всех 24 экранов по образцам Linear, Attio и Pipedrive. Фильтры применяются сами, без кнопок «Показать» и «Найти». На экране одна главная кнопка — в шапке справа, «Изменить» — справа сверху. Метки «Активна» и «Свободен» остались только у исключений. Над единственной таблицей нет повторного заголовка, в прайсе нет технических кодов.</p>
             <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: крупные подписи строк" loading="lazy" src="m2/before-reports.jpg"></button><figcaption><span>Было</span> крупные подписи строк</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна шкала шрифта" loading="lazy" src="m2/after-reports.jpg"></button><figcaption><span>Стало</span> одна шкала шрифта</figcaption></figure></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="part" id="uiux">
+        <header><h2>UI/UX-разбор</h2><span class="where">просьба Сергея со второй встречи: «всё единое, просто и понятно человеку, далёкому от CRM»</span></header>
+        <p class="ux-intro">Прошли все 24 экрана под координатором, руководителем, системным администратором и инженером на телефоне. Проверяли по эвристикам Нильсена (понятность, единообразие, минимализм) и по образцам сильных интерфейсов: Linear и Attio (таблицы и записи), Pipedrive (доска как главный экран), Stripe (одна главная кнопка на экране). Всё ниже выложено на стенд и проверено на нём. На потом остались мелочи: на телефоне выровнять список «Получить на складе» и спрятать фильтры «Моих приборов» в «Фильтры», раскладку отчётов обсудить на показе.</p>
+        <div class="asks">
+          <article class="ask" id="ux-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>Одна шкала шрифта</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>17 размеров шрифта и 8 начертаний; в отчётах подписи строк крупнее всего остального.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> 7 размеров (11, 12, 13, 14, 16, 20, 24) и 4 начертания. Заголовки страниц и карточек одного размера, подписи в отчётах не крупнее остального, карточки отчётов в одном ряду. Тест не даёт завести новый размер.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: крупные подписи строк" loading="lazy" src="ux/before-reports.jpg"></button><figcaption><span>Было</span> крупные подписи строк</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна шкала" loading="lazy" src="ux/after-reports.jpg"></button><figcaption><span>Стало</span> одна шкала</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Фильтры применяются сами</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Три разных фильтра: где-то панель «Фильтры» и «Найти», где-то подписи над полями и «Сбросить / Показать» отдельной строкой.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Как в Linear и Attio: выбрал значение — список обновился, поиск — после паузы в наборе. Кнопок «Показать» и «Найти» нет, «Сбросить» появляется, только когда что-то выбрано. Подписей над полями нет — значение говорит само: «Активные позиции», «Любое наличие», «Все каналы».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: подписи и «Показать» отдельной строкой" loading="lazy" src="ux/before-warehouse.jpg"></button><figcaption><span>Было</span> подписи и «Показать» отдельной строкой</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка, применяется сразу" loading="lazy" src="ux/after-warehouse.jpg"></button><figcaption><span>Стало</span> одна строка, применяется сразу</figcaption></figure><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: то же в уведомлениях" loading="lazy" src="ux/before-notifications.jpg"></button><figcaption><span>Было</span> то же в уведомлениях</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка" loading="lazy" src="ux/after-notifications.jpg"></button><figcaption><span>Стало</span> одна строка</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>Одна главная кнопка — в шапке</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Синие кнопки в строках спорили с главной кнопкой экрана; «Добавить площадку» стояла во второй строке; «Изменить» — в четырёх разных местах.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Главная кнопка экрана — в шапке справа, в строках — обычные кнопки. «Изменить» — справа сверху у инженера, вида работ, роли, КП и задачи. Метки «Активна» и «Свободен» остались только у исключений: «Неактивна», «Есть просрочки».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: кнопка во второй строке, «Активна» у всех" loading="lazy" src="ux/before-customers.jpg"></button><figcaption><span>Было</span> кнопка во второй строке, «Активна» у всех</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: кнопка в шапке, без лишних меток" loading="lazy" src="ux/after-customers.jpg"></button><figcaption><span>Стало</span> кнопка в шапке, без лишних меток</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Без повторных заголовков</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Над единственной таблицей — заголовок с повтором страницы и числом, которое и так внизу: «Все задачи 23 из 23», «Загрузка 14 человек», «Запас по позициям».</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Таблица сразу под заголовком страницы, число записей — внизу, у переключателя страниц. Так у задач, инженеров, склада, прайса, писем, журналов, ролей и сотрудников.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-tasks-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Все задачи 23 из 23»" loading="lazy" src="ux/before-tasks-list.jpg"></button><figcaption><span>Было</span> «Все задачи 23 из 23»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-tasks-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: таблица сразу под заголовком" loading="lazy" src="ux/after-tasks-list.jpg"></button><figcaption><span>Стало</span> таблица сразу под заголовком</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Прайс без технических кодов</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>В каждой строке код вида работ (diagnostics, application_methods), «Задать цену» синей кнопкой в каждой строке.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В строке только название, код — на странице вида работ. «Задать цену» и «Изменить цену» — одинаковые обычные кнопки.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: коды и синие кнопки" loading="lazy" src="ux/before-price.jpg"></button><figcaption><span>Было</span> коды и синие кнопки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только названия" loading="lazy" src="ux/after-price.jpg"></button><figcaption><span>Стало</span> только названия</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Справочники: «Изменить» и «…»</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Пять значков в каждой строке: выше, ниже, изменить, скрыть, удалить.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В строке «Изменить» и меню «…» с остальными действиями. Меню работает с клавиатуры и не обрезается краем таблицы.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-references.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: пять значков в строке" loading="lazy" src="ux/before-references.jpg"></button><figcaption><span>Было</span> пять значков в строке</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-references.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Изменить» и меню «…»" loading="lazy" src="ux/after-references.jpg"></button><figcaption><span>Стало</span> «Изменить» и меню «…»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>Карточка задачи в две колонки</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Свойства в три колонки, третья почти пустая.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Две колонки: о задаче и о месте. Связанные задачи и план ТО — во второй колонке.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-taskcard.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: три колонки" loading="lazy" src="ux/before-taskcard.jpg"></button><figcaption><span>Было</span> три колонки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-taskcard.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: две колонки" loading="lazy" src="ux/after-taskcard.jpg"></button><figcaption><span>Стало</span> две колонки</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Новая задача и паспорт прибора — страницей</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Большие формы во всплывающем окне, как раньше роль.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Страницей на всё место справа от меню: «Назад» слева сверху, «Отмена» и главная кнопка справа сверху. Задача из письма открывается так же.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: окно поверх доски" loading="lazy" src="ux/before-newtask.jpg"></button><figcaption><span>Было</span> окно поверх доски</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-newtask.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница" loading="lazy" src="ux/after-newtask.jpg"></button><figcaption><span>Стало</span> страница</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>Экраны инженера на телефоне</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>«Акт для печати» во всю ширину над заголовком задачи, вкладки переносятся на вторую строку, уведомления широкой таблицей с обрезанными колонками.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Назад» и «Акт для печати» одной строкой, вкладки листаются вбок, уведомления карточками. Страница не прокручивается вбок.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-phone-task.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: кнопка над заголовком, вкладки в две строки" loading="lazy" src="ux/before-phone-task.jpg"></button><figcaption><span>Было</span> кнопка над заголовком, вкладки в две строки</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-phone-task.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка, вкладки вбок" loading="lazy" src="ux/after-phone-task.jpg"></button><figcaption><span>Стало</span> одна строка, вкладки вбок</figcaption></figure><figure class="ba__before"><button class="shot" type="button" data-full="ux/before-phone-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: таблица обрезана" loading="lazy" src="ux/before-phone-notifications.jpg"></button><figcaption><span>Было</span> таблица обрезана</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="ux/after-phone-notifications.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: карточки" loading="lazy" src="ux/after-phone-notifications.jpg"></button><figcaption><span>Стало</span> карточки</figcaption></figure></div>
+          </article>
+          <article class="ask" id="ux-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>Один набор цветов этапов</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Один и тот же этап разного цвета: «Назначена» трёх разных жёлтых, «Выполнена» на доске инженера красная, в календаре серая.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Цвет каждого этапа задан один раз: доска задач, доски инженера и клиента, календарь и отчёты берут его оттуда. Тест не даёт им разойтись.</p>
+          </article>
+          <article class="ask" id="ux-11">
+            <header class="ask__head"><span class="ask__n">11</span><h3>Короткие пустые списки</h3><span class="ask__state">✅ сделано</span></header>
+            <blockquote><small>Что было не так</small>Советы в два предложения там, где пусто: «Истории пока нет. Закрытые задачи, перемещения и прошлые события появятся здесь».</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В колонках досок «Пусто», в разделах одна фраза: «Истории пока нет», «Файлов пока нет».</p>
           </article>
         </div>
       </section>
