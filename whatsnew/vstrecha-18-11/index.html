@@ -56,7 +56,7 @@ a { color: var(--accent); }
 .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
 .btn--main { border-color: var(--accent); background: var(--accent); color: var(--surface); }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 13px; }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .stat { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
 .stat strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
 .stat span { color: var(--muted); font-size: 13px; }
@@ -164,6 +164,7 @@ figcaption { color: var(--muted); font-size: 13px; }
       <a href="#summary">Все правки <i>17</i></a>
       <a href="#round2">Замечания к демо <i>21</i></a>
       <a href="#rest">Остальные разделы <i>9</i></a>
+      <a href="#meet2">Вторая встреча <i>14</i></a>
       <h3>По разделам</h3>
       <a href="#tasks">Задачи <i>5</i></a>
       <a href="#mail">Письма <i>3</i></a>
@@ -184,7 +185,7 @@ figcaption { color: var(--muted); font-size: 13px; }
     <div class="wrap">
       <section class="hero" id="top">
         <h1>Что нового в МедТехСервисе по встрече 18 ноября</h1>
-        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 21 замечание: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
+        <p>Встреча с Сергеем 18.11, 34 минуты: прошли задачи, письма, приборы, план ТО, инженеров и склад, остановились на резервах. Ниже — всё, что сделано по его замечаниям, по разделам меню, со скриншотами. Всё выложено на стенд и проверено на нём, базу обновили (миграции 0072 и 0073). Потом демо просмотрели ещё раз и сделали второй круг — 21 замечание: календарь, доски у инженера и клиента, выбор нескольких в фильтрах, без пояснений на экранах. Каждое — с «было» и «стало» в разделе «Замечания к демо». Вечером прошли демо с Сергеем второй раз: 14 замечаний — «Назад» на прежний экран, календарь без лишних подложек, клиенты вкладками, вид работ и роль страницами, удаление вида работ, единые шрифты; они в разделе «Вторая встреча». Экраны удобнее смотреть в демо: там заполненные данные и любая роль, роль меняется внизу экрана.</p>
         <div class="links">
           <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Открыть демо</a>
           <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
@@ -193,6 +194,7 @@ figcaption { color: var(--muted); font-size: 13px; }
           <div class="stat"><strong>16 из 17</strong><span>правок сделано и проверено на стенде</span></div>
           <div class="stat"><strong>1</strong><span>сделана с нашей стороны, ждёт почтовый ящик заказчика</span></div>
           <div class="stat"><strong>21 из 21</strong><span>замечаний после просмотра демо сделано</span></div>
+          <div class="stat"><strong>14 из 14</strong><span>замечаний второй встречи сделано</span></div>
           <div class="stat"><strong>0</strong><span>не сделано с нашей стороны</span></div>
         </div>
         <div class="legend"><span><span class="tag tag--meet">Встреча · 05:27</span> сделано, рядом минута записи, где Сергей это сказал</span><span><span class="tag tag--fix">Демо</span> сделано после просмотра демо</span><span><span class="tag tag--wait">Ждёт заказчика</span> наша часть готова</span></div>
@@ -405,6 +407,96 @@ figcaption { color: var(--muted); font-size: 13px; }
           <article class="ask" id="rest-9">
             <header class="ask__head"><span class="ask__n">9</span><h3>Отчёты, журналы, сотрудники, инженеры</h3><span class="ask__state">✅ сделано</span></header>
             <p class="ask__done"><b>Что сделано.</b> Отчёты — без подписей «срок уже вышел», «ещё в работе», «что делали». Журнал изменений — задача и прибор ссылками. Сотрудники — постранично. Список инженеров — без карточек «Активные инженеры / Открытые задачи / Просроченные», те же числа стоят в строках. Журнал входов теперь видят только руководитель и администратор: это проверяет база, координатору остаётся журнал изменений.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="part" id="meet2">
+        <header><h2>Вторая встреча 18.11</h2><span class="where">запись 15:20, 49 минут: 14 замечаний — слева кадр со встречи, справа как стало</span></header>
+        <div class="asks">
+          <article class="ask" id="m2-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>«Назад» — на прежний экран</h3><span class="ask__state">✅ сделано · 02:50, 05:51</span></header>
+            <blockquote><small>Замечание</small>«Все действия, которые возвращают назад, должны возвращать на предыдущий шаг… Я зашёл в инженера, нажал на прибор — обратно должно в инженера кидать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Прибор, задача, инженер и клиент, открытые ссылкой, по «Назад» возвращают туда, откуда их открыли: инженер → прибор → «Назад» → снова инженер на той же вкладке; календарь → задача → «Назад» → календарь. Из своего раздела «Назад» по-прежнему ведёт к списку.</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-back.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: прибор, открытый со страницы инженера: кнопка «Назад»" loading="lazy" src="m2/after-back.jpg"></button><figcaption><span>Стало</span> прибор, открытый со страницы инженера: кнопка «Назад»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Откуда показания счётчика</h3><span class="ask__state">✅ сделано · 08:10</span></header>
+            <blockquote><small>Замечание</small>Договорились поправить описание: что это за число и откуда оно берётся.</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Во вкладке «Счётчик» одна строка: число с экрана прибора, инженер переписывает его в результате работ, сюда оно попадает, когда координатор примет закрытие задачи. У показания — ссылка «Задача».</p>
+            <div class="ba ba--one"><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна строка над таблицей, ссылка «Задача»" loading="lazy" src="m2/after-meter.jpg"></button><figcaption><span>Стало</span> одна строка над таблицей, ссылка «Задача»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>ТО в плане открывает задачу</h3><span class="ask__state">✅ сделано · 10:34</span></header>
+            <blockquote><small>Замечание</small>«Нужно ли ТО делать кликабельным? Если делаем, попадаем на карточку задачи: выполненной, если она выполнена, если нет — на обычную.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «ТО № N» и его состояние — ссылки на задачу этого ТО: в разделе «План ТО» и во вкладке «План ТО» карточки прибора.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «ТО № 1» просто текст" loading="lazy" src="m2/before-plan.jpg"></button><figcaption><span>Было</span> «ТО № 1» просто текст</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-plan.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «ТО № 1» и «Выполнено» открывают задачу" loading="lazy" src="m2/after-plan.jpg"></button><figcaption><span>Стало</span> «ТО № 1» и «Выполнено» открывают задачу</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Числа дней на одной линии</h3><span class="ask__state">✅ сделано · 14:28</span></header>
+            <blockquote><small>Замечание</small>«Видите, 1 ноября чуть съехало… и 6 октября тоже.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Подпись месяца под числом сдвигала первый день вверх. Теперь все числа на одной линии, месяц подписан только у 1-го числа внутри периода — в строке дня недели.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-cal-head.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «1» выше остальных, под ним «ноя»" loading="lazy" src="m2/before-cal-head.jpg"></button><figcaption><span>Было</span> «1» выше остальных, под ним «ноя»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-cal-head.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: все числа ровно" loading="lazy" src="m2/after-cal-head.jpg"></button><figcaption><span>Стало</span> все числа ровно</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Календарь без лишних подложек</h3><span class="ask__state">✅ сделано · 16:38–20:35</span></header>
+            <blockquote><small>Замечание</small>«Что означает эта жёлтенькая подложка?.. Если это ничего не значит, просто уберём: это лишнее визуально, не перемудрить.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Цвет полосы — только этап задачи. Жёлтая заливка дней «перегруз», красная перекраска просроченной задачи и черта дня выезда убраны. Просроченную видно по красному номеру, перегруз — по значку у фамилии.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-cal.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: жёлтые дни, красная полоса, черты" loading="lazy" src="m2/before-cal.jpg"></button><figcaption><span>Было</span> жёлтые дни, красная полоса, черты</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-cal-month.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: полоса цветом этапа, без заливок" loading="lazy" src="m2/after-cal-month.jpg"></button><figcaption><span>Стало</span> полоса цветом этапа, без заливок</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Клиенты: «Без площадки» вкладкой</h3><span class="ask__state">✅ сделано · 21:36</span></header>
+            <blockquote><small>Замечание</small>«Если клиентов 50 или 200, мы до него просто никогда не доскролим… Может быть, вкладками сделать.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Вкладки «Площадки» и «Без площадки». Название площадки открывает страницу клиента (на встрече по нему страница не открылась), стрелка слева раскрывает людей.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Без площадки» под всем списком" loading="lazy" src="m2/before-customers.jpg"></button><figcaption><span>Было</span> «Без площадки» под всем списком</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-customers.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладки, название — ссылка" loading="lazy" src="m2/after-customers.jpg"></button><figcaption><span>Стало</span> вкладки, название — ссылка</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-customers-orphans.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Без площадки»" loading="lazy" src="m2/after-customers-orphans.jpg"></button><figcaption><span>Стало</span> вкладка «Без площадки»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>Склад без лишнего</h3><span class="ask__state">✅ сделано · 22:56</span></header>
+            <blockquote><small>Замечание</small>«Вот эти моменты тоже почему-то не убрались.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Карточки «Активные», «Мало на складе», «У инженеров» и подписи под колонками убраны — те же числа стоят в колонках. Вместо «Г · Н · Б» — словами: «1 гарантийная, 2 новых».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: карточки с цифрами, подписи, «Г · Н · Б»" loading="lazy" src="m2/before-warehouse.jpg"></button><figcaption><span>Было</span> карточки с цифрами, подписи, «Г · Н · Б»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-warehouse.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только доска, состояние словами" loading="lazy" src="m2/after-warehouse.jpg"></button><figcaption><span>Стало</span> только доска, состояние словами</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Документы склада постранично</h3><span class="ask__state">✅ сделано · 23:23</span></header>
+            <blockquote><small>Замечание</small>«Перемещения, возвраты постранично… ещё тут не доделал.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Внизу документов склада — «Показывать по…» и страницы, даже когда документов мало. Так же теперь во всех списках системы.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-docs.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: без страниц" loading="lazy" src="m2/before-docs.jpg"></button><figcaption><span>Было</span> без страниц</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-docs.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Показывать по 50» и страницы" loading="lazy" src="m2/after-docs.jpg"></button><figcaption><span>Стало</span> «Показывать по 50» и страницы</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>КП: поля под заголовками</h3><span class="ask__state">✅ сделано · 33:33</span></header>
+            <blockquote><small>Замечание</small>«Немножко съехало: количество, цена… корявенько отображается.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Поля «Количество» и «Цена» стоят ровно под своими заголовками.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-kp.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: поля левее заголовков" loading="lazy" src="m2/before-kp.jpg"></button><figcaption><span>Было</span> поля левее заголовков</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-kp.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: поля под заголовками" loading="lazy" src="m2/after-kp.jpg"></button><figcaption><span>Стало</span> поля под заголовками</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>Вид работ — страницей</h3><span class="ask__state">✅ сделано · 35:55</span></header>
+            <blockquote><small>Замечание</small>«По прайсу тоже поп-ап, где история цены… Сделать отдельной страницей: нажимаем на вид работ — там все задачи по этому виду работ и история цен.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Название вида работ в прайсе открывает его страницу: цена сейчас и «Изменить цену» справа сверху, вкладки «История цен» и «Задачи» — все задачи с этим видом работ постранично, со ссылками на прибор, клиента и инженера.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-price.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: история цен во всплывающем окне" loading="lazy" src="m2/before-price.jpg"></button><figcaption><span>Было</span> история цен во всплывающем окне</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-price-history.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница вида работ" loading="lazy" src="m2/after-price-history.jpg"></button><figcaption><span>Стало</span> страница вида работ</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-price-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Задачи»" loading="lazy" src="m2/after-price-tasks.jpg"></button><figcaption><span>Стало</span> вкладка «Задачи»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-11">
+            <header class="ask__head"><span class="ask__n">11</span><h3>Удаление вида работ</h3><span class="ask__state">✅ сделано · 39:51</span></header>
+            <blockquote><small>Замечание</small>«А удалить работу нельзя, только скрыть? Давайте сделаем на всякий случай… для администратора и руководителя.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> У видов работ в справочниках кнопка «Удалить» — у руководителя и администратора. Удаляется только вид, который нигде не использован, вместе с его ценами. Если он уже есть в задачах, плане ТО, счетах или КП, система откажет: «уже использован (в задачах: 6), его можно только скрыть». Проверку держит база (миграция 0075).</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-ref.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: только «Скрыть»" loading="lazy" src="m2/before-ref.jpg"></button><figcaption><span>Было</span> только «Скрыть»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-ref-delete-confirm.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Удалить» с подтверждением" loading="lazy" src="m2/after-ref-delete-confirm.jpg"></button><figcaption><span>Стало</span> «Удалить» с подтверждением</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-12">
+            <header class="ask__head"><span class="ask__n">12</span><h3>Роль — страницей</h3><span class="ask__state">✅ сделано · 42:13</span></header>
+            <blockquote><small>Замечание</small>«Лучше сделать не поп-апом, а страницей… редактировать роль в попапе не очень удобно.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Роль открывается страницей: название и тип сверху, все права галочками по разделам сразу, «Сохранить роль» справа сверху. Название роли в списке — ссылка.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-role.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: окно с правами" loading="lazy" src="m2/before-role.jpg"></button><figcaption><span>Было</span> окно с правами</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-role.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: страница роли" loading="lazy" src="m2/after-role.jpg"></button><figcaption><span>Стало</span> страница роли</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-13">
+            <header class="ask__head"><span class="ask__n">13</span><h3>«Мои заявки» у инициатора</h3><span class="ask__state">✅ сделано · 43:24</span></header>
+            <blockquote><small>Замечание</small>«Представьте: будет 200 заявок, 10 в работе и 150 завершённых… там тоже как-то странно выглядит.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Доска по этапам, как у инженера и клиента, и один список постранично вместо двух таблиц с разными колонками.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-init.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: две таблицы с разными колонками" loading="lazy" src="m2/before-init.jpg"></button><figcaption><span>Было</span> две таблицы с разными колонками</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-init-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: доска по этапам" loading="lazy" src="m2/after-init-board.jpg"></button><figcaption><span>Стало</span> доска по этапам</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-init-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: один список постранично" loading="lazy" src="m2/after-init-list.jpg"></button><figcaption><span>Стало</span> один список постранично</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m2-14">
+            <header class="ask__head"><span class="ask__n">14</span><h3>Единые шрифты</h3><span class="ask__state">✅ сделано · 37:56, 44:12</span></header>
+            <blockquote><small>Замечание</small>«Шрифты — там 10 видов шрифтов… Чтобы везде было единое, просто и понятно для людей, далёких от CRM.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Первый шаг сделан: одна шкала — 7 размеров вместо 17 и 4 начертания вместо 8, заголовки страниц и карточек одного размера, подписи в отчётах не крупнее остального, карточки отчётов в одном ряду. Общий прогон интерфейса по UI/UX — следующим шагом.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m2/before-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: крупные подписи строк" loading="lazy" src="m2/before-reports.jpg"></button><figcaption><span>Было</span> крупные подписи строк</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m2/after-reports.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: одна шкала шрифта" loading="lazy" src="m2/after-reports.jpg"></button><figcaption><span>Стало</span> одна шкала шрифта</figcaption></figure></div>
           </article>
         </div>
       </section>
