@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Что нового: встреча 19.11</title>
+<meta name="description" content="Встреча с Сергеем 19.11: 10 замечаний «было → стало» и подробно о роли инициатора.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>
+html, body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Раскладка: тёмное меню разделов слева, как в самой CRM; справа по разделу — что появилось, где нажать, кадр. */
+:root {
+  --bg: #f3f6f8; --surface: #ffffff; --ink: #17232c; --ink-soft: #3d5360; --muted: #5a6d78;
+  --border: #dde5ea; --border-soft: #eef2f4;
+  --accent: #0e6e99; --accent-dark: #0c5c81; --accent-soft: #e8f3f8;
+  --side: #132029; --side-soft: #1c333f; --side-text: #d7e2e8; --side-muted: #8aa0ac;
+  --new: #157a45; --new-soft: #e8f6ee; --fix: #9a5b08; --fix-soft: #fff4df; --ask: #7c3aed; --ask-soft: #f1ebfe;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --shadow: 0 1px 2px rgb(23 35 44 / 6%), 0 6px 20px rgb(23 35 44 / 6%);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f171d; --surface: #16212a; --ink: #e6edf1; --ink-soft: #b9c7cf; --muted: #93a6b1;
+  --border: #26343e; --border-soft: #1d2a33; --accent: #5cb4dd; --accent-dark: #8ccbe8; --accent-soft: #15303e;
+  --side: #0b1217; --side-soft: #17262f; --side-text: #d7e2e8; --side-muted: #7f95a1;
+  --new: #5fcf93; --new-soft: #14301f; --fix: #f0b65c; --fix-soft: #33270f; --ask: #b79cff; --ask-soft: #2a2140;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.5; }
+a { color: var(--accent); }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 18px 12px 24px; background: var(--side); color: var(--side-text); }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 16px; }
+.brand b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: var(--surface); font-size: 13px; }
+.brand span { display: grid; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.brand small { color: var(--side-muted); font-weight: 400; font-size: 12px; }
+.side h3 { margin: 16px 8px 6px; color: var(--side-muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.side a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 7px; color: var(--side-text); text-decoration: none; font-size: 14px; }
+.side a:hover, .side a:focus-visible { background: var(--side-soft); outline: none; }
+.side a i { color: var(--side-muted); font-style: normal; font-size: 12px; font-variant-numeric: tabular-nums; }
+.main { min-width: 0; padding-block: 28px 64px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+.hero { display: grid; gap: 14px; padding: 24px 26px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.hero h1 { margin: 0; font-size: 28px; line-height: 1.2; text-wrap: balance; }
+.hero p { margin: 0; max-width: 70ch; color: var(--ink-soft); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; text-decoration: none; }
+.btn--main { border-color: var(--accent); background: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+.stat strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.tag { display: inline-block; flex: 0 0 auto; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.tag--ask { color: var(--ask); background: var(--ask-soft); }
+.tag--new { color: var(--new); background: var(--new-soft); }
+.tag--fix { color: var(--fix); background: var(--fix-soft); }
+.tag--wait { color: var(--accent-dark); background: var(--accent-soft); }
+.tag--meet { color: var(--surface); background: var(--accent); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+section.part { scroll-margin-top: 16px; display: grid; gap: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.part header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.part h2 { margin: 0; font-size: 21px; }
+.where { color: var(--muted); font-size: 13px; }
+.where a { font-weight: 600; }
+ul.items { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+ul.items li { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--border-soft); }
+ul.items li:first-child { border-top: 0; }
+ul.items li > div { min-width: 0; }
+ul.items b { font-weight: 650; }
+ul.items small { display: block; color: var(--muted); font-size: 13px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+figure { margin: 0; display: grid; gap: 6px; }
+.shot { display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); cursor: zoom-in; }
+.shot:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+figure img { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; transition: transform .2s ease; }
+.shot:hover img { transform: scale(1.015); }
+figcaption { color: var(--muted); font-size: 13px; }
+.note { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--ink-soft); font-size: 14px; }
+.scenario { display: grid; gap: 6px; margin: 0; padding-left: 22px; }
+.foot { color: var(--muted); font-size: 13px; text-align: center; }
+
+/* Просмотр скриншота на весь экран: внутри страницы, без перехода по ссылке */
+.viewer { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: rgb(8 14 18 / 92%); color: #eef3f6;
+  padding: max(10px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.viewer[hidden] { display: none; }
+.viewer__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 10px; font-size: 14px; }
+.viewer__count { color: #a9bac4; font-variant-numeric: tabular-nums; }
+.viewer__stage { position: relative; display: grid; place-items: center; min-height: 0; overflow: auto; }
+.viewer__stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgb(0 0 0 / 45%); cursor: zoom-in; }
+.viewer--full .viewer__stage { place-items: start center; }
+.viewer--full .viewer__stage img { max-width: none; max-height: none; cursor: zoom-out; }
+.viewer__caption { padding: 10px 4px 2px; color: #d6e1e7; font-size: 14px; text-align: center; }
+.viewer__btn { display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; background: rgb(255 255 255 / 10%); font-size: 15px; cursor: pointer; }
+.viewer__btn:hover, .viewer__btn:focus-visible { background: rgb(255 255 255 / 22%); outline: none; }
+.viewer__nav { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; padding: 0 0 4px; font-size: 30px; transform: translateY(-50%); }
+.viewer__nav--prev { left: 6px; }
+.viewer__nav--next { right: 6px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+  .side nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .side h3 { display: none; }
+  .side a { flex: 0 0 auto; background: var(--side-soft); }
+  .side a i { display: none; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ul.items li { grid-template-columns: minmax(0, 1fr); }
+  section.part, .hero { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { figure img { transition: none; } }
+
+/* Сводная таблица правок встречи */
+.sum { width: 100%; border-collapse: collapse; font-size: 14px; }
+.sum th, .sum td { padding: 9px 10px; border-bottom: 1px solid var(--border-soft); text-align: left; vertical-align: top; }
+.sum th { color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.sum td.mark { width: 28px; font-size: 16px; }
+.sum td.min { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sum-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.part h3.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 22px 0 8px; font-size: 17px; }
+.part h3.sub .where { font-size: 13px; font-weight: 500; }
+.asks { display: grid; gap: 18px; }
+.ask { display: grid; gap: 12px; min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); scroll-margin-top: 16px; }
+.ask__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ask__n { display: inline-grid; place-items: center; min-width: 30px; height: 30px; border-radius: 999px; background: var(--accent); color: var(--surface); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ask__head h3 { flex: 1 1 260px; min-width: 0; margin: 0; font-size: 17px; text-wrap: balance; }
+.ask__state { color: var(--new); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.ask blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--fix); border-radius: 0 10px 10px 0; background: var(--fix-soft); color: var(--ink); font-size: 14.5px; line-height: 1.5; }
+.ask blockquote small { display: block; margin-bottom: 2px; color: var(--fix); font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ask__done { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+.ask__done b { color: var(--ink); }
+.ask__list { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+.ask__list b { color: var(--ink); }
+.ba { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; }
+.ba--one { grid-template-columns: minmax(0, 720px); }
+.ba figure { display: grid; gap: 6px; min-width: 0; margin: 0; }
+.ba figcaption { color: var(--muted); font-size: 13px; }
+.ba figcaption span { margin-right: 4px; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.ba__before figcaption span { color: var(--fix); }
+.ba__after figcaption span { color: var(--new); }
+.ba__before .shot { border-color: color-mix(in srgb, var(--fix) 45%, var(--border)); }
+.ba__after .shot { border-color: color-mix(in srgb, var(--new) 45%, var(--border)); }
+/* В «было / стало» картинка целиком: обрезка по бокам прятала то, о чём замечание (кнопки справа). */
+.ba figure img { aspect-ratio: auto; max-height: 520px; object-fit: contain; object-position: top center; background: var(--surface); }
+@media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
+.ux-intro { margin: 0 0 16px; max-width: 72ch; color: var(--muted, inherit); line-height: 1.55; }
+
+/* Итог дня: две колонки галочек со ссылками на подробности */
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 8px 28px; align-items: start; }
+.group { display: grid; gap: 4px; min-width: 0; }
+.group h3 { margin: 10px 0 2px; font-size: 15px; }
+.group h3:first-child { margin-top: 0; }
+ul.checks { display: grid; margin: 0; padding: 0; list-style: none; }
+ul.checks li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 8px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--border-soft); font-size: 14.5px; }
+ul.checks li:first-child { border-top: 0; }
+ul.checks a { color: var(--ink); text-decoration: none; }
+ul.checks a:hover, ul.checks a:focus-visible { color: var(--accent); text-decoration: underline; }
+.sum td b { font-weight: 650; }
+@media (max-width: 900px) { .groups { grid-template-columns: minmax(0, 1fr); } }
+/* Таблица сверки на телефоне — строками-карточками: пять колонок в 390px не помещаются */
+@media (max-width: 760px) {
+  .sum--stack thead { display: none; }
+  .sum--stack tr { display: grid; grid-template-columns: 24px 26px minmax(0, 1fr); gap: 3px 8px; padding: 10px 12px; border-bottom: 1px solid var(--border-soft); }
+  .sum--stack tr:last-child { border-bottom: 0; }
+  .sum--stack td { display: block; padding: 0; border: 0; }
+  .sum--stack td.mark { grid-column: 1; grid-row: 1 / span 3; width: auto; }
+  .sum--stack td:nth-child(2) { grid-column: 2; grid-row: 1 / span 3; color: var(--muted); }
+  .sum--stack td:nth-child(n+3) { grid-column: 3; }
+  .sum--stack td.min { font-size: 12.5px; }
+  .sum--stack td.min::before { content: "Минута записи "; }
+  .sum--stack td:nth-child(5) { color: var(--ink-soft); }
+}
+
+/* Как устроена работа инициатора: шаги слева направо, на телефоне — столбиком */
+.flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.flow li { position: relative; display: grid; align-content: start; gap: 4px; min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); font-size: 13.5px; line-height: 1.45; counter-increment: step; }
+.flow li::before { content: counter(step); display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: var(--accent); color: var(--surface); font-size: 12px; font-weight: 700; }
+.flow li b { font-size: 14px; }
+.flow li small { color: var(--muted); font-size: 12.5px; }
+.flow li.who-init { border-color: color-mix(in srgb, var(--ask) 45%, var(--border)); background: var(--ask-soft); }
+.flow li.who-init::before { background: var(--ask); }
+.flow li.who-eng { border-color: color-mix(in srgb, var(--new) 45%, var(--border)); background: var(--new-soft); }
+.flow li.who-eng::before { background: var(--new); }
+.flow-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 13px; }
+.flow-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; border-radius: 3px; vertical-align: -1px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.facts--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fact { display: grid; align-content: start; gap: 6px; min-width: 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.fact h3 { margin: 0; font-size: 15px; }
+.fact p, .fact ul { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+.fact ul { padding-left: 18px; display: grid; gap: 3px; }
+.roles td:first-child { width: 22%; color: var(--muted); font-weight: 600; }
+.roles td { min-width: 150px; }
+.tz { margin: 0; padding: 12px 14px; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: var(--accent-soft); color: var(--ink); font-size: 14px; line-height: 1.5; }
+.tz small { display: block; margin-bottom: 2px; color: var(--accent-dark); font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+@media (max-width: 900px) { .flow, .facts, .facts--3 { grid-template-columns: minmax(0, 1fr); } .roles td:first-child { width: auto; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" aria-label="Разделы">
+    <div class="brand"><b>МТ</b><span>МедТехСервис<small>встреча 19.11</small></span></div>
+    <nav>
+      <a href="#top">Коротко</a>
+      <a href="#summary">Все правки <i>10</i></a>
+      <a href="#initiator">Кто такой инициатор</a>
+      <a href="#asks">Было и стало <i>10</i></a>
+      <a href="#notes">Уточнения к встрече <i>5</i></a>
+      <a href="#next">Что дальше</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+      <section class="hero" id="top">
+        <h1>Что нового в МедТехСервисе по встрече 19 ноября</h1>
+        <p>Встреча с Сергеем 19.11, 25 минут: прошли по сделанному за день, Сергей дал 10 замечаний. Главное — роль инициатора: его заявка и есть задача, теперь она так и называется и выглядит как карточка задачи у всех. Все замечания сделаны, выложены на стенд и проверены на нём; базу обновили (миграция 0076), демо пересобрано.</p>
+        <div class="links">
+          <a class="btn btn--main" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=initiator" target="_blank" rel="noopener">Демо, инициатор</a>
+          <a class="btn" href="https://pochuvstvuyvkus.github.io/medtech-demo/?role=coordinator" target="_blank" rel="noopener">Демо, координатор</a>
+          <a class="btn" href="https://medtechservice-89-111-154-253.sslip.io" target="_blank" rel="noopener">Открыть стенд</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>10 из 10</strong><span>замечаний сделано и проверено на стенде</span></div>
+          <div class="stat"><strong>1</strong><span>обновление базы (0076), накатано на стенд</span></div>
+          <div class="stat"><strong>10</strong><span>изменений выложено на стенд</span></div>
+          <div class="stat"><strong>639</strong><span>автотестов проходят</span></div>
+          <div class="stat"><strong>5</strong><span>ответов со встречи уточнены</span></div>
+        </div>
+      </section>
+
+      <section class="part" id="summary">
+        <header><h2>Все 10 правок</h2><span class="where">пункт открывает подробности со скриншотами</span></header>
+        <div class="sum-wrap"><table class="sum sum--stack"><thead><tr><th></th><th>№</th><th>Что сделано</th><th>Минута</th></tr></thead><tbody>
+          <tr><td class="mark">✅</td><td>1</td><td><a href="#m3-1">Инициатор: «заявка» — это задача, экран и карточка как у всех</a></td><td class="min">12:38</td></tr>
+          <tr><td class="mark">✅</td><td>2</td><td><a href="#m3-2">Координатор видит, от какого инициатора задача, и отбирает такие задачи фильтром</a></td><td class="min">16:02</td></tr>
+          <tr><td class="mark">✅</td><td>3</td><td><a href="#m3-3">Все задачи прибора — только активные, закрытые и отменённые по переключателю</a></td><td class="min">03:44</td></tr>
+          <tr><td class="mark">✅</td><td>4</td><td><a href="#m3-4">Задачи вида работ: номер и название — отдельными столбцами</a></td><td class="min">08:48</td></tr>
+          <tr><td class="mark">✅</td><td>5</td><td><a href="#m3-5">Резервы в задаче: этапы ровно в одном столбце</a></td><td class="min">16:46</td></tr>
+          <tr><td class="mark">✅</td><td>6</td><td><a href="#m3-6">Шрифты: 5 размеров вместо 7</a></td><td class="min">17:23</td></tr>
+          <tr><td class="mark">✅</td><td>7</td><td><a href="#m3-7">Счётчик без строки-пояснения</a></td><td class="min">02:05</td></tr>
+          <tr><td class="mark">✅</td><td>8</td><td><a href="#m3-8">Доска задач снова до низа окна</a></td><td class="min">21:55</td></tr>
+          <tr><td class="mark">✅</td><td>9</td><td><a href="#m3-9">Журнал «Доступ и права»: сотрудники, роли и права</a></td><td class="min">10:41</td></tr>
+          <tr><td class="mark">✅</td><td>10</td><td><a href="#m3-10">«Отключён» вместо «Неактивен»</a></td><td class="min">11:33</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="part" id="initiator">
+        <header><h2>Кто такой инициатор</h2><span class="where">главный вопрос встречи (12:22–16:43): по ТЗ и по тому, как сделано в системе</span></header>
+        <p class="tz"><small>ТЗ, раздел 2 «Роли и права»</small>Менеджер-инициатор, около 5 человек: «Создание заявок, статусы и результаты только своих задач. Этап внедрения доступа — по готовности; на старте работает через почту и уведомления». В разделе 1 — «~5 внешних менеджеров-инициаторов на старте».</p>
+
+        <div class="facts">
+          <div class="fact">
+            <h3>Кто это</h3>
+            <p>Внешний менеджер, не сотрудник сервиса. Через него клиент обращается за ремонтом или ТО прибора. Заказчик входит в группу компаний-дистрибьюторов (Beckman Coulter, Mindray и др.), поэтому, скорее всего, это менеджеры дистрибьютора — уточним у заказчика.</p>
+          </div>
+          <div class="fact">
+            <h3>Что он делает</h3>
+            <p>Подаёт заявку на работы по прибору клиента и следит за ней: этап, срок, кто поедет и что сделали. Сам работы не выполняет и задачу не меняет.</p>
+          </div>
+          <div class="fact">
+            <h3>Его заявка — это задача</h3>
+            <p>Не отдельная запись и не событие внутри задачи. Заявку принимают — появляется обычная задача со своим номером на этапе «Новая». Вид работ тот же, что у всех: ремонт, диагностика, ТО и т. д.</p>
+          </div>
+          <div class="fact">
+            <h3>Чем отличается от других задач</h3>
+            <p>Только тем, что в задаче записано, кто из менеджеров её подал. Поэтому система сама шлёт ему уведомления, и координатору не нужно звонить и писать.</p>
+          </div>
+        </div>
+
+        <h3 class="sub">Как это работает <span class="where">одна задача от заявки до результата</span></h3>
+        <div class="flow-legend"><span><i style="background: var(--ask)"></i>инициатор</span><span><i style="background: var(--accent)"></i>координатор</span><span><i style="background: var(--new)"></i>инженер</span></div>
+        <ol class="flow">
+          <li class="who-init"><b>Заявка</b>Письмом по форме заявки менеджера — сейчас. Или сам со своего экрана: S/N прибора, что сделать, срочность, что случилось.<small>ТЗ, блоки 1 и 4</small></li>
+          <li><b>Задача «Новая»</b>Из письма — координатор проверяет черновик и создаёт задачу. С экрана инициатора задача появляется сразу.<small>Инициатору: «Заявка принята»</small></li>
+          <li><b>Назначение</b>Координатор назначает инженера и срок.<small>Инициатору: «Инженер назначен» — кто поедет</small></li>
+          <li class="who-eng"><b>Выезд</b>Инженер принимает задачу, едет, заполняет результат, фото акта, запчасти, счётчик.<small>Инициатору: «Инженер принял»</small></li>
+          <li><b>Проверка</b>Координатор проверяет акт и закрывает задачу или возвращает на доработку.</li>
+          <li class="who-init"><b>Результат</b>Инициатор видит, что сделано и рекомендации.<small>Инициатору: «Работы завершены»</small></li>
+        </ol>
+
+        <h3 class="sub">Чем отличается от инженера и координатора</h3>
+        <div class="sum-wrap"><table class="sum roles"><thead><tr><th></th><th>Инициатор</th><th>Инженер</th><th>Координатор</th></tr></thead><tbody>
+          <tr><td>Кто</td><td>Внешний менеджер, ~5 человек</td><td>Сотрудник сервиса, ~20 человек</td><td>Сотрудник сервиса, 3 человека</td></tr>
+          <tr><td>Что делает</td><td>Подаёт заявку и следит за ней</td><td>Едет к прибору, выполняет работы, заполняет акт</td><td>Разбирает заявки и почту, назначает инженеров, проверяет акты</td></tr>
+          <tr><td>Какие задачи видит</td><td>Только поданные им</td><td>Только назначенные ему</td><td>Все</td></tr>
+          <tr><td>Что может в задаче</td><td>Только смотреть</td><td>Принять, заполнить результат, фото, запчасти, счётчик</td><td>Всё: менять, назначать, закрывать, отменять</td></tr>
+          <tr><td>Цены и счета</td><td>Не видит</td><td>Не видит</td><td>Видит</td></tr>
+          <tr><td>Экран</td><td>«Мои задачи» и «Уведомления»</td><td>Свои задачи, календарь, уведомления</td><td>Все разделы работы</td></tr>
+        </tbody></table></div>
+
+        <div class="facts facts--3">
+          <div class="fact">
+            <h3>Зачем отдельная роль</h3>
+            <ul>
+              <li>Внешний человек не должен видеть чужие задачи, клиентов и цены — это проверяет база, а не только экран.</li>
+              <li>Система знает, кто подал задачу, и сама сообщает ему о ходе работ.</li>
+              <li>Задачи инициаторов можно отобрать фильтром «Откуда».</li>
+            </ul>
+          </div>
+          <div class="fact">
+            <h3>Добавлять ли его к администратору или инженеру</h3>
+            <ul>
+              <li>Нет. Системный администратор заводит его в «Сотрудниках» с ролью «Инициатор».</li>
+              <li>Координатор видит его задачи в общих «Задачах» — со строкой «Инициатор» и фильтром «Откуда: от инициаторов».</li>
+              <li>Инженер видит их, когда его назначат, как любую задачу.</li>
+            </ul>
+          </div>
+          <div class="fact">
+            <h3>«Обратился» и «Инициатор» — разные люди</h3>
+            <p>«Обратился» — контактное лицо клиента, которое сообщило о поломке. «Инициатор» — менеджер, который подал задачу в систему. В карточке задачи это две разные строки.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="part" id="asks">
+        <header><h2>10 замечаний — было и стало</h2><span class="where">слева кадр со встречи, справа как стало; всё выложено на стенд и проверено на нём</span></header>
+        <div class="asks">
+          <article class="ask" id="m3-1">
+            <header class="ask__head"><span class="ask__n">1</span><h3>Инициатор: «заявка» — это задача</h3><span class="ask__state">✅ сделано · 12:38–16:43</span></header>
+            <blockquote><small>Замечание</small>«Вот заявки — это же задачи по сути? Может, тогда имеет смысл её назвать задачей, а не заявкой… Если это одна и та же сущность, то пускай так же и выглядит.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> У инициатора «Мои задачи» и «Новая задача» — страницей, как у координатора. Карточка задачи такая же, как у всех ролей: номер и этап, «Что случилось», вкладки «Свойства» и «Работа и акт»; менять ничего нельзя. Доска по этапам или список, закрытые и отменённые — по переключателю.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-initiator-list.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Мои заявки» — не похоже на задачи" loading="lazy" src="m3/before-initiator-list.jpg"></button><figcaption><span>Было</span> «Мои заявки» — не похоже на задачи</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-initiator-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Мои задачи» доской" loading="lazy" src="m3/after-initiator-board.jpg"></button><figcaption><span>Стало</span> «Мои задачи» доской</figcaption></figure><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-initiator-card.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: карточка заявки не похожа на задачу" loading="lazy" src="m3/before-initiator-card.jpg"></button><figcaption><span>Было</span> карточка заявки не похожа на задачу</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-initiator-card.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: та же карточка задачи, что у всех" loading="lazy" src="m3/after-initiator-card.jpg"></button><figcaption><span>Стало</span> та же карточка задачи, что у всех</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-initiator-new.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Новая задача» страницей" loading="lazy" src="m3/after-initiator-new.jpg"></button><figcaption><span>Стало</span> «Новая задача» страницей</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-2">
+            <header class="ask__head"><span class="ask__n">2</span><h3>Координатор видит, от кого задача</h3><span class="ask__state">✅ сделано · 16:02–16:43</span></header>
+            <blockquote><small>Замечание</small>«У системного администратора тоже должна быть вкладка „Все заявки“. Если это отдельная сущность, то как бы тоже она должна быть.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Отдельная вкладка не нужна: заявки инициаторов — обычные задачи в общих «Задачах». В свойствах задачи строка «Инициатор» — кто из менеджеров её подал. В фильтрах «Откуда»: от инициаторов, по плану ТО или разовые.</p>
+            <div class="ba"><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-filter-initiator.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: фильтр «Откуда: от инициаторов»" loading="lazy" src="m3/after-filter-initiator.jpg"></button><figcaption><span>Стало</span> фильтр «Откуда: от инициаторов»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-task-initiator.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: в свойствах задачи — «Инициатор»" loading="lazy" src="m3/after-task-initiator.jpg"></button><figcaption><span>Стало</span> в свойствах задачи — «Инициатор»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-3">
+            <header class="ask__head"><span class="ask__n">3</span><h3>Все задачи прибора — только активные</h3><span class="ask__state">✅ сделано · 03:44–05:10</span></header>
+            <blockquote><small>Замечание</small>«Чтобы в карточке прибора все задачи показывать только активные, а закрытые и отменённые тоже можно было посмотреть, но когда дополнительно галочку нажали или тумблер.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Переключатель «Закрытые и отменённые», как на доске задач. Так же — у вида работ, инженера, клиента и инициатора. На стенде у прибора 3 активные задачи из 5, у вида работ — 4 из 6.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-equipment-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: все задачи вперемешку" loading="lazy" src="m3/before-equipment-tasks.jpg"></button><figcaption><span>Было</span> все задачи вперемешку</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-equipment-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только активные" loading="lazy" src="m3/after-equipment-tasks.jpg"></button><figcaption><span>Стало</span> только активные</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-equipment-tasks-all.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: с переключателем — и закрытые" loading="lazy" src="m3/after-equipment-tasks-all.jpg"></button><figcaption><span>Стало</span> с переключателем — и закрытые</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-4">
+            <header class="ask__head"><span class="ask__n">4</span><h3>Номер и название задачи — отдельно</h3><span class="ask__state">✅ сделано · 08:48–09:17</span></header>
+            <blockquote><small>Замечание</small>«Задачи, видите, немножко едет… Может быть, отдельно сделать номер задачи и название задачи? В два столбца.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Столбцы «Номер» и «Задача» — у вида работ, прибора и инициатора. Название и ФИО переносятся только между словами.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-worktype-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: номер то рядом с названием, то над ним" loading="lazy" src="m3/before-worktype-tasks.jpg"></button><figcaption><span>Было</span> номер то рядом с названием, то над ним</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-worktype-tasks.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: номер отдельным столбцом" loading="lazy" src="m3/after-worktype-tasks.jpg"></button><figcaption><span>Стало</span> номер отдельным столбцом</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-5">
+            <header class="ask__head"><span class="ask__n">5</span><h3>Резервы: этапы ровно</h3><span class="ask__state">✅ сделано · 16:46–17:16</span></header>
+            <blockquote><small>Замечание</small>«Статус здесь один, а тут он съехал немножко — последний, который „Ждёт сборки“. Давайте поправим, чтобы было ровненько.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Резервы — таблицей того же вида, что «Запчасти» под ними: этап всегда в своём столбце, «Снять резерв» — в последнем и его не сдвигает. На телефоне — карточками.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-reserves.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Ждёт сборки» левее остальных" loading="lazy" src="m3/before-reserves.jpg"></button><figcaption><span>Было</span> «Ждёт сборки» левее остальных</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-reserves.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: этапы в одном столбце" loading="lazy" src="m3/after-reserves.jpg"></button><figcaption><span>Стало</span> этапы в одном столбце</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-6">
+            <header class="ask__head"><span class="ask__n">6</span><h3>Шрифты: 5 размеров вместо 7</h3><span class="ask__state">✅ сделано · 17:23–20:41</span></header>
+            <blockquote><small>Замечание</small>«Давайте сократим количество… Пусть будет не 7, а 5: например, 13 и 14 — пусть все будут 13. Чтобы на одном экране было ограниченное количество начертаний.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Размеры 12, 13, 16, 20, 24 (11 и 12 → 12, 13 и 14 → 13), межстрочных три вместо двенадцати. К той же шкале приведены классы Tailwind и «плавающие» заголовки — прежняя проверка их не видела. Тест следит за всеми.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-fonts.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: карточка задачи до" loading="lazy" src="m3/before-fonts.jpg"></button><figcaption><span>Было</span> карточка задачи до</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-task-initiator.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: та же карточка в новой шкале" loading="lazy" src="m3/after-task-initiator.jpg"></button><figcaption><span>Стало</span> та же карточка в новой шкале</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-7">
+            <header class="ask__head"><span class="ask__n">7</span><h3>Счётчик без пояснения</h3><span class="ask__state">✅ сделано · 02:05–02:20</span></header>
+            <blockquote><small>Замечание</small>«Вот это пояснение тоже же надо убрать, правильно? „Число с экрана… переписывает его в результате работы…“»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> Строки-пояснения над показаниями нет. Откуда число, видно в столбце «Откуда»: ссылка на задачу или «Перенос из 1С».</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: строка-пояснение над таблицей" loading="lazy" src="m3/before-meter.jpg"></button><figcaption><span>Было</span> строка-пояснение над таблицей</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-meter.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: только таблица" loading="lazy" src="m3/after-meter.jpg"></button><figcaption><span>Стало</span> только таблица</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-8">
+            <header class="ask__head"><span class="ask__n">8</span><h3>Доска задач до низа окна</h3><span class="ask__state">✅ сделано · 21:55–22:05</span></header>
+            <blockquote><small>Замечание</small>«А вот здесь, смотрите, задачи — почему оно до середины отображается?»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> На встрече это назвали особенностью демо — на деле была ошибка: после закрытия панели «Фильтры» доска не растягивалась обратно. Теперь высота пересчитывается, когда панель открывают и закрывают; на стенде низ доски остаётся у низа окна.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: доска обрывается на середине" loading="lazy" src="m3/before-board.jpg"></button><figcaption><span>Было</span> доска обрывается на середине</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-board.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: доска до низа окна" loading="lazy" src="m3/after-board.jpg"></button><figcaption><span>Стало</span> доска до низа окна</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-9">
+            <header class="ask__head"><span class="ask__n">9</span><h3>Журнал «Доступ и права»</h3><span class="ask__state">✅ сделано · 10:41–11:33</span></header>
+            <blockquote><small>Обещали на встрече</small>«Я могу ещё сюда добавить… помимо входов — важные изменения: создание нового сотрудника, выдача прав ему или изменение его прав.»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> В «Журналах» вкладка «Доступ и права»: кто завёл сотрудника, дал или сменил роль, отключил; кто создал роль и какие права в ней включил или выключил — словами, как на странице роли. Для ролей и прав — обновление базы 0076, накатано на стенд и проверено на его данных. Роль сохраняет только изменённые галочки, а не весь список заново.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-journal.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: только «Изменения» и «Входы»" loading="lazy" src="m3/before-journal.jpg"></button><figcaption><span>Было</span> только «Изменения» и «Входы»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-journal.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: вкладка «Доступ и права»" loading="lazy" src="m3/after-journal.jpg"></button><figcaption><span>Стало</span> вкладка «Доступ и права»</figcaption></figure></div>
+          </article>
+          <article class="ask" id="m3-10">
+            <header class="ask__head"><span class="ask__n">10</span><h3>«Отключён» вместо «Неактивен»</h3><span class="ask__state">✅ сделано · 11:33–12:00</span></header>
+            <blockquote><small>Замечание</small>«А что значит поле „Статус“? Статус что значит сотрудника?»</blockquote>
+            <p class="ask__done"><b>Что сделано.</b> «Неактивен» — сотрудник, которого отключили: он не может работать в системе и не попадает в списки инженеров (на встрече ответили неверно — Telegram тут ни при чём). Теперь везде «Отключён», тем же словом, что и кнопка «Отключить», — у сотрудников, ролей, площадок, плательщиков, инженеров, запчастей и шаблонов писем.</p>
+            <div class="ba"><figure class="ba__before"><button class="shot" type="button" data-full="m3/before-staff.jpg" aria-label="Открыть скриншот крупно"><img alt="Было: «Неактивен»" loading="lazy" src="m3/before-staff.jpg"></button><figcaption><span>Было</span> «Неактивен»</figcaption></figure><figure class="ba__after"><button class="shot" type="button" data-full="m3/after-staff.jpg" aria-label="Открыть скриншот крупно"><img alt="Стало: «Отключён»" loading="lazy" src="m3/after-staff.jpg"></button><figcaption><span>Стало</span> «Отключён»</figcaption></figure></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="part" id="notes">
+        <header><h2>Уточнения к встрече</h2><span class="where">пять ответов со встречи — точнее</span></header>
+        <ul class="items">
+          <li><span class="tag tag--meet">Встреча · 12:22</span><div><b>Роль инициатора есть в ТЗ.</b><small>На встрече прозвучало «в ТЗ такой роли не было, попросили на созвоне». На деле она в разделе 2 «Роли и права»: менеджер-инициатор, около 5 человек, «создание заявок, статусы и результаты только своих задач».</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 13:30</span><div><b>Заявка инициатора — это задача.</b><small>На встрече её назвали «происшествием внутри задачи». На деле заявка становится обычной задачей со своим номером, подробно — в разделе «Кто такой инициатор».</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 11:48</span><div><b>«Неактивен» — это отключённый сотрудник.</b><small>Не «не подключил Telegram»: отключённый сотрудник не может работать в системе и не попадает в списки инженеров. Теперь подписано «Отключён».</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 22:04</span><div><b>Доска «до середины» — ошибка в коде, не особенность демо.</b><small>Повторилась бы и на стенде. Исправлено, см. пункт 8.</small></div></li>
+          <li><span class="tag tag--meet">Встреча · 10:03</span><div><b>Безопасность ролей.</b><small>Галочки роли сохраняются в базе, и права проверяет сама база на каждом запросе. Сотрудник без права не получит данные, даже если обойдёт экран. Инженер не получает цены никаким запросом (ТЗ, раздел 2).</small></div></li>
+        </ul>
+      </section>
+
+      <section class="part" id="next">
+        <header><h2>Что дальше</h2><span class="where">как договорились в конце встречи (21:24–25:12)</span></header>
+        <ul class="items">
+          <li><span class="tag tag--fix">Проверка</span><div><b>Короткий созвон или Сергей сам проходит систему как пользователь.</b></div></li>
+          <li><span class="tag tag--wait">Видео</span><div><b>Видеообзор для заказчика — на стенде, с переключением ролей.</b><small>Инициатор создал задачу → координатор назначил инженера → инженер принял, взял в работу, заполнил результат → проверка и закрытие → инициатор видит результат.</small></div></li>
+          <li><span class="tag tag--fix">Прогон</span><div><b>После видео — весь цикл по ролям, прогоном и руками.</b><small>Чтобы найти мелкие ошибки, которые не видны на отдельных экранах.</small></div></li>
+          <li><span class="tag tag--wait">Заказчик</span><div><b>Сообщить заказчику: по ТЗ с нашей стороны всё сделано.</b><small>Ждём от них доступ к почте, форму договора и выгрузки из 1С; уточнить, кто их инициаторы.</small></div></li>
+        </ul>
+      </section>
+
+      <p class="foot">Состояние на 19.11.2026, вечер.</p>
+    </div>
+  </main>
+</div>
+
+<div class="viewer" hidden id="viewer" role="dialog" aria-modal="true" aria-label="Скриншот">
+  <div class="viewer__bar"><span class="viewer__count" id="viewer-count"></span><span style="display:flex;gap:8px"><button class="viewer__btn" id="viewer-zoom" type="button">В полный размер</button><button class="viewer__btn" id="viewer-close" type="button" aria-label="Закрыть">✕</button></span></div>
+  <div class="viewer__stage" id="viewer-stage">
+    <button class="viewer__btn viewer__nav viewer__nav--prev" id="viewer-prev" type="button" aria-label="Предыдущий скриншот">‹</button>
+    <img alt="" id="viewer-img">
+    <button class="viewer__btn viewer__nav viewer__nav--next" id="viewer-next" type="button" aria-label="Следующий скриншот">›</button>
+  </div>
+  <div class="viewer__caption" id="viewer-caption"></div>
+</div>
+<script>
+(() => {
+  const shots = [...document.querySelectorAll(".shot")];
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-img");
+  const caption = document.getElementById("viewer-caption");
+  const count = document.getElementById("viewer-count");
+  const zoom = document.getElementById("viewer-zoom");
+  let index = 0;
+  let opener = null;
+  const show = (next) => {
+    index = (next + shots.length) % shots.length;
+    const shot = shots[index];
+    const thumb = shot.querySelector("img");
+    viewer.classList.remove("viewer--full");
+    zoom.textContent = "В полный размер";
+    img.src = shot.dataset.full;
+    img.alt = thumb ? thumb.alt : "";
+    const figcap = shot.closest("figure")?.querySelector("figcaption");
+    const section = shot.closest("section")?.querySelector("h2");
+    caption.textContent = [section?.textContent, figcap?.textContent].filter(Boolean).join(" · ");
+    count.textContent = (index + 1) + " из " + shots.length;
+  };
+  const open = (i, from) => { opener = from; show(i); viewer.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("viewer-close").focus(); };
+  const close = () => { viewer.hidden = true; document.body.style.overflow = ""; img.removeAttribute("src"); opener?.focus(); };
+  const toggleFull = () => { const full = viewer.classList.toggle("viewer--full"); zoom.textContent = full ? "Вписать в экран" : "В полный размер"; };
+  shots.forEach((shot, i) => shot.addEventListener("click", () => open(i, shot)));
+  document.getElementById("viewer-close").addEventListener("click", close);
+  document.getElementById("viewer-prev").addEventListener("click", (event) => { event.stopPropagation(); show(index - 1); });
+  document.getElementById("viewer-next").addEventListener("click", (event) => { event.stopPropagation(); show(index + 1); });
+  zoom.addEventListener("click", toggleFull);
+  img.addEventListener("click", (event) => { event.stopPropagation(); toggleFull(); });
+  document.getElementById("viewer-stage").addEventListener("click", (event) => { if (event.target.id === "viewer-stage") close(); });
+  document.addEventListener("keydown", (event) => {
+    if (viewer.hidden) return;
+    if (event.key === "Escape") close();
+    else if (event.key === "ArrowLeft") show(index - 1);
+    else if (event.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
+</body>
+</html>
